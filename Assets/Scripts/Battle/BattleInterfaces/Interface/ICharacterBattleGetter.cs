@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using RPG.DataManagement.Team;
 
-public interface ICharacterBattleGetter
+namespace RPG.Battle
 {
-    List<TeamSlot> getCharacters();
+    public interface ICharacterBattleGetter
+    {
+        List<TeamSlot> getCharacters();
+    }
 }

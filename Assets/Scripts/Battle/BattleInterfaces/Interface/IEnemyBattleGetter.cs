@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using RPG.DataManagement;
 
-public interface IEnemyBattleGetter
+namespace RPG.Battle
 {
-    List<Enemy> getEnemies();
+    public interface IEnemyBattleGetter
+    {
+        List<Enemy> getEnemies();
+    }
 }

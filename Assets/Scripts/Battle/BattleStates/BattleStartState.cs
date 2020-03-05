@@ -4,25 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
-public class BattleStartState : BattleState
+
+namespace RPG.Battle.StateMachine
 {
-    public override void start()
+    public class BattleStartState : BattleState
     {
-        endTurn();
-    }
+        public override void start()
+        {
+            endTurn();
+        }
 
-    public override void executeState()
-    {
-        
-    }
+        public override void executeState()
+        {
 
-    public override void useAction(BattleTarget target, BattleSpawningPoint senderSpawn)
-    {
-        
-    }
+        }
 
-    public override void endTurn()
-    {
-        changeStateBasedOnOrderList();
+        public override void useAction(BattleTarget target, BattleSpawningPoint senderSpawn)
+        {
+
+        }
+
+        public override void endTurn()
+        {
+            changeStateBasedOnOrderList();
+        }
     }
 }

@@ -3,46 +3,51 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.DataManagement;
 
-public abstract class BattleState
+namespace RPG.Battle.StateMachine
 {
-    protected static BattleStateManager _battleStateManager { get; private set; }
-    protected static BattleManager _battleManager { get; private set; }
-
-    /// <summary>
-    /// init the battle manager instance for each battle state
-    /// </summary>
-    /// <param name="battleStateManager"></param>
-    public static void init(BattleStateManager battleStateManager, BattleManager battleManager)
+    public abstract class BattleState
     {
-        _battleStateManager = battleStateManager;
-        _battleManager = battleManager;
-    }
+        protected static BattleStateManager _battleStateManager { get; private set; }
+        protected static BattleManager _battleManager { get; private set; }
 
-    /// <summary>
-    /// init the state
-    /// </summary>
-    public abstract void start();
+        /// <summary>
+        /// init the battle manager instance for each battle state
+        /// </summary>
+        /// <param name="battleStateManager"></param>
+        public static void init(BattleStateManager battleStateManager, BattleManager battleManager)
+        {
+            _battleStateManager = battleStateManager;
+            _battleManager = battleManager;
+        }
 
-    /// <summary>
-    /// Contain execute logic of the state
-    /// </summary>
-    public abstract void executeState();
-    public abstract void endTurn();
+        /// <summary>
+        /// init the state
+        /// </summary>
+        public abstract void start();
 
-    public abstract void useAction(BattleTarget target, BattleSpawningPoint senderSpawn);
+        /// <summary>
+        /// Contain execute logic of the state
+        /// </summary>
+        public abstract void executeState();
+        public abstract void endTurn();
 
-    protected void changeStateBasedOnOrderList()
-    {
-        List<Being> battleOrders = _battleStateManager.battleOrder.current;
-        ActorTurnBattleState.currentActor = battleOrders.First();
+        public abstract void useAction(BattleTarget target, BattleSpawningPoint senderSpawn);
 
-        if (battleOrders.First().GetType() == typeof(Enemy))
-            ChangeState(typeof(EnemyTurn));
-        else
-            ChangeState(typeof(PlayerTurn));
-    }
-    protected virtual void ChangeState(Type stateType) {
-        _battleStateManager.changeState(stateType); 
+        protected void changeStateBasedOnOrderList()
+        {
+            List<Being> battleOrders = _battleStateManager.battleOrder.current;
+            ActorTurnBattleState.currentActor = battleOrders.First();
+
+            if (battleOrders.First().GetType() == typeof(Enemy))
+                ChangeState(typeof(EnemyTurn));
+            else
+                ChangeState(typeof(PlayerTurn));
+        }
+        protected virtual void ChangeState(Type stateType)
+        {
+            _battleStateManager.changeState(stateType);
+        }
     }
 }

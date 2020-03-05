@@ -2,7 +2,10 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-internal interface INavigationSetter
+namespace RPG.Battle
 {
-    void setNavigation(List<Button> selectables, EventSystem eventSystem);
+    internal interface INavigationSetter
+    {
+        void setNavigation(List<Button> selectables, EventSystem eventSystem);
+    }
 }

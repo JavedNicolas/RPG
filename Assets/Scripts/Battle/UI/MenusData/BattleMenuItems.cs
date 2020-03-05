@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using RPG.DataManagement;
 
-public class BattleMenuItems
+namespace RPG.Battle
 {
-    public List<ActionCategoryMenuItem> categoryItems;
+    public class BattleMenuItems
+    {
+        public List<ActionCategoryMenuItem> categoryItems;
+    }
 }
 

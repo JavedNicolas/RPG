@@ -5,28 +5,31 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerTurn : ActorTurnBattleState
+namespace RPG.Battle.StateMachine
 {
-
-    public override void start()
+    public class PlayerTurn : ActorTurnBattleState
     {
-        _battleManager.displayMenu(true);
-    }
 
-    public override void executeState()
-    {
-        endTurn();
-    }
+        public override void start()
+        {
+            _battleManager.displayMenu(true);
+        }
 
-    public override void useAction(BattleTarget target, BattleSpawningPoint senderSpawn)
-    {
-        animateMovement(actionInUse, target, senderSpawn);
-    }
+        public override void executeState()
+        {
+            endTurn();
+        }
 
-    public override void endTurn()
-    {
-        _battleManager.resetMenu();
-        _battleStateManager.battleOrder.updateBattleOrder();
-        changeStateBasedOnOrderList();
+        public override void useAction(BattleTarget target, BattleSpawningPoint senderSpawn)
+        {
+            animateMovement(actionInUse, target, senderSpawn);
+        }
+
+        public override void endTurn()
+        {
+            _battleManager.resetMenu();
+            _battleStateManager.battleOrder.updateBattleOrder();
+            changeStateBasedOnOrderList();
+        }
     }
 }

@@ -4,80 +4,86 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
-public class BattleMenuItemCreator
+
+namespace RPG.Battle
 {
-    Character _character;
+    using RPG.DataManagement;
 
-    GameObject _categoryPrefab;
-    GameObject _actionPrefab;
-
-    RectTransform _parent;
-
-    public BattleMenuItems createMenu(Character character, GameObject categoryPrefab, GameObject actionPrefab, RectTransform parent)
+    public class BattleMenuItemCreator
     {
-        _character = character;
-        _categoryPrefab = categoryPrefab;
-        _actionPrefab = actionPrefab;
-        _parent = parent;
+        Character _character;
 
-        BattleMenuItems menuGO = new BattleMenuItems(); ;
-        menuGO.categoryItems = instantiateMenu();
+        GameObject _categoryPrefab;
+        GameObject _actionPrefab;
 
-        return menuGO;
-    }
+        RectTransform _parent;
 
-    /// <summary> Do not invoke this </summary>
-    private List<ActionCategoryMenuItem> instantiateMenu()
-    {
-        List<ActionCategoryMenuItem> categoryMenuItems = new List<ActionCategoryMenuItem>();
-        List<string> categories = Enum.GetNames(typeof(ActionCategory)).ToList();
-
-        // for each category generate a menu Item and a list of menu item for all the action in this category
-        for (int i = 0; i < categories.Count; i++)
+        public BattleMenuItems createMenu(Character character, GameObject categoryPrefab, GameObject actionPrefab, RectTransform parent)
         {
-            List<Action> matchingActions = _character.actions.FindAll(x => x.getCategory().ToString() == categories[i]);
+            _character = character;
+            _categoryPrefab = categoryPrefab;
+            _actionPrefab = actionPrefab;
+            _parent = parent;
 
-            if (matchingActions == null || matchingActions.Count == 0)
-                continue;
+            BattleMenuItems menuGO = new BattleMenuItems(); ;
+            menuGO.categoryItems = instantiateMenu();
 
-            GameObject gameObject = GameObject.Instantiate(_categoryPrefab, _parent);
-            gameObject.GetComponentInChildren<LocalizeText>().key = "BattleMenu_" + categories[i];
-            gameObject.SetActive(false);
-
-            ActionCategoryMenuItem categoryMenuItem = new ActionCategoryMenuItem()
-            {
-                name = categories[i],
-                isCategory = true,
-                gameObject = gameObject,
-                actionMenu = instantiateActionMenu(matchingActions)
-            };
-
-            categoryMenuItems.Add(categoryMenuItem);
+            return menuGO;
         }
 
-        return categoryMenuItems;
-    }
-
-    private List<ActionMenuItem> instantiateActionMenu(List<Action> matchingActions)
-    {
-        List<ActionMenuItem> actionMenuItem = new List<ActionMenuItem>();
-        foreach (Action action in matchingActions)
+        /// <summary> Do not invoke this </summary>
+        private List<ActionCategoryMenuItem> instantiateMenu()
         {
-            GameObject gameObject = GameObject.Instantiate(_actionPrefab, _parent);
-            gameObject.GetComponentInChildren<LocalizeText>().key = action.getLocalisationKey();
-            gameObject.SetActive(false);
+            List<ActionCategoryMenuItem> categoryMenuItems = new List<ActionCategoryMenuItem>();
+            List<string> categories = Enum.GetNames(typeof(ActionCategory)).ToList();
 
-            ActionMenuItem menuItem = new ActionMenuItem()
+            // for each category generate a menu Item and a list of menu item for all the action in this category
+            for (int i = 0; i < categories.Count; i++)
             {
-                name = action.name,
-                gameObject = gameObject,
-                action = action
-            };
-            actionMenuItem.Add(menuItem);
+                List<Action> matchingActions = _character.actions.FindAll(x => x.getCategory().ToString() == categories[i]);
+
+                if (matchingActions == null || matchingActions.Count == 0)
+                    continue;
+
+                GameObject gameObject = GameObject.Instantiate(_categoryPrefab, _parent);
+                gameObject.GetComponentInChildren<LocalizeText>().key = "BattleMenu_" + categories[i];
+                gameObject.SetActive(false);
+
+                ActionCategoryMenuItem categoryMenuItem = new ActionCategoryMenuItem()
+                {
+                    name = categories[i],
+                    isCategory = true,
+                    gameObject = gameObject,
+                    actionMenu = instantiateActionMenu(matchingActions)
+                };
+
+                categoryMenuItems.Add(categoryMenuItem);
+            }
+
+            return categoryMenuItems;
         }
 
-        return actionMenuItem;
-    }
+        private List<ActionMenuItem> instantiateActionMenu(List<Action> matchingActions)
+        {
+            List<ActionMenuItem> actionMenuItem = new List<ActionMenuItem>();
+            foreach (Action action in matchingActions)
+            {
+                GameObject gameObject = GameObject.Instantiate(_actionPrefab, _parent);
+                gameObject.GetComponentInChildren<LocalizeText>().key = action.getLocalisationKey();
+                gameObject.SetActive(false);
 
+                ActionMenuItem menuItem = new ActionMenuItem()
+                {
+                    name = action.name,
+                    gameObject = gameObject,
+                    action = action
+                };
+                actionMenuItem.Add(menuItem);
+            }
+
+            return actionMenuItem;
+        }
+
+    }
 }
 

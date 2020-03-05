@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using RPG.DataManagement;
 
-public class RandomEnemyFromDatabase : MonoBehaviour, IEnemyBattleGetter
+namespace RPG.Battle
 {
-    public List<Enemy> getEnemies()
+    public class RandomEnemyFromDatabase : MonoBehaviour, IEnemyBattleGetter
     {
-       int randomEnemy = UnityEngine.Random.Range(2, 6);
-       List<Enemy> enemies = new List<Enemy>();
-       GameManager.instance.enemyDatabase.getRandomElements(randomEnemy, true).ForEach(x =>
-       {
-           Enemy enemy = Enemy.CreateInstance<Enemy>();
-           enemy.init(x);
-           enemies.Add(enemy);
-       });
-       return enemies;
+        public List<Enemy> getEnemies()
+        {
+            int randomEnemy = UnityEngine.Random.Range(2, 6);
+            List<Enemy> enemies = new List<Enemy>();
+            GameManager.instance.enemyDatabase.getRandomElements(randomEnemy, true).ForEach(x =>
+            {
+                Enemy enemy = Enemy.CreateInstance<Enemy>();
+                enemy.init(x);
+                enemies.Add(enemy);
+            });
+            return enemies;
+        }
     }
 }

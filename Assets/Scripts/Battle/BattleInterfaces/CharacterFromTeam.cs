@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using RPG.DataManagement.Team;
 
-public class CharacterFromTeam : MonoBehaviour, ICharacterBattleGetter
+namespace RPG.Battle
 {
-    public List<TeamSlot> getCharacters()
+    public class CharacterFromTeam : MonoBehaviour, ICharacterBattleGetter
     {
-        return GameManager.instance.player.getCurrentTeam();
+        public List<TeamSlot> getCharacters()
+        {
+            return GameManager.instance.team.getCurrentTeam;
+        }
     }
 }

@@ -4,49 +4,55 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class VerticalNavigation : MonoBehaviour, INavigationSetter
+namespace RPG.Battle
 {
-    [SerializeField] bool loop;
-
-    public void setNavigation(List<Button> selectables, EventSystem eventSystem)
+    public class VerticalNavigation : MonoBehaviour, INavigationSetter
     {
-        Button firstSelectable = null;
-        Button lastCategory = null;
+        [SerializeField] bool loop;
 
-        foreach (Button selectable in selectables)
+        public void setNavigation(List<Button> selectables, EventSystem eventSystem)
         {
-            if (firstSelectable == null)
+            Button firstSelectable = null;
+            Button lastCategory = null;
+
+            if (selectables == null | selectables.Count == 0 || eventSystem == null)
+                return;
+
+            foreach (Button selectable in selectables)
             {
-                if(eventSystem.firstSelectedGameObject == null)
-                    eventSystem.firstSelectedGameObject = selectable.gameObject;
-                firstSelectable = selectable;
-                lastCategory = selectable;
+                if (firstSelectable == null)
+                {
+                    if (eventSystem.firstSelectedGameObject == null)
+                        eventSystem.firstSelectedGameObject = selectable.gameObject;
+                    firstSelectable = selectable;
+                    lastCategory = selectable;
+                }
+                else
+                {
+                    Button actionSelectable = selectable;
+
+                    Navigation navigation = lastCategory.navigation;
+                    navigation.selectOnDown = actionSelectable;
+                    lastCategory.navigation = navigation;
+
+                    navigation = actionSelectable.navigation;
+                    navigation.selectOnUp = lastCategory;
+                    actionSelectable.navigation = navigation;
+
+                    lastCategory = actionSelectable;
+                }
             }
-            else
+
+            if (loop)
             {
-                Button actionSelectable = selectable;
+                Navigation nav = firstSelectable.navigation;
+                nav.selectOnUp = lastCategory;
+                firstSelectable.navigation = nav;
 
-                Navigation navigation = lastCategory.navigation;
-                navigation.selectOnDown = actionSelectable;
-                lastCategory.navigation = navigation;
-
-                navigation = actionSelectable.navigation;
-                navigation.selectOnUp = lastCategory;
-                actionSelectable.navigation = navigation;
-
-                lastCategory = actionSelectable;
+                nav = lastCategory.navigation;
+                nav.selectOnDown = firstSelectable;
+                lastCategory.navigation = nav;
             }
-        }
-
-        if (loop)
-        {
-            Navigation nav = firstSelectable.navigation;
-            nav.selectOnUp = lastCategory;
-            firstSelectable.navigation = nav;
-
-            nav = lastCategory.navigation;
-            nav.selectOnDown = firstSelectable;
-            lastCategory.navigation = nav;
         }
     }
 }

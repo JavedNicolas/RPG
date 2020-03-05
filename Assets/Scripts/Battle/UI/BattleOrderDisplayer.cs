@@ -2,26 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BattleOrderDisplayer : MonoBehaviour
+
+namespace RPG.Battle.UI
 {
-    [SerializeField] Transform _battleOrderList;
-    [SerializeField] GameObject _battleOrderItemPrefab;
-    [SerializeField] GameObject _selectionArrow;
-
-    List<BattleOrderActorDisplayer> _actors = new List<BattleOrderActorDisplayer>();
-    List<BattleTarget> _battleTargets = new List<BattleTarget>(); 
-
-    public void displayOrderList(BattleOrder battleData)
+    public class BattleOrderDisplayer : MonoBehaviour
     {
-        _selectionArrow.SetActive(false);
-        _battleOrderList.clearChild();
-        battleData.current.ForEach(x =>
-        {
-            GameObject gameObject = Instantiate(_battleOrderItemPrefab, _battleOrderList);
-            BattleOrderActorDisplayer battleOrderActorDisplayer = gameObject.GetComponent<BattleOrderActorDisplayer>();
-            battleOrderActorDisplayer.set(x.icon, x.name);
-            _actors.Add(battleOrderActorDisplayer); 
-        });
-    }
+        [SerializeField] Transform _battleOrderList;
+        [SerializeField] GameObject _battleOrderItemPrefab;
+        [SerializeField] GameObject _selectionArrow;
 
+        List<BattleOrderActorDisplayer> _actors = new List<BattleOrderActorDisplayer>();
+        List<BattleTarget> _battleTargets = new List<BattleTarget>();
+
+        public void displayOrderList(BattleOrder battleData)
+        {
+            _selectionArrow.SetActive(false);
+            _battleOrderList.clearChild();
+            battleData.current.ForEach(x =>
+            {
+                GameObject gameObject = Instantiate(_battleOrderItemPrefab, _battleOrderList);
+                BattleOrderActorDisplayer battleOrderActorDisplayer = gameObject.GetComponent<BattleOrderActorDisplayer>();
+                battleOrderActorDisplayer.set(x.icon, x.name);
+                _actors.Add(battleOrderActorDisplayer);
+            });
+        }
+    }
 }

@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using RPG.DataManagement;
 
-public class ActionMenuItem
+namespace RPG.Battle
 {
-    public string name;
-    public Sprite icon;
-    public string apCost;
-    public GameObject gameObject;
-    public Action action;
+    public class ActionMenuItem
+    {
+        public string name;
+        public Sprite icon;
+        public string apCost;
+        public GameObject gameObject;
+        public Action action;
+    }
 }
