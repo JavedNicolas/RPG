@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f822e888be46a42a8051cebf19e927, type: 3}
+  m_Name: Enemy2
+  m_EditorClassIdentifier: 
+  name: Enemy2
+  _maxLife: 100
+  _maxActionPoint: 2
+  _attack: 2
+  _magicAttack: 2
+  _defense: 2
+  _magicDefense: 2
+  _speed: 2
+  _model: {fileID: 365394466697699572, guid: 860935a50ebd2c24faf563e0d91fce30, type: 3}
+  _actions:
+  - {fileID: 11400000, guid: 1034022999cb8e340ac116220ff14c18, type: 2}
+  _icon: {fileID: 21300000, guid: dc7d501e1cc63664fa2f71afa429ed9f, type: 3}

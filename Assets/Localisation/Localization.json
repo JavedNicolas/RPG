@@ -1,0 +1,222 @@
+{
+    "languages": [
+        {
+            "name": "English",
+            "elements": [
+                {
+                    "key": "Button_Validate",
+                    "value": "test2",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleMenu_Attack",
+                    "value": "Attack",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleMenu_Skill",
+                    "value": "Skills",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleMenu_Defense",
+                    "value": "Defense",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleMenu_Item",
+                    "value": "Items",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleUI_ActionPoint_Short",
+                    "value": "AP",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleMenu_Magic",
+                    "value": "Magic",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "Action_FireBall",
+                    "value": "Fire Ball",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "Action_Attack",
+                    "value": "Attack",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "Action_Defense",
+                    "value": "Defense",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "Action_Items",
+                    "value": "Items",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "TurnName_PlayerTurn",
+                    "value": "Your turn",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "TurnName_EnemyTurn",
+                    "value": "Enemy turn",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                }
+            ]
+        },
+        {
+            "name": "Français",
+            "elements": [
+                {
+                    "key": "Button_Validate",
+                    "value": "",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleMenu_Attack",
+                    "value": "Attaque",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleMenu_Skill",
+                    "value": "Compétences",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleMenu_Defense",
+                    "value": "Défense",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleMenu_Item",
+                    "value": "Objets",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleUI_ActionPoint_Short",
+                    "value": "PA",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "BattleMenu_Magic",
+                    "value": "Magie",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "Action_FireBall",
+                    "value": "Boule de Feu",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "Action_Attack",
+                    "value": "Attaque",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "Action_Defense",
+                    "value": "Défense",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "Action_Items",
+                    "value": "Objets",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "TurnName_PlayerTurn",
+                    "value": "Votre tour",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "TurnName_EnemyTurn",
+                    "value": "Tour de Enemy",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                }
+            ]
+        }
+    ]
+}
