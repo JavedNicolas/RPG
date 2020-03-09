@@ -4,9 +4,11 @@ using RPG.DataManagement;
 
 namespace RPG.Battle
 {
-    public struct BattleTarget
+    using RPG.UI;
+
+    public class BattleTarget
     {
-        public Button button;
+        public MenuButton button;
         public GameObject model;
         public Being being;
 
@@ -15,7 +17,7 @@ namespace RPG.Battle
         /// <returns></returns>
         public BattleTarget(BattleSpawningPoint spawningPoint)
         {
-            button = spawningPoint.GetComponentInChildren<Button>();
+            button = spawningPoint.GetComponentInChildren<MenuButton>();
             model = spawningPoint.actorGameObject;
             being = spawningPoint.actor;
         }

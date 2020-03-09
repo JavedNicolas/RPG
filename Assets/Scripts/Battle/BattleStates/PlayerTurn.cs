@@ -1,35 +1,30 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿
+
+using RPG.DataManagement;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RPG.Battle.StateMachine
 {
     public class PlayerTurn : ActorTurnBattleState
     {
-
         public override void start()
         {
-            _battleManager.displayMenu(true);
+            executeState();
         }
 
         public override void executeState()
         {
-            endTurn();
+            _battleStateManager.battleMenu.displayMenu(currentActors);
         }
 
-        public override void useAction(BattleTarget target, BattleSpawningPoint senderSpawn)
+        public override void useAction(BattleTarget target)
         {
-            animateMovement(actionInUse, target, senderSpawn);
+            animateMovement(actionInUse, target, _battleStateManager.battleActorHandler.getSpawningPoint(choosedActor as Being));
         }
 
         public override void endTurn()
         {
-            _battleManager.resetMenu();
-            _battleStateManager.battleOrder.updateBattleOrder();
-            changeStateBasedOnOrderList();
+            ChangeState(typeof(EnemyTurn));
         }
     }
 }

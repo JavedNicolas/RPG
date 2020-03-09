@@ -7,43 +7,46 @@ using UnityEngine.UI;
 
 namespace RPG.Battle
 {
-    public class BattleTargetSelector : MonoBehaviour
+    using RPG.UI;
+
+    public class BattleTargetSelector : Menu<BattleTarget>
     {
-        [SerializeField] EventSystem _eventSystem;
+        List<BattleTarget> _targets;
 
-        INavigationSetter _navigationSetter;
-
-        public delegate void TargetHasBeenChosen(BattleTarget target);
-        public TargetHasBeenChosen targetHasBeenChosen;
-
-        private void Awake()
+        public override void initMenu(List<BattleTarget> setterList)
         {
-            _navigationSetter = GetComponent<INavigationSetter>();
+            _targets = setterList;
+           
+            setterList.ForEach(x => {
+                x.button.onClick.RemoveAllListeners();
+                x.button.onClick.AddListener(delegate
+                {
+                    menuFinished(x);
+                });
+            });
+
+            navigationSetter.setNavigation(setterList.Select(x => x.button as Button).ToList(), _eventSystem);
+            _eventSystem.SetSelectedGameObject(setterList.First().model);
         }
 
-        private void Update()
+        protected override void updateSelectionWhenLost()
         {
-            if (Input.GetButton("Cancel"))
-            {
-                _eventSystem.SetSelectedGameObject(null);
-            }
+            if (_eventSystem != null && _targets != null && _targets.Count != 0 && _eventSystem.currentSelectedGameObject == null)
+                _eventSystem.SetSelectedGameObject(_targets.First().button.gameObject);
         }
 
-        public void init(List<BattleTarget> targets)
+        public override void focusMenu()
         {
-            _navigationSetter.setNavigation(targets.Select(x => x.button).ToList(), _eventSystem);
+            if (_eventSystem == null || _targets == null || _targets.Count == 0)
+                return;
 
-            targets.ForEach(x => x.button.onClick.AddListener(delegate {
-                fireDelegate(x);
-            }));
-
-            _eventSystem.SetSelectedGameObject(targets.First().model);
+            gameObject.SetActive(true);
+            _eventSystem.SetSelectedGameObject(_targets.First().button.gameObject);
         }
 
-        public void fireDelegate(BattleTarget target)
+        public override void unFocusMenu()
         {
-            _eventSystem.SetSelectedGameObject(null);
-            targetHasBeenChosen(target);
+            gameObject.SetActive(false);
         }
     }
 

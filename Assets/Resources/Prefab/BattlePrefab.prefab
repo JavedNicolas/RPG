@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 6107497821344769885}
   - component: {fileID: 7651065032567556408}
   - component: {fileID: 6624422594197163269}
+  - component: {fileID: 1626418573}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -146,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleMenu: {fileID: 0}
   _targetSelector: {fileID: 6624422594197163269}
-  battleOrderDisplayer: {fileID: 0}
+  _battleOrderDisplayer: {fileID: 0}
   _battleStateManager: {fileID: 1203642131837690523}
   _battleActorSpawner: {fileID: 8387600795092035231}
 --- !u!114 &8387600795092035231
@@ -224,6 +225,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eventSystem: {fileID: 0}
+--- !u!114 &1626418573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3037515752936615862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704929c4a9a6a1b42ae5d9ac42bd11a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loop: 1
 --- !u!1 &3888882847803599070
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFrontSpawn: 0
-  position: 4
+  position: 1
   actor: {fileID: 0}
   actorGameObject: {fileID: 0}
 --- !u!1 &4954403943954189973
@@ -1068,7 +1082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFrontSpawn: 0
-  position: 3
+  position: 0
   actor: {fileID: 0}
   actorGameObject: {fileID: 0}
 --- !u!1 &4954403944625989961

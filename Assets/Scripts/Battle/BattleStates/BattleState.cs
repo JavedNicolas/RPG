@@ -4,22 +4,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RPG.DataManagement;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 namespace RPG.Battle.StateMachine
 {
     public abstract class BattleState
     {
         protected static BattleStateManager _battleStateManager { get; private set; }
-        protected static BattleManager _battleManager { get; private set; }
+
+        protected List<Being> currentActors;
+        protected Being choosedActor;
 
         /// <summary>
         /// init the battle manager instance for each battle state
         /// </summary>
         /// <param name="battleStateManager"></param>
-        public static void init(BattleStateManager battleStateManager, BattleManager battleManager)
+        public static void init(BattleStateManager battleStateManager)
         {
             _battleStateManager = battleStateManager;
-            _battleManager = battleManager;
         }
 
         /// <summary>
@@ -31,20 +34,12 @@ namespace RPG.Battle.StateMachine
         /// Contain execute logic of the state
         /// </summary>
         public abstract void executeState();
+        public abstract void useAction(BattleTarget target);
         public abstract void endTurn();
 
-        public abstract void useAction(BattleTarget target, BattleSpawningPoint senderSpawn);
+        public virtual void setActors(List<Being> actors) { currentActors = actors; }
+        public virtual void setChoosedActor(Being actor) { choosedActor = actor; }
 
-        protected void changeStateBasedOnOrderList()
-        {
-            List<Being> battleOrders = _battleStateManager.battleOrder.current;
-            ActorTurnBattleState.currentActor = battleOrders.First();
-
-            if (battleOrders.First().GetType() == typeof(Enemy))
-                ChangeState(typeof(EnemyTurn));
-            else
-                ChangeState(typeof(PlayerTurn));
-        }
         protected virtual void ChangeState(Type stateType)
         {
             _battleStateManager.changeState(stateType);

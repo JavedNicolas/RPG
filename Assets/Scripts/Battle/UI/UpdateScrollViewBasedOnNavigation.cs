@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.EventSystems;
+using System;
 
 public class UpdateScrollViewBasedOnNavigation : MonoBehaviour
 {
+    [SerializeField] GameObject _topArrow;
+    [SerializeField] GameObject _bottomArrow;
     [SerializeField] ScrollRect _scrollRect;
     [SerializeField] RectTransform _contentMaskTransfrom;
     [SerializeField] Scrollbar _scrollbar;
@@ -32,6 +35,25 @@ public class UpdateScrollViewBasedOnNavigation : MonoBehaviour
     private void Update()
     {
         updateContentViewPosition();
+        displayArrow();
+    }
+
+    private void displayArrow()
+    {
+        RectTransform contentTransfrom = _scrollRect.content.GetComponent<RectTransform>();
+        float contentHeight = _scrollRect.content.GetComponent<RectTransform>().sizeDelta.y;
+        float contentMaskHeight = _contentMaskTransfrom.rect.height;
+
+        if (contentTransfrom.localPosition.y > 0)
+            _topArrow.SetActive(true);
+        else
+            _topArrow.SetActive(false);
+
+        if(Mathf.Round(contentHeight) > Mathf.Round(contentTransfrom.localPosition.y))
+            _bottomArrow.SetActive(true);
+        else
+            _bottomArrow.SetActive(false);
+
     }
 
     private void updateContentViewPosition()

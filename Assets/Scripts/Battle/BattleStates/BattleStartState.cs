@@ -19,14 +19,14 @@ namespace RPG.Battle.StateMachine
 
         }
 
-        public override void useAction(BattleTarget target, BattleSpawningPoint senderSpawn)
+        public override void useAction(BattleTarget target)
         {
 
         }
 
         public override void endTurn()
         {
-            changeStateBasedOnOrderList();
+            ChangeState(typeof(PlayerTurn));
         }
     }
 }

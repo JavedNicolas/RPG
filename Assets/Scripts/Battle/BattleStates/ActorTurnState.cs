@@ -8,8 +8,11 @@ namespace RPG.Battle.StateMachine
 {
     public abstract class ActorTurnBattleState : BattleState
     {
-        public static Being currentActor;
-        public static Action actionInUse;
+        protected Action actionInUse;
+
+        protected bool isAnimatingAction = true;
+
+        public void setActionInUse(Action action) { actionInUse = action; }
 
         #region action animation
         /// <summary> Move Character to the correct position for his action animation </summary>
@@ -28,6 +31,7 @@ namespace RPG.Battle.StateMachine
 
         private IEnumerator animateMeleeAction(Action action, BattleTarget target, BattleSpawningPoint senderSpawn)
         {
+            
             Vector3 targetPosition = target.model.transform.position;
             BattleSpawningPoint battleSpawningPoint = senderSpawn;
             GameObject actorGO = battleSpawningPoint.actorGameObject;
@@ -38,14 +42,14 @@ namespace RPG.Battle.StateMachine
             yield return new WaitUntil(() => characterMovement.hasFinishedHisMovement);
 
             actorGO.GetComponent<Animator>().SetTrigger("Attack");
-            //actionInUse.execute(currentCharacter, target.being);
+
             yield return new WaitForSeconds(1.2f);
 
             characterMovement.startMovement(battleSpawningPoint.gameObject.transform.position, 1f);
 
             yield return new WaitUntil(() => characterMovement.hasFinishedHisMovement);
             actorGO.transform.rotation = originalRotation;
-
+            isAnimatingAction = false;
             executeState();
         }
         #endregion
