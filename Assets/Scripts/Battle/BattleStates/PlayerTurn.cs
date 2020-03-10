@@ -13,6 +13,7 @@ namespace RPG.Battle.StateMachine
 
         public override void start()
         {
+            // init action points
             maxActionPoint = 0;
             currentActors.ForEach(x => 
             {
@@ -21,27 +22,46 @@ namespace RPG.Battle.StateMachine
             });
             remainingActionPoint = maxActionPoint;
 
+            // update the action point display
             updateActionPointDisplay();
             executeState();
         }
 
         public override void executeState()
         {
+            // if there is no more enemy switch to player won
+            if (_battleStateManager.battleActorHandler.getEnemies().Count == 0)
+            {
+                ChangeState(typeof(PlayerWonState));
+                return;
+            }
+
+            // if there is no more action point hide the menu
+            if (remainingActionPoint == 0)
+            {
+                _battleStateManager.battleMenu.hideMenu();
+                return;
+            }
+                
+
             _battleStateManager.battleMenu.displayMenu(currentActors);
         }
 
         public override void useAction(BattleTarget target)
         {
+            // remove the action point consummed
             remainingActionPoint -= actionInUse.cost;
             updateActionPointDisplay();
+
+            // animate the action
             animateMovement(actionInUse, target, _battleStateManager.battleActorHandler.getSpawningPoint(choosedActor as Being));
         }
 
+        /// <summary> update the action points display </summary>
         private void updateActionPointDisplay()
         {
             _battleStateManager.battleMenu.updateActionPointDisplay(remainingActionPoint, maxActionPoint);
         }
-
 
         public override void endTurn()
         {

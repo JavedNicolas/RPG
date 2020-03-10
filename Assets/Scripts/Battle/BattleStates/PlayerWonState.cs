@@ -1,27 +1,27 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System;
+﻿
 
+
+using UnityEngine;
 
 namespace RPG.Battle.StateMachine
 {
-    public class BattleStartState : BattleState
+    public class PlayerWonState : BattleState
     {
         public override void start()
         {
-            endTurn();
+            Debug.Log("PLayer Won");
         }
 
         public override void executeState()
         {
-
+            throw new System.NotImplementedException();
         }
 
         public override void endTurn()
         {
-            ChangeState(typeof(PlayerTurn));
+            throw new System.NotImplementedException();
         }
     }
 }
+
+

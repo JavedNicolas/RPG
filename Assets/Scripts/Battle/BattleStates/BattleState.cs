@@ -34,12 +34,13 @@ namespace RPG.Battle.StateMachine
         /// Contain execute logic of the state
         /// </summary>
         public abstract void executeState();
-        public abstract void useAction(BattleTarget target);
         public abstract void endTurn();
 
         public virtual void setActors(List<Being> actors) { currentActors = actors; }
         public virtual void setChoosedActor(Being actor) { choosedActor = actor; }
 
+        /// <summary> switch state </summary>
+        /// <param name="stateType"></param>
         protected virtual void ChangeState(Type stateType)
         {
             _battleStateManager.changeState(stateType);

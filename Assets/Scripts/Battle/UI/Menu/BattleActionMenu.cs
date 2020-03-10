@@ -35,52 +35,23 @@ namespace RPG.Battle.UI
         GameObject _selectedAction;
 
         #region object pooling
-        const int CATEGORY_POOL_SIZE = 20;
-        const int ACTION_POOL_SIZE = 30;
-
         public List<GameObject> _categoriesPool = new List<GameObject>();
         public List<GameObject> _actionsPool = new List<GameObject>();
         #endregion
 
-        public void initPooling()
-        {
-            setPoolingObject();
-            _menuSetter = new BattleMenuSetter(_categoriesPool, _actionsPool);
-        }
-
-        #region pooling object creation
-        private void setPoolingObject()
-        {
-
-            for (int i = 0; i < CATEGORY_POOL_SIZE; i++)
-            {
-                _categoriesPool.Add(createObjectForPooling(_categoryPrefab));
-            }
-
-            for (int i = 0; i < ACTION_POOL_SIZE; i++)
-            {
-                _actionsPool.Add(createObjectForPooling(_actionPrefab));
-            }
-        }
-
-        private GameObject createObjectForPooling(GameObject prefab)
-        {
-            GameObject gameObject = GameObject.Instantiate(prefab, _menuParent);
-            gameObject.SetActive(false);
-
-            return gameObject;
-        }
-        #endregion
-
         public override void initMenu(List<Action> settersList)
         {
+            // reset the previously selected Go (set when switching from category to action...)
             _selectedCategory = null;
             _selectedAction = null;
 
+            // create the menu
+            _menuSetter = new BattleMenuSetter(_categoriesPool, _actionsPool);
             _menuGO = _menuSetter.getCurrentMenu(settersList);
             setOnClick();
             setNavigation();
 
+            // set the scroll content
             _scrollViewUpdater.setContent(_menuParent);
         }
 
@@ -102,12 +73,14 @@ namespace RPG.Battle.UI
             // set onClick Actions
             _menuGO.categoryItems.ForEach(x =>
             {
+                // add listen to onclick
                x.button?.onClick.RemoveAllListeners();
                x.button?.onClick.AddListener(delegate
                 {
                     _selectedCategory = x.gameObject;
                     displayActions(x.element);
                 });
+                // add a delegate to the onCancel
                 x.button.onCancel = null;
                 x.button.onCancel = menuCanceled;
 
@@ -125,6 +98,8 @@ namespace RPG.Battle.UI
             });
         }
 
+        /// <summary> sende the delegate </summary>
+        /// <param name="action"></param>
         private void fireDelegate(Action action)
         {
             menuFinished(action);
@@ -132,6 +107,8 @@ namespace RPG.Battle.UI
         #endregion
 
         #region menu displayer
+        /// <summary> display the menu :
+        /// Display the categories if there is no there was no lastActionSelected, display actions if there is</summary>
         public void displayMenu()
         {
             if (_selectedAction == null)
@@ -175,6 +152,7 @@ namespace RPG.Battle.UI
         }
         #endregion
 
+        /// <summary> override allowing to custom how the selection is updated when lost </summary>
         protected override void updateSelectionWhenLost()
         {
             if (_menuGO != null && _menuGO.categoryItems.Count != 0 && _eventSystem.currentSelectedGameObject == null)
@@ -187,6 +165,7 @@ namespace RPG.Battle.UI
                 
         }
 
+        /// <summary> focus the menu. Used when the </summary>
         public override void focusMenu()
         {
             if (_eventSystem == null || _menuGO == null || _menuGO.categoryItems == null || _menuGO.categoryItems.Count == 0)
@@ -196,6 +175,7 @@ namespace RPG.Battle.UI
             displayMenu();
         }
 
+        /// <summary> un focus the menu.Used when the menu is not needed anymore </summary>
         public override void unFocusMenu()
         {
             gameObject.SetActive(false);

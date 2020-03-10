@@ -10,10 +10,13 @@ public class BattleAPDisplayer : MonoBehaviour
 
     public void updateActionPointDisplay(int remainingActionPoint, int maxActionPoint)
     {
+        // display remaining point as text
         _actionPointTextField.text = remainingActionPoint.ToString();
 
+        // hide all action point
         _actionPointsItemsPool.ForEach(x => x.gameObject.SetActive(false));
 
+        // set the action dots
         for (int i =0; i < maxActionPoint; i++)
         {
             _actionPointsItemsPool[i].gameObject.SetActive(true);

@@ -36,9 +36,10 @@ namespace RPG.Battle.UI
             return menuGO;
         }
 
-        /// <summary> Do not invoke this </summary>
+        /// <summary> set the menu items from the pool and the available actions</summary>
         private List<ActionCategoryMenuItem> instantiateMenu()
         {
+            // get the categories
             List<ActionCategoryMenuItem> categoryMenuItems = new List<ActionCategoryMenuItem>();
             List<string> categories = Enum.GetNames(typeof(ActionCategory)).ToList();
             // for each category generate a menu Item and a list of menu item for all the action in this category
@@ -49,10 +50,12 @@ namespace RPG.Battle.UI
                 if (matchingActions == null || matchingActions.Count == 0)
                     continue;
 
+                // get an unused gameobject from the pool
                 GameObject gameObject = _categoryPool.Find(x => !x.gameObject.activeSelf);
                 gameObject.GetComponentInChildren<LocalizeText>().key = "BattleMenu_" + categories[i];
                 gameObject.SetActive(true);
 
+                // generate a category Menu item
                 ActionCategoryMenuItem categoryMenuItem = new ActionCategoryMenuItem()
                 {
                     name = categories[i],
@@ -67,15 +70,21 @@ namespace RPG.Battle.UI
             return categoryMenuItems;
         }
 
+        /// <summary> set the sub menu with the actions</summary>
+        /// <param name="matchingActions"></param>
+        /// <returns></returns>
         private List<ActionMenuItem> instantiateActionMenu(List<Action> matchingActions)
         {
+
             List<ActionMenuItem> actionMenuItem = new List<ActionMenuItem>();
             foreach (Action action in matchingActions)
             {
+                // get an unused object from the pool
                 GameObject gameObject = _actionPool.Find(x => !x.gameObject.activeSelf);
                 gameObject.GetComponentInChildren<LocalizeText>().key = action.getLocalisationKey();
                 gameObject.SetActive(true);
 
+                // generate a menu item
                 ActionMenuItem menuItem = new ActionMenuItem()
                 {
                     gameObject = gameObject,
@@ -83,6 +92,7 @@ namespace RPG.Battle.UI
                     button = gameObject.GetComponent<MenuButton>()
                 };
 
+                // set the action menu gameobject (name and ap cost)
                 menuItem.set();
                 actionMenuItem.Add(menuItem);
             }

@@ -10,6 +10,8 @@ namespace RPG.Battle.StateMachine
     {
         protected Action actionInUse;
 
+        public abstract void useAction(BattleTarget target);
+
         public void setActionInUse(Action action) { actionInUse = action; }
 
         #region action animation
@@ -27,6 +29,11 @@ namespace RPG.Battle.StateMachine
             }
         }
 
+        /// <summary> animate the melee action </summary>
+        /// <param name="action"></param>
+        /// <param name="target"></param>
+        /// <param name="senderSpawn"></param>
+        /// <returns></returns>
         private IEnumerator animateMeleeAction(Action action, BattleTarget target, BattleSpawningPoint senderSpawn)
         {
             Vector3 targetPosition = target.model.transform.position;

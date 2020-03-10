@@ -34,6 +34,7 @@ namespace RPG.UI
             updateSelectionWhenLost();
         }
 
+        /// <summary> set a new game object as current selection when there is no more item selected</summary>
         protected virtual void updateSelectionWhenLost()
         {
             if (elements != null && elements.Count != 0 && _eventSystem.currentSelectedGameObject == null)

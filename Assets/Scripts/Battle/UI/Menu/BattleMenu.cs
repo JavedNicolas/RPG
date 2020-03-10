@@ -31,13 +31,13 @@ namespace RPG.Battle.UI
         public System.Action<BattleTarget> targetChoosen;
         #endregion
 
+        /// <summary> init all the menus and their delegate/actions</summary>
         public void initMenus()
         {
             _battleActorMenu.setEventSystem(_eventSystem);
             _battleActorMenu.menuFinished = switchToActionMenu;
             _battleActorMenu.menuCanceled = delegate { switchToActorSelection(); };
 
-            _battleActionMenu.initPooling();
             _battleActionMenu.setEventSystem(_eventSystem);
             _battleActionMenu.menuFinished = switchToTargetSelection;
             _battleActionMenu.menuCanceled = delegate { switchToActorSelection(); };
@@ -50,6 +50,7 @@ namespace RPG.Battle.UI
 
         private void Update()
         {
+            // when the button BattleEndTurn is used end the turn
             if (Input.GetButtonDown("BattleEndTurn"))
             {
                 _endTurnButton.onClick.Invoke();
@@ -57,19 +58,23 @@ namespace RPG.Battle.UI
             }
         }
 
-        public void displayMenu(List<Being> actors)
+        /// <summary> Display the first menu </summary>
+        /// <param name="characters">The characters in battle</param>
+        public void displayMenu(List<Being> characters)
         {
             _battleActionMenu.unFocusMenu();
             _battleTargetSelector.unFocusMenu();
-            _battleActorMenu.initMenu(actors);
+            _battleActorMenu.initMenu(characters);
             _battleActorMenu.focusMenu();
         }
 
+        /// <summary> update the Action points displayer </summary>
         public void updateActionPointDisplay(int remainingActionPoint, int maxActionPoint)
         {
             _battleAPDisplayer.updateActionPointDisplay(remainingActionPoint, maxActionPoint);
         }
 
+        /// <summary> Unfocus battleActor menu and Hide all other menu   </summary>
         public void hideMenu()
         {
             _battleActionMenu.unFocusMenu();
@@ -77,14 +82,18 @@ namespace RPG.Battle.UI
             _battleActorMenu.unFocusMenu();
         }
 
+        /// <summary> Send the delegate to send the choosen target</summary>
+        /// <param name="target"></param>
         private void sendTargetChoosen(BattleTarget target)
         {
             targetChoosen(target);
         }
 
         #region switch menus
+        /// <summary> switch back to the Actor menu </summary>
         private void switchToActorSelection()
         {
+            _battleTargetSelector.unFocusMenu();
             _battleActionMenu.unFocusMenu();
             _battleActorMenu.focusMenu();
         }
@@ -101,6 +110,8 @@ namespace RPG.Battle.UI
             _battleActionMenu.focusMenu();
         }
 
+        /// <summary> Switch to the target selection interface</summary>
+        /// <param name="action"></param>
         private void switchToTargetSelection(Action action)
         {
             actionChoosed(action);

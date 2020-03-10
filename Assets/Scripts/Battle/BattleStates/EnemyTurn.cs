@@ -20,12 +20,22 @@ namespace RPG.Battle.StateMachine
 
         public override void executeState()
         {
+            // if there is no more player switch to player lost
+            if (_battleStateManager.battleActorHandler.getCharacters().Count == 0)
+            {
+                ChangeState(typeof(PlayerLostState));
+                return;
+            }
+                
+            // get and use action for the current enemy
             if (_currentEnemyIndex < currentActors.Count)
                 executeEnemyAction(_currentEnemyIndex);
             else
                 endTurn();
         }
 
+        /// <summary> get an action for the current enemy and use it</summary>
+        /// <param name="index"></param>
         void executeEnemyAction(int index)
         {
             Being enemy = currentActors[index];
@@ -37,6 +47,8 @@ namespace RPG.Battle.StateMachine
             _currentEnemyIndex++;
         }
 
+        /// <summary> use the action choosed </summary>
+        /// <param name="target"></param>
         public override void useAction(BattleTarget target)
         {
             animateMovement(actionInUse, target, _battleStateManager.battleActorHandler.getSpawningPoint(choosedActor));
