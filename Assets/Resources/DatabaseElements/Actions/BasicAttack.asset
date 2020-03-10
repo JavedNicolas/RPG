@@ -15,5 +15,8 @@ MonoBehaviour:
   name: Attack
   _category: 0
   _localizationKey: Action_Attack
+  _canByPassFront: 0
+  _animationType: 0
+  _cost: 1
   _effects:
   - {fileID: 11400000, guid: 11b3c22688ae16a40856613334ece58f, type: 2}

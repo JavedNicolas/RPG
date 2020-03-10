@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Sirenix.OdinInspector;
-using RPG.DataManagement;
-using RPG.DataManagement.Team;
+using RPG.Data;
+using RPG.Data.Team;
 
 namespace RPG.Battle
 {
@@ -14,6 +14,17 @@ namespace RPG.Battle
         [SerializeField] public BattlePosition position;
         [SerializeField] public Being actor = null;
         [SerializeField] public GameObject actorGameObject;
+
+        private void Update()
+        {
+            if (actor != null && actorGameObject != null)
+            {
+                Animator animator = actorGameObject.GetComponent<Animator>();
+                bool isDead = actor.isDead();
+                if (animator.GetBool("Dead") != isDead)
+                    animator.SetBool("Dead", isDead);
+            }
+        }
     }
 }
 

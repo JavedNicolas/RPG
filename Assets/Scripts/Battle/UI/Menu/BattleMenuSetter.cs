@@ -7,7 +7,7 @@ using System;
 
 namespace RPG.Battle.UI
 {
-    using RPG.DataManagement;
+    using RPG.Data;
     using RPG.UI;
     using UnityEngine.UI;
 
@@ -82,6 +82,8 @@ namespace RPG.Battle.UI
                     element = action,
                     button = gameObject.GetComponent<MenuButton>()
                 };
+
+                menuItem.set();
                 actionMenuItem.Add(menuItem);
             }
 

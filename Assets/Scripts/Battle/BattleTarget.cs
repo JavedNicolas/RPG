@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using RPG.DataManagement;
+using RPG.Data;
 
 namespace RPG.Battle
 {
@@ -10,7 +10,7 @@ namespace RPG.Battle
     {
         public MenuButton button;
         public GameObject model;
-        public Being being;
+        public Being actor;
 
         /// <summary> Generate a List of target  </summary>
         /// <param name="spawningPoint"></param>
@@ -19,7 +19,7 @@ namespace RPG.Battle
         {
             button = spawningPoint.GetComponentInChildren<MenuButton>();
             model = spawningPoint.actorGameObject;
-            being = spawningPoint.actor;
+            actor = spawningPoint.actor;
         }
     }
 }

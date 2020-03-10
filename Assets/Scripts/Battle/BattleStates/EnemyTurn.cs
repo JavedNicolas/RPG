@@ -6,34 +6,35 @@ using UnityEngine;
 
 namespace RPG.Battle.StateMachine
 {
-    using RPG.DataManagement;
+    using RPG.Data;
 
     public class EnemyTurn : ActorTurnBattleState
     {
+        int _currentEnemyIndex;
 
         public override void start()
         {
-            _battleStateManager.StartCoroutine(executeEnemyAction());
+            _currentEnemyIndex = 0;
+            executeState();
         }
 
         public override void executeState()
         {
-            
+            if (_currentEnemyIndex < currentActors.Count)
+                executeEnemyAction(_currentEnemyIndex);
+            else
+                endTurn();
         }
 
-        IEnumerator executeEnemyAction()
+        void executeEnemyAction(int index)
         {
-            foreach(Being enemy in currentActors)
-            {
-                isAnimatingAction = true;
-                setActionInUse(enemy.actions.getRandomElement());
-                List<BattleTarget> valideTargets = _battleStateManager.battleActorHandler.getValidCharacterTargets(actionInUse);
-                BattleTarget target = valideTargets.getRandomElement();
-                setChoosedActor(enemy);
-                useAction(target);
-                yield return new WaitUntil(() => isAnimatingAction);
-            }
-            endTurn();
+            Being enemy = currentActors[index];
+            setActionInUse(enemy.actions.getRandomElement());
+            List<BattleTarget> valideTargets = _battleStateManager.battleActorHandler.getValidCharacterTargets(actionInUse);
+            BattleTarget target = valideTargets.getRandomElement();
+            setChoosedActor(enemy);
+            useAction(target);
+            _currentEnemyIndex++;
         }
 
         public override void useAction(BattleTarget target)

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using RPG.DataManagement;
+using RPG.Data;
 
 namespace RPG.Battle.UI
 {

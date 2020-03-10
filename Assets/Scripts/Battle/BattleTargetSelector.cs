@@ -23,10 +23,10 @@ namespace RPG.Battle
                 {
                     menuFinished(x);
                 });
+                x.button.onCancel = menuCanceled;
             });
 
             navigationSetter.setNavigation(setterList.Select(x => x.button as Button).ToList(), _eventSystem);
-            _eventSystem.SetSelectedGameObject(setterList.First().model);
         }
 
         protected override void updateSelectionWhenLost()
@@ -41,7 +41,7 @@ namespace RPG.Battle
                 return;
 
             gameObject.SetActive(true);
-            _eventSystem.SetSelectedGameObject(_targets.First().button.gameObject);
+            _eventSystem.SetSelectedGameObject(_targets.First().model);
         }
 
         public override void unFocusMenu()

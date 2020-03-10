@@ -54,6 +54,8 @@ namespace RPG.UI
                 nav.selectOnDown = firstSelectable;
                 lastCategory.navigation = nav;
             }
+
+            eventSystem.SetSelectedGameObject(firstSelectable.gameObject);
         }
     }
 }

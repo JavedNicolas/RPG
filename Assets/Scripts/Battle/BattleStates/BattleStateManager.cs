@@ -7,7 +7,7 @@ using UnityEngine;
 namespace RPG.Battle.StateMachine
 {
     using RPG.Battle.UI;
-    using RPG.DataManagement;
+    using RPG.Data;
 
     public class BattleStateManager : MonoBehaviour
     {
@@ -63,6 +63,7 @@ namespace RPG.Battle.StateMachine
         public void endTurn()
         {
             currentBattleState.endTurn();
+            _battleMenu.hideMenu();
             _battleMenu.endTurnButton.gameObject.SetActive(false);
         }
 
@@ -73,7 +74,7 @@ namespace RPG.Battle.StateMachine
                 if (battleStateType == typeof(PlayerTurn))
                 {
                     _battleMenu.endTurnButton.gameObject.SetActive(true);
-                    currentBattleState.setActors(_battleActorHandler.getCharacters());
+                    currentBattleState.setActors(_battleActorHandler.getCharacters(true));
                 }
                 else if (battleStateType == typeof(EnemyTurn))
                     currentBattleState.setActors(_battleActorHandler.getEnemies());
@@ -89,5 +90,6 @@ namespace RPG.Battle.StateMachine
         private void setAction(Action action) { (currentBattleState as ActorTurnBattleState).setActionInUse(action); }
         private void useAction(BattleTarget target) { currentBattleState.useAction(target); }
         #endregion
+
     }
 }

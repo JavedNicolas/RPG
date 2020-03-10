@@ -2,15 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using RPG.DataManagement;
+using RPG.Data;
 
 namespace RPG.Battle.StateMachine
 {
     public abstract class ActorTurnBattleState : BattleState
     {
         protected Action actionInUse;
-
-        protected bool isAnimatingAction = true;
 
         public void setActionInUse(Action action) { actionInUse = action; }
 
@@ -31,25 +29,24 @@ namespace RPG.Battle.StateMachine
 
         private IEnumerator animateMeleeAction(Action action, BattleTarget target, BattleSpawningPoint senderSpawn)
         {
-            
             Vector3 targetPosition = target.model.transform.position;
             BattleSpawningPoint battleSpawningPoint = senderSpawn;
             GameObject actorGO = battleSpawningPoint.actorGameObject;
             Quaternion originalRotation = actorGO.transform.rotation;
 
-            MoveToPosition characterMovement = actorGO.GetComponent<MoveToPosition>();
-            characterMovement.startMovement(targetPosition);
-            yield return new WaitUntil(() => characterMovement.hasFinishedHisMovement);
+            MoveToPosition actorMovement = actorGO.GetComponent<MoveToPosition>();
+            actorMovement.startMovement(targetPosition);
+            yield return new WaitUntil(() => actorMovement.hasFinishedHisMovement);
 
             actorGO.GetComponent<Animator>().SetTrigger("Attack");
 
             yield return new WaitForSeconds(1.2f);
+            action.execute(senderSpawn.actor, target.actor);
+            actorMovement.startMovement(battleSpawningPoint.gameObject.transform.position, 1f);
 
-            characterMovement.startMovement(battleSpawningPoint.gameObject.transform.position, 1f);
-
-            yield return new WaitUntil(() => characterMovement.hasFinishedHisMovement);
+            yield return new WaitUntil(() => actorMovement.hasFinishedHisMovement);
             actorGO.transform.rotation = originalRotation;
-            isAnimatingAction = false;
+
             executeState();
         }
         #endregion

@@ -9,12 +9,13 @@ using UnityEngine.EventSystems;
 namespace RPG.Battle.UI
 {
     using RPG.UI;
-    using RPG.DataManagement;
+    using RPG.Data;
 
     public class BattleActorMenu : Menu<Being>
     {
         // gameobject pool
         [SerializeField] List<BattleActorMenuItem> actorMenuItemGOs;
+        GameObject _lastSelection;
         bool _isFocused = true;
 
         private void FixedUpdate()
@@ -24,18 +25,16 @@ namespace RPG.Battle.UI
 
         private void updateActorLife()
         {
-            if (elements != null)
-                elements.ForEach(x => {
-                    if (x.element != null)
-                    {
-                        x.gameObject.GetComponent<BattleActorMenuItem>().lifeValue.text = x.element.currentLife.ToString();
-                    }
-                });
+            elements?.ForEach(x => {
+                BattleActorMenuItem menuItem = x.gameObject.GetComponent<BattleActorMenuItem>();
+                menuItem.updateLife(x.element);
+            });
         }
 
         public override void initMenu(List<Being> setterList)
         {
             elements = new List<MenuItem<Being>>();
+            _lastSelection = null;
 
             for (int i = 0; i < actorMenuItemGOs.Count; i++)
             {
@@ -53,8 +52,12 @@ namespace RPG.Battle.UI
                 };
 
                 menuItem.gameObject.GetComponent<BattleActorMenuItem>().actorName.text = menuItem.element.name;
-
                 elements.Add(menuItem);
+
+                // if the actor is dead disable his button
+                if (elements[i].element.isDead())
+                    elements[i].button.interactable = false;
+
                 elements[i].gameObject.SetActive(true);
             }
 
@@ -63,14 +66,16 @@ namespace RPG.Battle.UI
 
         private void setNav()
         {
-            navigationSetter.setNavigation(elements.Select(x => x.button as Button).ToList(), _eventSystem);
+            navigationSetter.setNavigation(elements.FindAll(x => x.button.interactable).Select(x => x.button as Button).ToList(), _eventSystem);
 
             elements.ForEach(x =>
             {
                x.button.onClick.AddListener(delegate
                {
+                   _lastSelection = x.gameObject;
                    menuFinished(x.element);
                });
+                x.button.onCancel = menuCanceled;
             });
         }
 
@@ -88,12 +93,13 @@ namespace RPG.Battle.UI
 
             _isFocused = true;
             gameObject.SetActive(true);
-            _eventSystem.SetSelectedGameObject(elements.First().gameObject);
+            _eventSystem.SetSelectedGameObject(_lastSelection);
         }
 
         public override void unFocusMenu()
         {
             _isFocused = false;
+            _eventSystem.SetSelectedGameObject(null);
         }
     }
 }

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Enemy2
   _maxLife: 100
-  _maxActionPoint: 2
-  _attack: 2
+  _attack: 60
   _magicAttack: 2
   _defense: 2
   _magicDefense: 2

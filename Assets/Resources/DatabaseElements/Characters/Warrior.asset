@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Warrior
   m_EditorClassIdentifier: 
   name: Warrior
-  _maxLife: 0
-  _maxActionPoint: 0
-  _attack: 0
-  _magicAttack: 0
-  _defense: 0
-  _magicDefense: 0
-  _speed: 0
+  _maxLife: 200
+  _attack: 40
+  _magicAttack: 1
+  _defense: 20
+  _magicDefense: 20
+  _speed: 2
   _model: {fileID: 0}
   _actions: []
   _icon: {fileID: 21300000, guid: 5946c0ab9427a52448c176f43f456eb4, type: 3}
+  _actionPoint: 1

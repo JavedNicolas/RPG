@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RPG.DataManagement;
-using RPG.DataManagement.Player;
-using RPG.DataManagement.Team;
+using RPG.Data;
+using RPG.Data.Player;
+using RPG.Data.Team;
 
 public class GameManager
 {
@@ -29,6 +29,7 @@ public class GameManager
         team.addCharacterToTeam(characterDatabase.getElement(0), true, BattlePosition.Center);
         team.addCharacterToTeam(characterDatabase.getElement(1), false, BattlePosition.Bottom);
         team.addCharacterToTeam(characterDatabase.getElement(2), true, BattlePosition.Bottom);
+        team.fullHealTeam();
     }
 
     private void loadDatabase()

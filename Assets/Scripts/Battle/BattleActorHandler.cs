@@ -5,8 +5,8 @@ using System.Linq;
 
 namespace RPG.Battle
 {
-    using RPG.DataManagement;
-    using RPG.DataManagement.Team;
+    using RPG.Data;
+    using RPG.Data.Team;
 
     public class BattleActorHandler : MonoBehaviour
     {
@@ -63,7 +63,7 @@ namespace RPG.Battle
         /// <returns></returns>
         private List<BattleTarget> getValidTarget(List<BattleSpawningPoint> spawner, Action action)
         {
-            List<BattleSpawningPoint> spawnsWithBeing = spawner.FindAll(x => x.actorGameObject != null && x.actor != null);
+            List<BattleSpawningPoint> spawnsWithBeing = spawner.FindAll(x => x.actorGameObject != null && x.actor != null && !x.actor.isDead());
             List<BattleTarget> validTargets = new List<BattleTarget>();
             if (!action.canByPassFrontSlot())
                 spawnsWithBeing.ForEach(x =>
@@ -75,8 +75,19 @@ namespace RPG.Battle
             return validTargets;
         }
 
-        public List<Being> getCharacters() { return _characterSpawningPoints.FindAll(x => x.actor != null).Select(x => x.actor).ToList(); }
-        public List<Being> getEnemies() { return _enemySpawningPoints.FindAll(x => x.actor != null).Select(x => x.actor).ToList(); }
+        public List<Being> getCharacters(bool includeDead = false)  { return getActors(_characterSpawningPoints, includeDead);  }
+        public List<Being> getEnemies(bool includeDead = false)  { return getActors(_enemySpawningPoints, includeDead); }
+
+        /// <summary> get all actor from the spawns</summary>
+        /// <param name="spawns"></param>
+        /// <param name="includeDead"> Include dead actors</param>
+        /// <returns></returns>
+        private List<Being> getActors(List<BattleSpawningPoint> spawns, bool includeDead)
+        {
+            return includeDead ?
+                spawns.FindAll(x => x.actor != null).Select(x => x.actor).ToList() :
+                spawns.FindAll(x => x.actor != null && !x.actor.isDead()).Select(x => x.actor).ToList();
+        }
 
         public BattleSpawningPoint getSpawningPoint(Being being)
         {

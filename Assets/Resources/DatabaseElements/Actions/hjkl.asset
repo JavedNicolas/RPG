@@ -17,4 +17,5 @@ MonoBehaviour:
   _localizationKey: 
   _canByPassFront: 0
   _animationType: 1
+  _cost: 1
   _effects: []

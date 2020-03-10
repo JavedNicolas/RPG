@@ -17,5 +17,6 @@ MonoBehaviour:
   _localizationKey: Action_FireBall
   _canByPassFront: 1
   _animationType: 2
+  _cost: 2
   _effects:
   - {fileID: 11400000, guid: 3bb69d85b3a68154e8ff85e39a2b7dde, type: 2}

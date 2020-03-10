@@ -7,7 +7,7 @@ using System;
 namespace RPG.Battle.UI
 {
     using RPG.UI;
-    using RPG.DataManagement;
+    using RPG.Data;
     using UnityEngine.EventSystems;
     using UnityEngine.UI;
 
@@ -16,6 +16,7 @@ namespace RPG.Battle.UI
         [SerializeField] BattleActorMenu _battleActorMenu;
         [SerializeField] BattleActionMenu _battleActionMenu;
         [SerializeField] BattleTargetSelector _battleTargetSelector;
+        [SerializeField] BattleAPDisplayer _battleAPDisplayer;
         [SerializeField] Button _endTurnButton;
         [SerializeField] EventSystem _eventSystem;
 
@@ -47,12 +48,33 @@ namespace RPG.Battle.UI
 
         }
 
+        private void Update()
+        {
+            if (Input.GetButtonDown("BattleEndTurn"))
+            {
+                _endTurnButton.onClick.Invoke();
+                hideMenu();
+            }
+        }
+
         public void displayMenu(List<Being> actors)
         {
             _battleActionMenu.unFocusMenu();
             _battleTargetSelector.unFocusMenu();
             _battleActorMenu.initMenu(actors);
             _battleActorMenu.focusMenu();
+        }
+
+        public void updateActionPointDisplay(int remainingActionPoint, int maxActionPoint)
+        {
+            _battleAPDisplayer.updateActionPointDisplay(remainingActionPoint, maxActionPoint);
+        }
+
+        public void hideMenu()
+        {
+            _battleActionMenu.unFocusMenu();
+            _battleTargetSelector.unFocusMenu();
+            _battleActorMenu.unFocusMenu();
         }
 
         private void sendTargetChoosen(BattleTarget target)
@@ -73,6 +95,7 @@ namespace RPG.Battle.UI
         {
             actorChoosed(actor);
             _battleActorMenu.unFocusMenu();
+            _battleTargetSelector.unFocusMenu();
             if(actor != null)
                 _battleActionMenu.initMenu(actor.actions);
             _battleActionMenu.focusMenu();
@@ -82,7 +105,6 @@ namespace RPG.Battle.UI
         {
             actionChoosed(action);
             List<BattleTarget> validBattleTarget = requestValidTarget(action);
-            Debug.Log(validBattleTarget.Count);
             _battleActionMenu.unFocusMenu();
             _battleTargetSelector.initMenu(validBattleTarget);
             _battleTargetSelector.focusMenu();

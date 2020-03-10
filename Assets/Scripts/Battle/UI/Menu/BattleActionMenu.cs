@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 namespace RPG.Battle.UI
 {
-    using RPG.DataManagement;
+    using RPG.Data;
     using RPG.UI;
 
     public class BattleActionMenu : Menu<Action>
@@ -80,7 +80,6 @@ namespace RPG.Battle.UI
             _menuGO = _menuSetter.getCurrentMenu(settersList);
             setOnClick();
             setNavigation();
-            displayCategory();
 
             _scrollViewUpdater.setContent(_menuParent);
         }
@@ -121,7 +120,6 @@ namespace RPG.Battle.UI
                         _selectedAction = a.gameObject;
                         fireDelegate(a.element);
                     });
-                    a.button.onCancel = null;
                     a.button.onCancel = delegate { displayCategory(); };
                 });
             });
@@ -182,9 +180,9 @@ namespace RPG.Battle.UI
             if (_menuGO != null && _menuGO.categoryItems.Count != 0 && _eventSystem.currentSelectedGameObject == null)
             {
                 if (_selectedCategory != null)
-                    _eventSystem.SetSelectedGameObject(_menuGO.categoryItems.Find(x => x.gameObject == _selectedCategory).element.First().gameObject);
+                    _eventSystem.SetSelectedGameObject(_menuGO.categoryItems.Find(x => x.gameObject == _selectedCategory).element.Find(x => x.button.interactable).gameObject);
                 else
-                    _eventSystem.SetSelectedGameObject(_menuGO.categoryItems.First().gameObject);
+                    _eventSystem.SetSelectedGameObject(_menuGO.categoryItems.Find(x => x.button.interactable).gameObject);
             }
                 
         }

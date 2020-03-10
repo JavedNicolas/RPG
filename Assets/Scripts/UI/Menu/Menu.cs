@@ -37,7 +37,7 @@ namespace RPG.UI
         protected virtual void updateSelectionWhenLost()
         {
             if (elements != null && elements.Count != 0 && _eventSystem.currentSelectedGameObject == null)
-                _eventSystem.SetSelectedGameObject(elements.First().gameObject);
+                _eventSystem.SetSelectedGameObject(elements.Find(x => x.button.interactable).gameObject);
         }
 
 
