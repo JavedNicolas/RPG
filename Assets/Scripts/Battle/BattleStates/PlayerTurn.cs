@@ -30,7 +30,7 @@ namespace RPG.Battle.StateMachine
         public override void executeState()
         {
             // if there is no more enemy switch to player won
-            if (_battleStateManager.battleActorHandler.getEnemies().Count == 0)
+            if (_battleStateManager.requestEnemies(false).Count == 0)
             {
                 ChangeState(typeof(PlayerWonState));
                 return;
@@ -39,12 +39,12 @@ namespace RPG.Battle.StateMachine
             // if there is no more action point hide the menu
             if (remainingActionPoint == 0)
             {
-                _battleStateManager.battleMenu.hideMenu();
+                _battleStateManager.hideMenu();
                 return;
             }
                 
 
-            _battleStateManager.battleMenu.displayMenu(currentActors);
+            _battleStateManager.displayMenu(currentActors);
         }
 
         public override void useAction(BattleTarget target)
@@ -54,13 +54,13 @@ namespace RPG.Battle.StateMachine
             updateActionPointDisplay();
 
             // animate the action
-            animateMovement(actionInUse, target, _battleStateManager.battleActorHandler.getSpawningPoint(choosedActor as Being));
+            animateMovement(actionInUse, target, _battleStateManager.getBattleSpawn(choosedActor as Being));
         }
 
         /// <summary> update the action points display </summary>
         private void updateActionPointDisplay()
         {
-            _battleStateManager.battleMenu.updateActionPointDisplay(remainingActionPoint, maxActionPoint);
+            _battleStateManager.actionPointUpdated(remainingActionPoint, maxActionPoint);
         }
 
         public override void endTurn()

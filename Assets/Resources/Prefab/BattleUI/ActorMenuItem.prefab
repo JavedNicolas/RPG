@@ -85,7 +85,6 @@ GameObject:
   - component: {fileID: 5205234807888449687}
   - component: {fileID: 4656752038476169717}
   - component: {fileID: 6433459571385711346}
-  - component: {fileID: 2799359946089395285}
   m_Layer: 5
   m_Name: ActorName
   m_TagString: Untagged
@@ -230,21 +229,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2799359946089395285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4254051386750598155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db1cc251d320d0d4aa5e1cde328e5ba4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  executeOnUpdate: 0
-  key: BattleUI_ActionPoint_Short
-  textMeshType: 0
 --- !u!1 &6817881853989730193
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +310,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 4758778720208614668}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -378,8 +362,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c219ba8072cca52429a0b431b57c6b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actorName: {fileID: 6433459571385711346}
+  actorName: {fileID: 0}
   _lifeValue: {fileID: 6308132588551391477}
+  _lifeBarFill: {fileID: 0}
 --- !u!1 &8291587515093822181
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,33 +11,35 @@ namespace RPG.Battle.StateMachine
 
     public class BattleStateManager : MonoBehaviour
     {
-        [Header("UI")]
-        [SerializeField] BattleMenu _battleMenu;
-        public BattleMenu battleMenu => _battleMenu;
-
-        [Header("Battle")]
-        [SerializeField] BattleActorHandler _battleActorHandler;
-        public BattleActorHandler battleActorHandler => _battleActorHandler;
 
         // States
         public BattleState currentBattleState { get; private set; }
         public Dictionary<Type, BattleState> battleStates { get; private set; }
 
-        public void Start()
+        #region delegate
+        public delegate void ActionPointUpdated(int remaining, int maxPoint);
+        public ActionPointUpdated actionPointUpdated;
+
+        public Action<List<Being>> displayMenu;
+        public System.Action hideMenu;
+
+        public delegate List<Being> RequestActor(bool includeDead);
+        public RequestActor requestCharacters;
+        public RequestActor requestEnemies;
+
+        public delegate List<BattleTarget> RequestValidTarget(ActorType actorType, Action action);
+        public RequestValidTarget requestValidTarget;
+
+        public delegate BattleSpawningPoint GetBattleSpawn(Being forActor);
+        public GetBattleSpawn getBattleSpawn;
+        #endregion
+
+        public void startBattle()
         {
             // init battle state
             BattleState.init(this);
             initBattleStates();
 
-            // init the menu
-            _battleMenu.initMenus();
-            _battleMenu.actorChoosed = setActor;
-            _battleMenu.actionChoosed = setAction;
-            _battleMenu.requestValidTarget = getValidTarget;
-            _battleMenu.targetChoosen = useAction;
-
-            // spawn actors
-            _battleActorHandler.spawnActors();
             changeState(typeof(BattleStartState));
         }
 
@@ -64,17 +66,11 @@ namespace RPG.Battle.StateMachine
             return true;
         }
 
-        /// <summary> get a valid target from the enemy list. Used by the BattleTargetSelector to know which target can be selected</summary>
-        /// <param name="action">Valid target for this action</param>
-        /// <returns>A list a valid battle target</returns>
-        private List<BattleTarget> getValidTarget(Action action){ return _battleActorHandler.getValidEnemyTargets(action); }
-
         /// <summary> End the current turn </summary>
         public void endTurn()
         {
             currentBattleState.endTurn();
-            _battleMenu.hideMenu();
-            _battleMenu.endTurnButton.gameObject.SetActive(false);
+            
         }
 
         /// <summary> Change state and init what need to be inited </summary>
@@ -84,12 +80,9 @@ namespace RPG.Battle.StateMachine
             if (updateCurrentState(battleStateType))
             {
                 if (battleStateType == typeof(PlayerTurn))
-                {
-                    _battleMenu.endTurnButton.gameObject.SetActive(true);
-                    currentBattleState.setActors(_battleActorHandler.getCharacters(true));
-                }
+                    currentBattleState.setActors(requestCharacters(true));
                 else if (battleStateType == typeof(EnemyTurn))
-                    currentBattleState.setActors(_battleActorHandler.getEnemies());
+                    currentBattleState.setActors(requestEnemies(false));
 
                 currentBattleState.start();
             }
@@ -100,10 +93,12 @@ namespace RPG.Battle.StateMachine
         // used to react to the menu delegate
         // and transmit it to the current state
         #region Set current stat attribut returned from menu
-        private void setActor(Being actor) { currentBattleState.setChoosedActor(actor); }
-        private void setAction(Action action) { (currentBattleState as ActorTurnBattleState).setActionInUse(action); }
-        private void useAction(BattleTarget target) { (currentBattleState as ActorTurnBattleState).useAction(target); }
+        public void setActor(Being actor) { currentBattleState.setChoosedActor(actor); }
+        public void setAction(Action action) { (currentBattleState as ActorTurnBattleState).setActionInUse(action); }
+        public void setTarget(BattleTarget target) { (currentBattleState as ActorTurnBattleState).useAction(target); }
         #endregion
+
+        public bool isPlayerTurn() { return currentBattleState is PlayerTurn; }
 
     }
 }

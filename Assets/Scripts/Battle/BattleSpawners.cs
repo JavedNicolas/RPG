@@ -8,7 +8,7 @@ namespace RPG.Battle
     using RPG.Data;
     using RPG.Data.Team;
 
-    public class BattleActorHandler : MonoBehaviour
+    public class BattleSpawners : MonoBehaviour
     {
         [SerializeField] List<BattleSpawningPoint> _characterSpawningPoints;
         [SerializeField] List<BattleSpawningPoint> _enemySpawningPoints;
@@ -47,23 +47,16 @@ namespace RPG.Battle
             }
         }
 
-        public List<BattleTarget> getValidCharacterTargets(Action action)
-        {
-            return getValidTarget(_characterSpawningPoints, action);
-        }
-
-        public List<BattleTarget> getValidEnemyTargets(Action action)
-        {
-            return getValidTarget(_enemySpawningPoints, action);
-        }
 
         /// <summary> get the relevant target based on the action </summary>
         /// <param name="spawner"> a list of all the spawning point </param>
         /// <param name="action">The action that we search a target for </param>
         /// <returns></returns>
-        private List<BattleTarget> getValidTarget(List<BattleSpawningPoint> spawner, Action action)
+        public List<BattleTarget> getValidTargets(ActorType actorType, Action action)
         {
-            List<BattleSpawningPoint> spawnsWithBeing = spawner.FindAll(x => x.actorGameObject != null && x.actor != null && !x.actor.isDead());
+            List<BattleSpawningPoint> spawns = getSpawns(actorType);
+
+            List<BattleSpawningPoint> spawnsWithBeing = spawns.FindAll(x => x.actorGameObject != null && x.actor != null && !x.actor.isDead());
             List<BattleTarget> validTargets = new List<BattleTarget>();
             if (!action.canByPassFrontSlot())
                 spawnsWithBeing.ForEach(x =>
@@ -73,6 +66,20 @@ namespace RPG.Battle
                 });
 
             return validTargets;
+        }
+
+        private List<BattleSpawningPoint> getSpawns(ActorType actorType)
+        {
+            List<BattleSpawningPoint> spawners = new List<BattleSpawningPoint>();
+
+            switch (actorType)
+            {
+                case ActorType.Character: spawners.AddRange(_characterSpawningPoints); break;
+                case ActorType.Enemy: spawners.AddRange(_enemySpawningPoints); break;
+                case ActorType.All: spawners = new List<BattleSpawningPoint>().join(_characterSpawningPoints, _enemySpawningPoints); break;
+            }
+
+            return spawners;
         }
 
         public List<Being> getCharacters(bool includeDead = false)  { return getActors(_characterSpawningPoints, includeDead);  }

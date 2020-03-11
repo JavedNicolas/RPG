@@ -21,7 +21,7 @@ namespace RPG.Battle.StateMachine
         public override void executeState()
         {
             // if there is no more player switch to player lost
-            if (_battleStateManager.battleActorHandler.getCharacters().Count == 0)
+            if (_battleStateManager.requestCharacters(false).Count == 0)
             {
                 ChangeState(typeof(PlayerLostState));
                 return;
@@ -40,7 +40,7 @@ namespace RPG.Battle.StateMachine
         {
             Being enemy = currentActors[index];
             setActionInUse(enemy.actions.getRandomElement());
-            List<BattleTarget> valideTargets = _battleStateManager.battleActorHandler.getValidCharacterTargets(actionInUse);
+            List<BattleTarget> valideTargets = _battleStateManager.requestValidTarget(ActorType.Character, actionInUse);
             BattleTarget target = valideTargets.getRandomElement();
             setChoosedActor(enemy);
             useAction(target);
@@ -51,7 +51,7 @@ namespace RPG.Battle.StateMachine
         /// <param name="target"></param>
         public override void useAction(BattleTarget target)
         {
-            animateMovement(actionInUse, target, _battleStateManager.battleActorHandler.getSpawningPoint(choosedActor));
+            animateMovement(actionInUse, target, _battleStateManager.getBattleSpawn(choosedActor));
         }
 
         public override void endTurn()
