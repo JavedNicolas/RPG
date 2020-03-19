@@ -6,7 +6,7 @@ using System;
 namespace RPG.Data
 {
     [System.Serializable]
-    [CreateAssetMenu(menuName = Path.CHARACTER_SO_MENU_NAME)]
+    [CreateAssetMenu(menuName = AssetsPath.CHARACTER_SO_MENU_NAME)]
     public class Character : Being
     {
         [SerializeField] int _actionPoint;

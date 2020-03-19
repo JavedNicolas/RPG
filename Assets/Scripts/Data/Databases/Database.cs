@@ -76,7 +76,7 @@ namespace RPG.Data
         [Button("Add"), PropertyOrder(-1), PropertySpace(SpaceAfter = 10)]
         public void addElement()
         {
-            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<T>(), Path.RESOURCES_FOLDER_PATH + elementFolderPath + "/New " + typeof(T).ToString() + creationAssetNumber + ".asset");
+            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<T>(), AssetsPath.RESOURCES_FOLDER_PATH + elementFolderPath + "/New " + typeof(T).ToString() + creationAssetNumber + ".asset");
             creationAssetNumber++;
         }
 

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21cb495ffbca0404d878640680165899, type: 3}
+  m_Name: Forest
+  m_EditorClassIdentifier: 
+  prefabList:
+  - {fileID: 184134, guid: e0ecadb53dc23f74b88e4f42ae53f84a, type: 3}
+  - {fileID: 192174, guid: 1dc1e39e76eb6e8428d2185bfcf9491f, type: 3}
+  - {fileID: 179128, guid: 358badc9ddd35ff49b8070c96eb8feab, type: 3}
+  - {fileID: 122030, guid: 8c8ea713432a0a8469388cf641ee227c, type: 3}
+  - {fileID: 182652, guid: 0fa0ff3aa6d13b145ab8fd54b03b1146, type: 3}
+  - {fileID: 136856, guid: 2e038773d2d58aa4c83c615635bf660f, type: 3}
+  - {fileID: 195920, guid: b33e35f39f6c48c4bb1793bbc893acf6, type: 3}
+  paintType: 0
+  brushSize: 52.7
+  minBrushSize: 0.1
+  maxBrushSize: 100
+  paintDeltaDistance: 0.4
+  maxPaintDeltaDistance: 3
+  minPaintDeltaDistance: 0.1
+  prefabsPerStroke: 100
+  maxprefabsPerStroke: 100
+  minprefabsPerStroke: 1
+  spawnHeight: 10
+  addRigidbodyToPaintedPrefab: 1
+  physicsIterations: 100
+  checkLayer: 1
+  checkTag: 0
+  checkSlope: 0
+  requiredTagMask: 0
+  requiredLayerMask: 64
+  minRequiredSlope: 0
+  maxRequiredSlope: 0
+  prefabOriginOffset: {x: 0, y: 0, z: 0}
+  prefabRotationOffset: {x: 0, y: 0, z: 0}
+  draggingAction: 0
+  rotationAxis: 0
+  rotationSensitivity: 10
+  parentingStyle: 0
+  parent: {fileID: 0}
+  rotateToMatchSurface: 1
+  rotateSurfaceDirection: 0
+  randomizeRotation: 1
+  minXRotation: 0
+  maxXRotation: 0
+  minYRotation: 0
+  maxYRotation: 360
+  minZRotation: 0
+  maxZRotation: 0
+  scaleType: 2
+  scaleApplicationType: 0
+  minScale: 1
+  maxScale: 1
+  minXScale: 1.5
+  maxXScale: 3
+  minYScale: 1.5
+  maxYScale: 3
+  minZScale: 1.5
+  maxZScale: 3
+  parentList: []
+  eraseBrushSize: 1
+  minEraseBrushSize: 0.1
+  maxEraseBrushSize: 20
+  eraseType: 0
+  checkLayerForErase: 0
+  checkTagForErase: 0
+  checkSlopeForErase: 0
+  requiredTagMaskForErase: 0
+  requiredLayerMaskForErase: 0
+  minRequiredSlopeForErase: 0
+  maxRequiredSlopeForErase: 0
+  eraseDetection: 0
+  paintBrushHotKey: 112
+  paintBrushHoldKey: 1
+  removeBrushHotKey: 306
+  removeBrushHoldKey: 1
+  disableBrushHotKey: 105
+  disableBrushHoldKey: 1

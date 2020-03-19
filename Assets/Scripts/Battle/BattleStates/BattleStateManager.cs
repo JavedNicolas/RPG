@@ -11,7 +11,6 @@ namespace RPG.Battle.StateMachine
 
     public class BattleStateManager : MonoBehaviour
     {
-
         // States
         public BattleState currentBattleState { get; private set; }
         public Dictionary<Type, BattleState> battleStates { get; private set; }
@@ -99,6 +98,5 @@ namespace RPG.Battle.StateMachine
         #endregion
 
         public bool isPlayerTurn() { return currentBattleState is PlayerTurn; }
-
     }
 }

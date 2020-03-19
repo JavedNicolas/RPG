@@ -7,9 +7,9 @@ using Sirenix.OdinInspector;
 
 namespace RPG.Data
 {
-    [CreateAssetMenu(menuName = Path.CHARACTER_DB_SO_MENU_NAME)]
+    [CreateAssetMenu(menuName = AssetsPath.CHARACTER_DB_SO_MENU_NAME)]
     public class CharacterDatabase : Database<Character>
     {
-        protected override string elementFolderPath => Path.DATABASE_ELEMENT_BASE_FOLDER + Path.CHARACTER_NAME;
+        protected override string elementFolderPath => AssetsPath.DATABASE_ELEMENT_BASE_FOLDER + AssetsPath.CHARACTER_NAME;
     }
 }

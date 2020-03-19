@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RPG.Data
 {
-    [CreateAssetMenu(menuName = Path.ACTION_SO_MENU_NAME)]
+    [CreateAssetMenu(menuName = AssetsPath.ACTION_SO_MENU_NAME)]
     public class Action : DatabaseElement, IAction
     {
         [SerializeField, EnumToggleButtons] ActionCategory _category;

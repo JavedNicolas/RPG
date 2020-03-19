@@ -8,7 +8,7 @@ namespace RPG.Battle.StateMachine
 {
     public class PlayerTurn : ActorTurnBattleState
     {
-        int maxActionPoint;
+        public int maxActionPoint {get; private set;}
         public int remainingActionPoint { get; private set; }
 
         public override void start()

@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 
 namespace RPG.Data
 {
-    [CreateAssetMenu(menuName = Path.ACTION_EFFECT_SO_MENU_NAME + "MagicDamage")]
+    [CreateAssetMenu(menuName = AssetsPath.ACTION_EFFECT_SO_MENU_NAME + "MagicDamage")]
     public class MagicDamage : ActionEffect
     {
         [Header("Attributs"), SerializeField, EnumToggleButtons]

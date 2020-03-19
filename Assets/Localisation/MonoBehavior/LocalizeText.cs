@@ -5,7 +5,7 @@ public enum UITextType { TMPro, TextMesh }
 
 public class LocalizeText: LocalizeComponent
 {
-    [SerializeField] UITextType textMeshType;
+    [SerializeField] UITextType _textMeshType;
     public override KeyTargetType targetType => KeyTargetType.Text;
 
     // TexwtMesh
@@ -17,7 +17,7 @@ public class LocalizeText: LocalizeComponent
     /// </summary>
     public override void getComponentToModify()
     {
-        switch (textMeshType)
+        switch (_textMeshType)
         {
             case UITextType.TMPro: _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
                 break;
@@ -30,7 +30,7 @@ public class LocalizeText: LocalizeComponent
     {
         string text = Localization.instance.getTextForKey(key);
 
-        switch (textMeshType)
+        switch (_textMeshType)
         {
             case UITextType.TMPro:
                 _textMeshProUGUI.text = text;
