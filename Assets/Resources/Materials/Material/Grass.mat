@@ -26,7 +26,7 @@ Material:
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 1
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -92,12 +92,14 @@ Material:
     m_Floats:
     - BendFactor: 0
     - Bend_Factor: 0
-    - Vector1_13D60E87: 0.5
+    - Bend_Power: 1
+    - Vector1_13D60E87: 0.2
     - Vector1_3A0F0468: 0.2
     - Vector1_5F3984B8: 0
     - Vector1_7E4AE40A: 32
+    - Vector1_B3E70B84: 1
     - Vector1_B46D1F6F: 0.7
-    - Vector1_F6143059: 0.06
+    - Vector1_F6143059: 0.07
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -127,12 +129,14 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - Bend_Direction: {r: 0, g: 0, b: 0, a: 0}
     - Bend_Factor: {r: 0, g: 0, b: 0, a: 0}
     - Color_1B028942: {r: 1, g: 1, b: 1, a: 0}
     - Color_6342B95E: {r: 0.26764572, g: 0.33490565, b: 0.1374377, a: 1}
     - Color_77E99432: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 0}
+    - Color_B6D08F8D: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 0}
     - Color_F7C93B3F: {r: 1, g: 1, b: 1, a: 0}
-    - Vector2_12381060: {r: 5, g: 0, b: 0, a: 0}
+    - Vector2_12381060: {r: 5, g: 0, b: 5, a: 0}
     - _BaseColor: {r: 0.82957035, g: 0.9433962, b: 0.5829477, a: 1}
     - _Color: {r: 0.20220985, g: 0.5377358, b: 0.16487184, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

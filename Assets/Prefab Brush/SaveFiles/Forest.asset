@@ -13,22 +13,16 @@ MonoBehaviour:
   m_Name: Forest
   m_EditorClassIdentifier: 
   prefabList:
-  - {fileID: 184134, guid: e0ecadb53dc23f74b88e4f42ae53f84a, type: 3}
-  - {fileID: 192174, guid: 1dc1e39e76eb6e8428d2185bfcf9491f, type: 3}
-  - {fileID: 179128, guid: 358badc9ddd35ff49b8070c96eb8feab, type: 3}
-  - {fileID: 122030, guid: 8c8ea713432a0a8469388cf641ee227c, type: 3}
-  - {fileID: 182652, guid: 0fa0ff3aa6d13b145ab8fd54b03b1146, type: 3}
-  - {fileID: 136856, guid: 2e038773d2d58aa4c83c615635bf660f, type: 3}
-  - {fileID: 195920, guid: b33e35f39f6c48c4bb1793bbc893acf6, type: 3}
+  - {fileID: 2876467324633892515, guid: 002e0b5ec1e16034db845a70adaeb026, type: 3}
   paintType: 0
-  brushSize: 52.7
+  brushSize: 6.82
   minBrushSize: 0.1
-  maxBrushSize: 100
+  maxBrushSize: 20
   paintDeltaDistance: 0.4
   maxPaintDeltaDistance: 3
   minPaintDeltaDistance: 0.1
-  prefabsPerStroke: 100
-  maxprefabsPerStroke: 100
+  prefabsPerStroke: 500
+  maxprefabsPerStroke: 500
   minprefabsPerStroke: 1
   spawnHeight: 10
   addRigidbodyToPaintedPrefab: 1
@@ -45,13 +39,13 @@ MonoBehaviour:
   draggingAction: 0
   rotationAxis: 0
   rotationSensitivity: 10
-  parentingStyle: 0
+  parentingStyle: 2
   parent: {fileID: 0}
   rotateToMatchSurface: 1
   rotateSurfaceDirection: 0
   randomizeRotation: 1
-  minXRotation: 0
-  maxXRotation: 0
+  minXRotation: 270
+  maxXRotation: 270
   minYRotation: 0
   maxYRotation: 360
   minZRotation: 0
@@ -60,12 +54,12 @@ MonoBehaviour:
   scaleApplicationType: 0
   minScale: 1
   maxScale: 1
-  minXScale: 1.5
-  maxXScale: 3
-  minYScale: 1.5
-  maxYScale: 3
-  minZScale: 1.5
-  maxZScale: 3
+  minXScale: 0.3
+  maxXScale: 0.3
+  minYScale: 0.3
+  maxYScale: 0.3
+  minZScale: 0.3
+  maxZScale: 0.7
   parentList: []
   eraseBrushSize: 1
   minEraseBrushSize: 0.1

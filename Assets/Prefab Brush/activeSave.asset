@@ -15,13 +15,13 @@ MonoBehaviour:
   prefabList:
   - {fileID: 2876467324633892515, guid: 002e0b5ec1e16034db845a70adaeb026, type: 3}
   paintType: 0
-  brushSize: 20
+  brushSize: 6.82
   minBrushSize: 0.1
-  maxBrushSize: 100
+  maxBrushSize: 20
   paintDeltaDistance: 0.4
   maxPaintDeltaDistance: 3
   minPaintDeltaDistance: 0.1
-  prefabsPerStroke: 100
+  prefabsPerStroke: 500
   maxprefabsPerStroke: 500
   minprefabsPerStroke: 1
   spawnHeight: 10
@@ -34,9 +34,9 @@ MonoBehaviour:
   requiredLayerMask: 64
   minRequiredSlope: 0
   maxRequiredSlope: 0
-  prefabOriginOffset: {x: 0, y: -0.2, z: 0}
+  prefabOriginOffset: {x: 0, y: 0, z: 0}
   prefabRotationOffset: {x: 0, y: 0, z: 0}
-  draggingAction: 0
+  draggingAction: 2
   rotationAxis: 0
   rotationSensitivity: 10
   parentingStyle: 2
@@ -54,16 +54,16 @@ MonoBehaviour:
   scaleApplicationType: 0
   minScale: 1
   maxScale: 1
-  minXScale: 0.5
-  maxXScale: 0.7
-  minYScale: 0.5
-  maxYScale: 0.7
-  minZScale: 0.5
+  minXScale: 0.3
+  maxXScale: 0.3
+  minYScale: 0.3
+  maxYScale: 0.3
+  minZScale: 0.3
   maxZScale: 0.7
   parentList: []
-  eraseBrushSize: 100
+  eraseBrushSize: 1
   minEraseBrushSize: 0.1
-  maxEraseBrushSize: 100
+  maxEraseBrushSize: 20
   eraseType: 0
   checkLayerForErase: 0
   checkTagForErase: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   requiredLayerMaskForErase: 0
   minRequiredSlopeForErase: 0
   maxRequiredSlopeForErase: 0
-  eraseDetection: 1
+  eraseDetection: 0
   paintBrushHotKey: 112
   paintBrushHoldKey: 1
   removeBrushHotKey: 306
