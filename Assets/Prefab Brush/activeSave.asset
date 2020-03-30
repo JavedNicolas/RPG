@@ -15,7 +15,7 @@ MonoBehaviour:
   prefabList:
   - {fileID: 2876467324633892515, guid: 002e0b5ec1e16034db845a70adaeb026, type: 3}
   paintType: 0
-  brushSize: 6.82
+  brushSize: 20
   minBrushSize: 0.1
   maxBrushSize: 20
   paintDeltaDistance: 0.4
@@ -36,7 +36,7 @@ MonoBehaviour:
   maxRequiredSlope: 0
   prefabOriginOffset: {x: 0, y: 0, z: 0}
   prefabRotationOffset: {x: 0, y: 0, z: 0}
-  draggingAction: 2
+  draggingAction: 0
   rotationAxis: 0
   rotationSensitivity: 10
   parentingStyle: 2
