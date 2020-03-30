@@ -9,14 +9,6 @@ public class PlaneExtender : MonoBehaviour
 
     public void spawnNewPlane(Vector3 direction, int numberToSpawn)
     {
-        /*Vector3[] gizmoPositions =
-        {
-            new Vector3(position.x + _meshFilter.sharedMesh.bounds.size.x, position.y, position.z),
-            new Vector3(position.x - _meshFilter.sharedMesh.bounds.size.x, position.y, position.z),
-            new Vector3(position.x, position.y, position.z + _meshFilter.sharedMesh.bounds.size.z),
-            new Vector3(position.x, position.y, position.z - _meshFilter.sharedMesh.bounds.size.z)
-        };*/
-
         GameObject gameObjectToUse = gameObject;
 
         numberToSpawn = numberToSpawn == 0 ? 1 : numberToSpawn;
