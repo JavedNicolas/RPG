@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48655732d36ccff4a8fea1befe8026b4, type: 3}
   m_Name: BattleRoom
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 0}
+  _name: Battle Room
+  _prefab: {fileID: 2467834408717682274, guid: 6cb9527ff9eecec499aca076b1e17e5b, type: 3}

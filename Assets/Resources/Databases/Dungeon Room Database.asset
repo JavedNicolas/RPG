@@ -10,6 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25780bb05f05f294c93e149d83fc01e4, type: 3}
-  m_Name: New Dungeon Room Database
+  m_Name: Dungeon Room Database
   m_EditorClassIdentifier: 
-  _elements: []
+  _elements:
+  - {fileID: 11400000, guid: 36d8bb47e5ae3a94799a8310a4fd6e14, type: 2}
+  - {fileID: 11400000, guid: fc92595e827ed75498f8214daf60cf00, type: 2}

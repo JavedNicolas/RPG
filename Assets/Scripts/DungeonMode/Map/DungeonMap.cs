@@ -7,16 +7,24 @@ namespace RPG.DungeonMode.Map
 {
     public class DungeonMap : MonoBehaviour
     {
-        List<Room> _map = new List<Room>();
-        public List<Room> rooms => _map;
+        const int MAX_ROOM_PER_CHOICE = 4;
+
+        List<List<Room>> _map = new List<List<Room>>();
+        public List<List<Room>> rooms => _map;
 
         public Room currentMap { get; private set; }
         
         public void createMap(DungeonRoomDatabase roomDatabase, int minSize, int maxSize, int seed)
         {
             int dungeonSize = Random.Range(minSize, maxSize);
-
-            _map = roomDatabase.getRandomElements(dungeonSize, true);
+            Debug.Log("Dungeon size :" + dungeonSize);
+            for(int i = 0; i < dungeonSize; i++)
+            {
+                int roomInThiSChoice = Random.Range(1, MAX_ROOM_PER_CHOICE + 1);
+                _map.Add(roomDatabase.getRandomElements(roomInThiSChoice, true));
+                Debug.Log("Choice size :" + roomInThiSChoice);
+            } 
+            
         }
     }
 }

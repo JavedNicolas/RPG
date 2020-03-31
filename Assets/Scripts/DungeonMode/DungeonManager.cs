@@ -17,6 +17,12 @@ namespace RPG.DungeonMode
 
         [SerializeField] GameObject _startZone;
 
+        [Header("UI")]
+        [SerializeField] MapDisplayer _mapDisplayer;
+
+        [Header("Misc")]
+        [SerializeField] DungeonRoomSpawner _roomSpawner;
+
         [Header("Databases")]
         [SerializeField] CharacterDatabase _characterDatabase;
         [SerializeField] EnemyDatabase _enemyDatabase;
@@ -31,32 +37,12 @@ namespace RPG.DungeonMode
         void Start()
         {
             map = new DungeonMap();
-            map.createMap(_dungeonRoomDatabase, 1, 10, _dungeonSeed);
-            spawnRooms();
+            map.createMap(_dungeonRoomDatabase, 1, 4, _dungeonSeed);
+            _roomSpawner.spawnRooms(map.rooms, _startZone);
+            _mapDisplayer.displayMap(map.rooms);
         }
 
-        void spawnRooms()
-        {
-            List<Room> rooms = map.rooms;
-            GameObject lastRoomsSpawn = _startZone;
-
-            for (int i = 0; i < rooms.Count; i++)
-            {
-                GameObjectExtender extender = lastRoomsSpawn.GetComponent<GameObjectExtender>();
-                
-                GameObject prefab = rooms[i].prefab;
-                Terrain terrain = prefab.GetComponent<Terrain>();
-
-                if (extender == null || terrain == null)
-                {
-                    Debug.LogWarningFormat("{0} does not have a GameObjectExtender script attached or a Terrain", lastRoomsSpawn.name);
-                    continue;
-                }
-
-                Vector3 size = terrain.terrainData.size;
-                lastRoomsSpawn = extender.spawnNewObjectFromPrefab(Vector3.right, size, prefab);
-            }
-        }
+        
     }
 }
 
