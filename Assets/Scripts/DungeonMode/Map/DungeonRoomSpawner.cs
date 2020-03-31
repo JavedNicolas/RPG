@@ -6,7 +6,7 @@ namespace RPG.DungeonMode.Map
 {
     public class DungeonRoomSpawner : MonoBehaviour
     {
-        public void spawnRooms(List<List<Room>> rooms, GameObject startZone)
+        public void spawnRooms(List<List<RoomData>> rooms, GameObject startZone)
         {
             GameObject spawnerRoom = startZone;
 
@@ -14,7 +14,7 @@ namespace RPG.DungeonMode.Map
             {
                 GameObjectExtender extender = spawnerRoom.GetComponent<GameObjectExtender>();
 
-                List<Room> choice = rooms[i];
+                List<RoomData> choice = rooms[i];
 
                 for (int j = 0; j < choice.Count; j++)
                 {

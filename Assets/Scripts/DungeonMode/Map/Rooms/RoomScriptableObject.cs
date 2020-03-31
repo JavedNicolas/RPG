@@ -2,7 +2,7 @@
 
 namespace RPG.DungeonMode.Map
 {
-    public abstract class Room : ScriptableObject
+    public abstract class RoomScriptableObject : ScriptableObject
     {
         [SerializeField] string _name;
         [SerializeField] GameObject _prefab;

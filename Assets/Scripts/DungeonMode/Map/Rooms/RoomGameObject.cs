@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class RoomGameObject : MonoBehaviour
+namespace RPG.DungeonMode.Map
 {
-    public List<RoomGameObject> nextRooms;
-    [SerializeField] List<GameObject> _startPoints;
+    public class RoomGameObject : MonoBehaviour
+    {
+        [SerializeField] RoomData _roomdata;
+        [SerializeField] List<GameObject> _startPoints;
+    }
 
 }

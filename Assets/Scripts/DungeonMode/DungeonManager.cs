@@ -12,7 +12,7 @@ namespace RPG.DungeonMode
         int _dungeonSeed = 0;
 
         public static DungeonManager instance;
-        public static DungeonMap map;
+        public static DungeonGenerator map;
         public List<Team> team;
 
         [SerializeField] GameObject _startZone;
@@ -36,8 +36,8 @@ namespace RPG.DungeonMode
         // Use this for initialization
         void Start()
         {
-            map = new DungeonMap();
-            map.createMap(_dungeonRoomDatabase, 1, 4, _dungeonSeed);
+            map = new DungeonGenerator();
+            map.createMap(_dungeonRoomDatabase, 8, 10, _dungeonSeed);
             _roomSpawner.spawnRooms(map.rooms, _startZone);
             _mapDisplayer.displayMap(map.rooms);
         }
