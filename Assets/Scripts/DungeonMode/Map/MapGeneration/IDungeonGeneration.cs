@@ -8,8 +8,8 @@ namespace RPG.DungeonMode.Dungeon
 
     public interface IDungeonGeneration
     {
-        RoomData[,] rooms { get; }
+        Room[,] rooms { get; }
 
-        void createDungeon(DungeonRoomDatabase roomDatabase, int minSize, int maxSize, int seed);
+        Room createDungeon(DungeonRoomDatabase roomDatabase, int minSize, int maxSize, int seed);
     }
 }

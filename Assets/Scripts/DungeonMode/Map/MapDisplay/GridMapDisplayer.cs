@@ -5,15 +5,18 @@ using System.Linq;
 using UnityEngine.UI;
 using System.Collections;
 
-namespace RPG.DungeonMode.Dungeon
+
+namespace RPG.DungeonMode.Map
 {
+    using RPG.DungeonMode.Dungeon;
+
     public class GridMapDisplayer : MapDisplayer
     {
         [SerializeField] Sprite[] _layoutIcons;
         [SerializeField] GameObject _mapIconPrefab;
         [SerializeField] GridLayoutGroup _mapGridLayout;
         
-        public override void displayMap(RoomData[,] rooms)
+        public override void displayMap(Room[,] rooms, Room startRoom)
         {
             _mapGridLayout.constraintCount = rooms.GetLength(1);
 
@@ -21,17 +24,22 @@ namespace RPG.DungeonMode.Dungeon
             {
                 for (int j = 0; j < rooms.GetLength(1); j++)
                 {
-                    GameObject mapIcon = Instantiate(_mapIconPrefab, _mapGridLayout.transform);
-
+                    GameObject mapItem = Instantiate(_mapIconPrefab, _mapGridLayout.transform);
+                    RoomMapItem roomMapItem = mapItem.GetComponent<RoomMapItem>();
                     if (rooms[i,j] != null)
                     {
-                        Sprite sprite = getSprite(rooms[i, j]);
-                        mapIcon.GetComponent<Image>().sprite = sprite;
+                        Room room = rooms[i, j];
+                        Sprite sprite = getSprite(room);
+
+                        roomMapItem.setLayoutImage(sprite);
+                        roomMapItem.setButtonAction(delegate { roomChosed(room); });
+
+                        room.setMapItem(mapItem);
                     }
                     else
                     {
                         // transparent code
-                        mapIcon.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                        roomMapItem.hide(true);
                     }
                 }
             }
@@ -47,12 +55,12 @@ namespace RPG.DungeonMode.Dungeon
         }
 
 
-        Sprite getSprite(RoomData roomData)
+        Sprite getSprite(Room roomData)
         {
             string spriteName = ""; 
 
             // create a sprite name using a letter for each linked room direction
-            foreach(RoomData linkedRoom in roomData.linkedRoom)
+            foreach(Room linkedRoom in roomData.linkedRoom)
             {
                 Vector3 direction = linkedRoom.gameObject.transform.position - roomData.gameObject.transform.position;
                 direction = direction.normalized;

@@ -6,6 +6,6 @@ namespace RPG.DungeonMode.Dungeon
 {
     public interface IDungeonSpawner
     {
-        void spawnRooms(RoomData[,] rooms);
+        void spawnRooms(Room[,] rooms);
     }
 }

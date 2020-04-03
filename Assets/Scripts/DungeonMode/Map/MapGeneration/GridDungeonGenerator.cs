@@ -11,21 +11,21 @@ namespace RPG.DungeonMode.Dungeon
         [Tooltip("Is a factor which reduced the chance to branch based on number of branched room")]
         [SerializeField] [Range(0, 30)] int _chanceToBranchReductionFactor;
 
-        RoomData[,] _rooms;
-        public RoomData[,] rooms => _rooms;
+        Room[,] _rooms;
+        public Room[,] rooms => _rooms;
 
-        public void createDungeon(DungeonRoomDatabase roomDatabase, int minSize, int maxSize, int seed)
+        public Room createDungeon(DungeonRoomDatabase roomDatabase, int minSize, int maxSize, int seed)
         {
             int dungeonSize = Random.Range(minSize, maxSize);
 
-            _rooms = new RoomData[5, dungeonSize];
+            _rooms = new Room[5, dungeonSize];
 
             int dungeonMainLaneWidthStart = Random.Range(0 , _rooms.GetLength(1) / 2 );
             int dungeonMainLaneHeightStart = Random.Range(0, _rooms.GetLength(0));
 
             // fetch start and boss room
-            RoomData startRoom = new RoomData(roomDatabase.getStaticRoom("Start Room"));
-            RoomData bossRoom = new RoomData(roomDatabase.getStaticRoom("Boss Room"));
+            Room startRoom = new Room(roomDatabase.getStaticRoom("Start Room"));
+            Room bossRoom = new Room(roomDatabase.getStaticRoom("Boss Room"));
 
             // set the start and boss room
             _rooms[dungeonMainLaneHeightStart, dungeonMainLaneWidthStart] = startRoom;
@@ -34,7 +34,7 @@ namespace RPG.DungeonMode.Dungeon
             // create the main lane
             for (int i = dungeonMainLaneWidthStart + 1; i < _rooms.GetLength(1) - 1; i++)
             {
-                _rooms[dungeonMainLaneHeightStart, i] = new RoomData(getRandomRoom(roomDatabase));
+                _rooms[dungeonMainLaneHeightStart, i] = new Room(getRandomRoom(roomDatabase));
 
                 // ad main lane links
                 _rooms[dungeonMainLaneHeightStart, i].linkedRoom.Add(_rooms[dungeonMainLaneHeightStart, i - 1]);
@@ -54,6 +54,8 @@ namespace RPG.DungeonMode.Dungeon
                         getNextRoom(i, j, roomDatabase);
                 }
             }
+
+            return startRoom;
         }
 
         RoomScriptableObject getRandomRoom(DungeonRoomDatabase roomDatabase)
@@ -90,7 +92,7 @@ namespace RPG.DungeonMode.Dungeon
                         numberOfBranchedRoom++;
 
                         RoomScriptableObject room = getRandomRoom(roomDatabase);
-                        RoomData newRoomData = new RoomData(room);
+                        Room newRoomData = new Room(room);
 
                         // assign links
                         _rooms[parentHeightIndex, parentWidthIndex].linkedRoom.Add(newRoomData);

@@ -9,20 +9,20 @@ namespace RPG.DungeonMode.Dungeon
     {
         [SerializeField] Transform _roomParent;
 
-        public void spawnRooms(RoomData[,] rooms)
+        public void spawnRooms(Room[,] rooms)
         {
             for (int i = 0; i < rooms.GetLength(0); i++)
             {
                 for (int j = 0; j < rooms.GetLength(1); j++)
                 {
-                    RoomData roomData = rooms[i, j];
+                    Room roomData = rooms[i, j];
                     if(roomData != null)
                         spawn(i, j, roomData, roomData.prefab);
                 }
             }
         }
 
-        GameObject spawn(int heightIndex, int widthIndex, RoomData roomToSpawn, GameObject prefab)
+        GameObject spawn(int heightIndex, int widthIndex, Room roomToSpawn, GameObject prefab)
         {
             Terrain terrain = prefab.GetComponent<Terrain>();
             RoomGameObject prefabRoomGameObject = prefab.GetComponent<RoomGameObject>();
@@ -38,9 +38,6 @@ namespace RPG.DungeonMode.Dungeon
 
             if(spawnedRoom != null)
             {
-                // assign the roomData to the RoomGameObject script
-                RoomGameObject roomGameObject = spawnedRoom.GetComponent<RoomGameObject>();
-                roomGameObject.setRoomData(roomToSpawn);
                 roomToSpawn.setGameObject(spawnedRoom);
             }
 
