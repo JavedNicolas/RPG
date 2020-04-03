@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1114644880931814822}
   - component: {fileID: 9106520054317885310}
   m_Layer: 0
-  m_Name: Spawn2
+  m_Name: Spawn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,8 +58,8 @@ GameObject:
   - component: {fileID: 2645239889092501549}
   - component: {fileID: 907285083953083970}
   m_Layer: 0
-  m_Name: DungeonZone_Start
-  m_TagString: Untagged
+  m_Name: DungeonRoom_Start
+  m_TagString: DungeonTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72df1cced33c304e8f8b554d8e6ac90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextRoom: {fileID: 0}
   _startPoints:
   - {fileID: 7771430470692741927}
   - {fileID: 968189076166488173}
@@ -242,7 +241,7 @@ GameObject:
   - component: {fileID: 7411159842485846597}
   - component: {fileID: 7162723598392964547}
   m_Layer: 0
-  m_Name: Spawn1
+  m_Name: Spawn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

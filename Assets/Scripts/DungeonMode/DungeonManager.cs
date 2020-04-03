@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RPG.DungeonMode.Map;
+using RPG.DungeonMode.Dungeon;
 using System.Collections.Generic;
 using RPG.Data.Team;
 using RPG.Data;
@@ -9,37 +9,62 @@ namespace RPG.DungeonMode
 {
     public class DungeonManager : MonoBehaviour
     {
-        int _dungeonSeed = 0;
 
         public static DungeonManager instance;
-        public static DungeonGenerator map;
-        public List<Team> team;
 
-        [SerializeField] GameObject _startZone;
+        [SerializeField] GameObject _startRoom;
 
-        [Header("UI")]
-        [SerializeField] MapDisplayer _mapDisplayer;
-
-        [Header("Misc")]
-        [SerializeField] DungeonRoomSpawner _roomSpawner;
 
         [Header("Databases")]
         [SerializeField] CharacterDatabase _characterDatabase;
         [SerializeField] EnemyDatabase _enemyDatabase;
         [SerializeField] DungeonRoomDatabase _dungeonRoomDatabase;
 
+        // private var
+        int _dungeonSeed = 0;
+        RoomGameObject _currentRoom;
+
+        IDungeonGeneration _dungeonGenerator;
+        IDungeonSpawner _dungeonSpawner;
+        MapDisplayer _mapDisplayer;
+
+        List<Team> team;
+
         private void Awake()
         {
+            _dungeonGenerator = GetComponent<IDungeonGeneration>();
+            _mapDisplayer = GetComponent<MapDisplayer>();
+            _dungeonSpawner = GetComponent<IDungeonSpawner>();
             instance = this;
         }
 
         // Use this for initialization
         void Start()
         {
-            map = new DungeonGenerator();
-            map.createMap(_dungeonRoomDatabase, 8, 10, _dungeonSeed);
-            _roomSpawner.spawnRooms(map.rooms, _startZone);
-            _mapDisplayer.displayMap(map.rooms);
+
+            // createDungeon
+            _dungeonGenerator.createDungeon(_dungeonRoomDatabase, 12, 15, _dungeonSeed);
+            _dungeonSpawner.spawnRooms(_dungeonGenerator.rooms);
+
+            // display map
+            //_mapDisplayer.roomChosed = moveToNextRoom;
+            _mapDisplayer.displayMap(_dungeonGenerator.rooms);
+
+            _currentRoom = _startRoom.GetComponent<RoomGameObject>();
+        }
+
+        
+
+        void moveToNextRoom(RoomData nextRoom)
+        {
+            if (!_currentRoom.roomData.linkedRoom.Contains(nextRoom))
+            {
+                Debug.LogWarning("INSERT MESSAGE TO THE PLAYER, OR ANY VISUAL INDICATION");
+                return;
+            }
+
+            // Moving to the next room code
+            Debug.Log("Can move");
         }
 
         

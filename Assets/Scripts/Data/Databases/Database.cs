@@ -33,7 +33,7 @@ namespace RPG.Data
 
         #region getter
 
-        public T getElement(int atIndex)
+        public virtual T getElement(int atIndex)
         {
             if (atIndex >= _elements.Count)
                 return default;
@@ -41,7 +41,27 @@ namespace RPG.Data
             return _elements[atIndex];
         }
 
-        public List<T> getRandomElements(int numberOfElementToGet, bool allowDuplicate)
+        public virtual List<T> getElements(Predicate<T> filter = null)
+        {
+            List<T> elementsToReturn = _elements;
+
+            if (filter != null)
+                elementsToReturn = elementsToReturn.FindAll(filter);
+
+            return elementsToReturn;
+        }
+
+        public virtual T getRandomElement(Predicate<T> filter = null)
+        {
+            List<T> randomElements = getRandomElements(1, true, filter);
+
+            if (randomElements.Count == 0)
+                return default;
+
+            return randomElements[0];
+        }
+
+        public virtual List<T> getRandomElements(int numberOfElementToGet, bool allowDuplicate, Predicate<T> filter = null)
         {
             List<T> elementMatching = new List<T>();
             List<T> elementsToReturn = new List<T>();
@@ -50,10 +70,13 @@ namespace RPG.Data
             if (isListNullOrEmpty())
                 return new List<T>();
 
+            elementMatching = _elements;
+
             if (!allowDuplicate)
-                elementMatching = _elements.FindAll(duplicateFilter);
-            else
-                elementMatching = _elements;
+                elementMatching = elementMatching.FindAll(duplicateFilter);
+
+            if (filter != null)
+                elementMatching = elementMatching.FindAll(filter);
 
             for (int i = 0; i < numberOfElementToGet; i++)
             {
@@ -68,13 +91,13 @@ namespace RPG.Data
         #region ondin inspector 
         [Button("Reload Database")]
         [PropertyOrder(-2), PropertySpace(SpaceBefore = 10)]
-        public void reloadElement()
+        public virtual void reloadElement()
         {
             loadDatabase();
         }
 
         [Button("Add"), PropertyOrder(-1), PropertySpace(SpaceAfter = 10)]
-        public void addElement()
+        public virtual void addElement()
         {
             AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<T>(), AssetsPath.RESOURCES_FOLDER_PATH + elementFolderPath + "/New " + typeof(T).ToString() + creationAssetNumber + ".asset");
             creationAssetNumber++;
