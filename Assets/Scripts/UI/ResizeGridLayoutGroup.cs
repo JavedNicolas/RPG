@@ -21,6 +21,13 @@ namespace RPG.UI
             }
         }
 
+        public void updateSize(int numberOfItemPerLine, int numberOfLine)
+        {
+            _numberOfItemPerLine = numberOfItemPerLine;
+            _numberOfLine = numberOfLine;
+            updateSize();
+        }
+
         [Button("Update size")]
         public void updateSize()
         {

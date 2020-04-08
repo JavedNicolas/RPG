@@ -9,7 +9,7 @@ namespace RPG.Battle
     {
         public List<TeamSlot> getCharacters()
         {
-            return GameManager.instance.team.getCurrentTeam;
+            return GameManager.instance.team.currentTeam;
         }
     }
 }

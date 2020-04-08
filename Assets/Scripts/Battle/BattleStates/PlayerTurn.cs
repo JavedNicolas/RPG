@@ -24,10 +24,10 @@ namespace RPG.Battle.StateMachine
 
             // update the action point display
             updateActionPointDisplay();
-            executeState();
+            execute();
         }
 
-        public override void executeState()
+        public override void execute()
         {
             // if there is no more enemy switch to player won
             if (_battleStateManager.requestEnemies(false).Count == 0)
@@ -63,7 +63,7 @@ namespace RPG.Battle.StateMachine
             _battleStateManager.actionPointUpdated(remainingActionPoint, maxActionPoint);
         }
 
-        public override void endTurn()
+        public override void end()
         {
             ChangeState(typeof(EnemyTurn));
         }

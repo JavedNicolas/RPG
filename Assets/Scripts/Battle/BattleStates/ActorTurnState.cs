@@ -54,7 +54,7 @@ namespace RPG.Battle.StateMachine
             yield return new WaitUntil(() => actorMovement.hasFinishedHisMovement);
             actorGO.transform.rotation = originalRotation;
 
-            executeState();
+            execute();
         }
         #endregion
     }

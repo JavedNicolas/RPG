@@ -107,7 +107,7 @@ namespace RPG.Battle
 
         public void endTurn()
         {
-            _battleStateManager.currentBattleState.endTurn();
+            _battleStateManager.currentBattleState.end();
             hideMenu();
             endTurnButton.gameObject.SetActive(false);
         }

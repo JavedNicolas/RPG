@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace RPG.DungeonMode.Dungeon
 {
-
     public partial class GridDungeonSpawner : MonoBehaviour, IDungeonSpawner
     {
         [SerializeField] Transform _roomParent;

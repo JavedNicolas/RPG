@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 
-namespace RPG.DungeonMode.Map
+namespace RPG.DungeonMode.UI
 {
     using RPG.DungeonMode.Dungeon;
 
@@ -15,8 +15,18 @@ namespace RPG.DungeonMode.Map
         [SerializeField] Sprite[] _layoutIcons;
         [SerializeField] GameObject _mapIconPrefab;
         [SerializeField] GridLayoutGroup _mapGridLayout;
+        [SerializeField] Transform _mapParent;
+
+        List<GameObject> mapItems = new List<GameObject>();
+        bool canChooseARoom = false;
         
-        public override void displayMap(Room[,] rooms, Room startRoom)
+        public override void display(bool display, bool canChooseARoom)
+        {
+            _mapParent.gameObject.SetActive(display);
+            this.canChooseARoom = canChooseARoom && display;
+        }
+
+        public override void generateMap(Room[,] rooms, Room startRoom)
         {
             _mapGridLayout.constraintCount = rooms.GetLength(1);
 
@@ -25,6 +35,8 @@ namespace RPG.DungeonMode.Map
                 for (int j = 0; j < rooms.GetLength(1); j++)
                 {
                     GameObject mapItem = Instantiate(_mapIconPrefab, _mapGridLayout.transform);
+                    mapItems.Add(mapItem);
+
                     RoomMapItem roomMapItem = mapItem.GetComponent<RoomMapItem>();
                     if (rooms[i,j] != null)
                     {
@@ -32,7 +44,7 @@ namespace RPG.DungeonMode.Map
                         Sprite sprite = getSprite(room);
 
                         roomMapItem.setLayoutImage(sprite);
-                        roomMapItem.setButtonAction(delegate { roomChosed(room); });
+                        roomMapItem.setButtonAction(delegate { fireDelegate(room); });
 
                         room.setMapItem(mapItem);
                     }
@@ -46,6 +58,13 @@ namespace RPG.DungeonMode.Map
             StartCoroutine("updateParentSizeToFit");
         }
 
+        public void fireDelegate(Room room)
+        {
+            if (canChooseARoom)
+            {
+                roomChosed(room);
+            }
+        }
 
         IEnumerator updateParentSizeToFit()
         {

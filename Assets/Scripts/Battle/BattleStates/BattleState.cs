@@ -9,7 +9,9 @@ using Debug = UnityEngine.Debug;
 
 namespace RPG.Battle.StateMachine
 {
-    public abstract class BattleState
+    using RPG.State;
+
+    public abstract class BattleState : State
     {
         protected static BattleStateManager _battleStateManager { get; private set; }
 
@@ -24,17 +26,6 @@ namespace RPG.Battle.StateMachine
         {
             _battleStateManager = battleStateManager;
         }
-
-        /// <summary>
-        /// init the state
-        /// </summary>
-        public abstract void start();
-
-        /// <summary>
-        /// Contain execute logic of the state
-        /// </summary>
-        public abstract void executeState();
-        public abstract void endTurn();
 
         public virtual void setActors(List<Being> actors) { currentActors = actors; }
         public virtual void setChoosedActor(Being actor) { choosedActor = actor; }

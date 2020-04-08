@@ -13,7 +13,6 @@ namespace RPG.Data
         public RoomScriptableObject getStaticRoom(string named)
         {
             RoomScriptableObject staticRoom = getStaticRooms().Find(x => x.name == named);
-            Debug.Log(staticRoom);
             return staticRoom;
         }
 

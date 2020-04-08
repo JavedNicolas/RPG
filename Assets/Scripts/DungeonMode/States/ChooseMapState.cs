@@ -1,27 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System;
 
-
-namespace RPG.Battle.StateMachine
+namespace RPG.DungeonMode.States
 {
-    public class BattleStartState : BattleState
+    public class ChooseMapState : DungeonState
     {
         public override void start()
         {
-            end();
+            execute();
         }
 
         public override void execute()
         {
-
+            _manager.dungeonModeUI.mapDisplayer.display(true, true);
         }
 
         public override void end()
         {
-            ChangeState(typeof(PlayerTurn));
+            
         }
     }
 }

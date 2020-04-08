@@ -8,11 +8,32 @@ namespace RPG.Data
     public class DatabaseElement : ScriptableObject
     {
         [SerializeField] public new string name;
+        [SerializeField] public string description;
+        [SerializeField] public Sprite icon;
+        [SerializeField] public Sprite smallImage;
+        [SerializeField] public Sprite mediumImage;
+        [SerializeField] public Sprite fullImage;
+
         private string assetPath;
+
+        public virtual void initEmpty()
+        {
+            this.name = "Empty";
+            this.description = "Empty";
+            this.icon = null;
+            this.smallImage = null;
+            this.mediumImage = null;
+            this.fullImage = null;
+        }
 
         public void init(DatabaseElement databaseElement)
         {
             this.name = databaseElement.name;
+            this.description = databaseElement.description;
+            this.icon = databaseElement.icon;
+            this.smallImage = databaseElement.smallImage;
+            this.mediumImage = databaseElement.mediumImage;
+            this.fullImage = databaseElement.fullImage;
         }
 
         [Button("Update File Name"), PropertyOrder(-1)]

@@ -1,27 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System;
 
-
-namespace RPG.Battle.StateMachine
+namespace RPG.DungeonMode.States
 {
-    public class BattleStartState : BattleState
+    public class MoveToRoomState : DungeonState
     {
         public override void start()
         {
-            end();
+            
         }
 
         public override void execute()
         {
-
+            
         }
 
         public override void end()
         {
-            ChangeState(typeof(PlayerTurn));
+            _manager.changeState(typeof(RoomState).ToString());
         }
     }
 }

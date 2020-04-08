@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace RPG.DungeonMode.Map
+namespace RPG.DungeonMode.UI
 {
     using RPG.DungeonMode.Dungeon;
 
@@ -13,7 +13,8 @@ namespace RPG.DungeonMode.Map
         public RoomChosed roomChosed;
         #endregion
 
-        public abstract void displayMap(Room[,] rooms, Room startRoom);
+        public abstract void generateMap(Room[,] rooms, Room startRoom);
+        public abstract void display(bool display, bool canChooseARoom);
     }
 }
 

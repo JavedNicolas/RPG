@@ -65,26 +65,51 @@ namespace RPG.Data
         {
             List<T> elementMatching = new List<T>();
             List<T> elementsToReturn = new List<T>();
-            Predicate<T> duplicateFilter = !allowDuplicate ? new Predicate<T>(x => !elementsToReturn.Contains(x)) : null;
 
             if (isListNullOrEmpty())
                 return new List<T>();
 
             elementMatching = _elements;
 
-            if (!allowDuplicate)
-                elementMatching = elementMatching.FindAll(duplicateFilter);
-
+            // apply the filter
             if (filter != null)
                 elementMatching = elementMatching.FindAll(filter);
 
-            for (int i = 0; i < numberOfElementToGet; i++)
+            // adatpe the number of element to return based on the matching elements count
+            numberOfElementToGet = (numberOfElementToGet <= elementMatching.Count) ? numberOfElementToGet : elementMatching.Count;
+
+            // if there is no match return an empty list
+            if (elementMatching.Count == 0)
+                return new List<T>();
+
+            // var which prevent infite loop
+            int numberOfLoop = 0;
+            do
             {
                 int randomIndex = UnityEngine.Random.Range(0, elementMatching.Count);
-                elementsToReturn.Add(elementMatching[randomIndex]);
-            }
+                // filter the duplicates
+                if(canAdd(elementsToReturn.Contains(elementMatching[randomIndex]), allowDuplicate))
+                {
+                    elementsToReturn.Add(elementMatching[randomIndex]);
+                }
+                numberOfLoop++;
+                if (numberOfLoop >= numberOfElementToGet + 50)
+                    break;
+
+            } while (elementsToReturn.Count < numberOfElementToGet);
 
             return elementsToReturn;
+        }
+
+        bool canAdd(bool contains, bool allowDuplicate)
+        {
+            if (!contains)
+                return true;
+
+            if (contains && allowDuplicate)
+                return true;
+
+            return false;
         }
         #endregion
 

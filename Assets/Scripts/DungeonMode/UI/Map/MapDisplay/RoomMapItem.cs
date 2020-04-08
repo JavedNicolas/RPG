@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace RPG.DungeonMode.Map
+namespace RPG.DungeonMode.UI
 {
     public class RoomMapItem : MonoBehaviour
     {

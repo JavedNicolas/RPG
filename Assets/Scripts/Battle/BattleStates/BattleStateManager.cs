@@ -68,7 +68,7 @@ namespace RPG.Battle.StateMachine
         /// <summary> End the current turn </summary>
         public void endTurn()
         {
-            currentBattleState.endTurn();
+            currentBattleState.end();
             
         }
 

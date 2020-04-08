@@ -3,6 +3,7 @@ using System.Collections;
 
 public static class TransfromExtension
 {
+
     public static void clearChild(this Transform transform)
     {
         for(int i =0; i < transform.childCount; i++)
@@ -10,6 +11,4 @@ public static class TransfromExtension
             GameObject.Destroy(transform.GetChild(i).gameObject);
         }
     }
-
-
 }

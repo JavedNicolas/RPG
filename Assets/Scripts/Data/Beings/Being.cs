@@ -17,7 +17,6 @@ namespace RPG.Data
         [SerializeField] int _speed;
         [SerializeField] GameObject _model;
         [SerializeField] List<Action> _actions = new List<Action>();
-        [SerializeField] public Sprite _icon;
 
         public int maxLife => _maxLife; 
         public int currentLife => _currentLife;
@@ -28,7 +27,20 @@ namespace RPG.Data
         public int speed => _speed; 
         public GameObject model  => _model;
         public List<Action> actions => _actions; 
-        public Sprite icon => _icon; 
+
+        public override void initEmpty()
+        {
+            base.initEmpty();
+            _maxLife = 0;
+            _currentLife = 0;
+            _attack = 0;
+            _magicAttack = 0;
+            _defense = 0;
+            _magicDefense = 0;
+            _speed = 0;
+            _model = null;
+            _actions = null;
+        }
 
         public void init(Being being)
         {
@@ -42,7 +54,6 @@ namespace RPG.Data
             _speed = being.speed;
             _model = being.model;
             _actions = being.actions;
-            _icon = being.icon;
         }
 
 

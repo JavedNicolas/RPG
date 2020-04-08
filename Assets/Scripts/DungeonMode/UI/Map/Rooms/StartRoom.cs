@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 using RPG.Data;
 
 namespace RPG.DungeonMode.Dungeon
@@ -9,7 +10,7 @@ namespace RPG.DungeonMode.Dungeon
     {
         public override void effect()
         {
-            
+            DungeonManager.instance.dungeonModeUI.generateCharacterChoices();
         }
     }
 }

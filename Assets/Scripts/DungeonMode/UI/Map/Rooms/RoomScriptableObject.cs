@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using RPG.Data;
+using UnityEngine;
 
 namespace RPG.DungeonMode.Dungeon
 {
-    public abstract class RoomScriptableObject : ScriptableObject
+    public abstract class RoomScriptableObject : DatabaseElement
     {
         [Tooltip("If true this room is a static room, this mean that it will always be placed at a specific position in the dungeon. \n" +
             "This room will not be pulled randomly .\n" +

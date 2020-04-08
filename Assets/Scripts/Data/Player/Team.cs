@@ -11,7 +11,15 @@ namespace RPG.Data.Team
         List<TeamSlot> _team = new List<TeamSlot>();
         List<Character> _roster = new List<Character>();
 
-        public List<TeamSlot> getCurrentTeam => _team;
+        public List<TeamSlot> currentTeam => _team;
+
+        public List<Character> getCurrentTeamCharacters()
+        {
+            List<Character> currentTeamCharacter = new List<Character>();
+            _team.ForEach(x => currentTeamCharacter.Add(x.character));
+
+            return currentTeamCharacter;
+        }
 
         public void addCharacterToTeam(Character character, bool isInFront, BattlePosition position)
         {

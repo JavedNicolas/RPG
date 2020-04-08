@@ -15,10 +15,10 @@ namespace RPG.Battle.StateMachine
         public override void start()
         {
             _currentEnemyIndex = 0;
-            executeState();
+            execute();
         }
 
-        public override void executeState()
+        public override void execute()
         {
             // if there is no more player switch to player lost
             if (_battleStateManager.requestCharacters(false).Count == 0)
@@ -31,7 +31,7 @@ namespace RPG.Battle.StateMachine
             if (_currentEnemyIndex < currentActors.Count)
                 executeEnemyAction(_currentEnemyIndex);
             else
-                endTurn();
+                end();
         }
 
         /// <summary> get an action for the current enemy and use it</summary>
@@ -54,7 +54,7 @@ namespace RPG.Battle.StateMachine
             animateMovement(actionInUse, target, _battleStateManager.getBattleSpawn(choosedActor));
         }
 
-        public override void endTurn()
+        public override void end()
         {
             ChangeState(typeof(PlayerTurn));
         }

@@ -13,6 +13,10 @@ namespace RPG.DungeonMode.Dungeon
         public GameObject gameObject { get; private set; }
         public GameObject mapItem { get; private set; }
         public List<Room> linkedRoom { get; private set; }
+        RoomScriptableObject _scriptableObject;
+
+        public delegate void RoomCompleted();
+        public RoomCompleted roomCompleted;
 
         public Room(RoomScriptableObject roomSO)
         {
@@ -20,6 +24,8 @@ namespace RPG.DungeonMode.Dungeon
             prefab = roomSO.prefab;
             cannotBranch = roomSO.cannotBranch;
             linkedRoom = new List<Room>();
+            _scriptableObject = roomSO;
+            
         }
 
         public void setMapItem(GameObject mapItem)
@@ -30,6 +36,11 @@ namespace RPG.DungeonMode.Dungeon
         public void setGameObject(GameObject gameObject)
         {
             this.gameObject = gameObject;
+        }
+
+        public void executeRoom()
+        {
+            _scriptableObject.effect();
         }
     }  
 }

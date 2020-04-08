@@ -11,12 +11,12 @@ namespace RPG.Battle.StateMachine
             Debug.Log("PLayer Lost");
         }
 
-        public override void executeState()
+        public override void execute()
         {
             throw new System.NotImplementedException();
         }
 
-        public override void endTurn()
+        public override void end()
         {
             throw new System.NotImplementedException();
         }

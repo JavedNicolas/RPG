@@ -5,7 +5,7 @@
             "elements": [
                 {
                     "key": "Button_Validate",
-                    "value": "test2",
+                    "value": "Validate",
                     "obj": {
                         "instanceID": 0
                     },
@@ -106,6 +106,14 @@
                         "instanceID": 0
                     },
                     "targetType": 0
+                },
+                {
+                    "key": "CharacterChoices_Title",
+                    "value": "Choose a hero !",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
                 }
             ]
         },
@@ -114,7 +122,7 @@
             "elements": [
                 {
                     "key": "Button_Validate",
-                    "value": "",
+                    "value": "Valider",
                     "obj": {
                         "instanceID": 0
                     },
@@ -211,6 +219,14 @@
                 {
                     "key": "TurnName_EnemyTurn",
                     "value": "Tour de Enemy",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "CharacterChoices_Title",
+                    "value": "Choisi un héro !",
                     "obj": {
                         "instanceID": 0
                     },
