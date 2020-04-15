@@ -114,6 +114,30 @@
                         "instanceID": 0
                     },
                     "targetType": 0
+                },
+                {
+                    "key": "MenuButton_Reward",
+                    "value": "Reward",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "MenuButton_Map",
+                    "value": "Map",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "MenuButton_Settings",
+                    "value": "Settings",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
                 }
             ]
         },
@@ -227,6 +251,30 @@
                 {
                     "key": "CharacterChoices_Title",
                     "value": "Choisi un héro !",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "MenuButton_Reward",
+                    "value": "Récompense",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "MenuButton_Map",
+                    "value": "Carte",
+                    "obj": {
+                        "instanceID": 0
+                    },
+                    "targetType": 0
+                },
+                {
+                    "key": "MenuButton_Settings",
+                    "value": "Options",
                     "obj": {
                         "instanceID": 0
                     },

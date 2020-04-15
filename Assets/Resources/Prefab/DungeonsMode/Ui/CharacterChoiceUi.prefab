@@ -92,7 +92,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 15.45
+  m_fontSize: 18.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -180,6 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2160636902587873253}
+  - component: {fileID: 3942258146551410990}
   - component: {fileID: 2160636902587873252}
   - component: {fileID: 2160636902587873255}
   m_Layer: 5
@@ -208,6 +209,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3942258146551410990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160636902587873254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc25570e54314d42a1c1dabc1ea926e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navigationType: 0
+  _unlimitedChoices: 0
+  _maxNumberOfSelection: 1
+  _selectables: []
 --- !u!114 &2160636902587873252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +357,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _choicePerLine: 5
+  _unlimitedChoices: 0
+  _maxNumberOfChoices: 1
+  _playerElementMenu: {fileID: 8534503970109519482}
+  _choiceElementMenu: {fileID: 3942258146551410990}
   _transformToHide: {fileID: 2160636903425530577}
   _playerElementHolder: {fileID: 4171001151592845144}
   _choiceHolder: {fileID: 2160636902587873253}
@@ -438,7 +459,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 10.3
+  m_fontSize: 12.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -644,6 +665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4171001151592845144}
+  - component: {fileID: 8534503970109519482}
   - component: {fileID: 2034450481}
   - component: {fileID: 2034450480}
   m_Layer: 5
@@ -672,6 +694,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8534503970109519482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8507902917453569450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc25570e54314d42a1c1dabc1ea926e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navigationType: 0
+  _unlimitedChoices: 0
+  _maxNumberOfSelection: 1
+  _selectables: []
 --- !u!114 &2034450481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46477628e2854834b8cb65e5b9a97f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _adaptCellSizeToRectTransfromSize: 1
+  _adaptCellSizeToRectTransfromSize: 0
   _keepItemSquare: 0
   _numberOfItemPerLine: 1
   _numberOfLine: 1

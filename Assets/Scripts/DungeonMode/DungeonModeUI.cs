@@ -9,10 +9,10 @@ namespace RPG.DungeonMode
 {
     public class DungeonModeUI : MonoBehaviour
     {
-        [SerializeField] CharacterChoicesUI _characterChoiceUI;
+        [SerializeField] Menu _menu;
         public MapDisplayer mapDisplayer { get; private set; }
 
-        public CharacterChoicesUI characterChoiceUI => _characterChoiceUI;
+        public Menu menu => _menu;
 
         private void Awake()
         {
@@ -22,9 +22,9 @@ namespace RPG.DungeonMode
         public void generateCharacterChoices()
         {
             List<Character> characters = DungeonManager.instance.characterDatabase.getRandomElements(3, false);
-            characterChoiceUI.display(true);
-            characterChoiceUI.initChoices(characters, DungeonManager.instance.team.getCurrentTeamCharacters());
-            characterChoiceUI.choosed += DungeonManager.instance.endCurentRoom;
+            _menu.choiceMenus.characterChoiceUI.display(true);
+            _menu.choiceMenus.characterChoiceUI.initChoices(characters, DungeonManager.instance.team.getCurrentTeamCharacters());
+            _menu.choiceMenus.characterChoiceUI.choosed += DungeonManager.instance.endCurentRoom;
         }
     }
 }
