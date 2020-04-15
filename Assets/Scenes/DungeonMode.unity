@@ -312,7 +312,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18.2
+  m_fontSize: 25.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -925,8 +925,8 @@ GameObject:
   - component: {fileID: 787270434}
   - component: {fileID: 787270438}
   - component: {fileID: 787270437}
-  - component: {fileID: 787270436}
   - component: {fileID: 787270435}
+  - component: {fileID: 787270436}
   m_Layer: 5
   m_Name: Choices_Button
   m_TagString: Untagged
@@ -949,10 +949,10 @@ RectTransform:
   m_Father: {fileID: 1334631665}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100.695, y: -23.472}
+  m_SizeDelta: {x: 201.39, y: 46.944}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &787270435
 MonoBehaviour:
@@ -963,12 +963,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 787270433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8deca1000c9c9554db6e0c7dc1362e54, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e8819b34cf21df4184a58ab631784ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _menuToDisplay: {fileID: 1792786354}
-  _menu: {fileID: 1018657296}
-  _button: {fileID: 787270436}
 --- !u!114 &787270436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,7 +976,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 787270433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: a35fa7c5680e3514b93031e00419938f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -989,10 +987,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.3764706, g: 0.3764706, b: 0.3764706, a: 1}
-    m_PressedColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
-    m_SelectedColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+    m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1009,9 +1007,6 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 787270437}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &787270437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1025,7 +1020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1544,7 +1539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1018657295
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1575,7 +1570,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1018657294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 944c617aad9896643b215c66e288a78b, type: 3}
+  m_Script: {fileID: 11500000, guid: 542e9adaf52891941aae3d9f1514ba03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _menuButtons:
@@ -1583,6 +1578,7 @@ MonoBehaviour:
   - {fileID: 1075502479}
   _choiceMenus: {fileID: 1792786355}
   choiceMenuButton: {fileID: 787270435}
+  _mMenu: {fileID: 1018657297}
 --- !u!114 &1018657297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1592,18 +1588,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1018657294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37c5ccc47f63e7b48b0aff13a07da1ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dc25570e54314d42a1c1dabc1ea926e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
-  nextMenu: 
-  previousMenu: 
+  _navigationType: 0
+  _unlimitedChoices: 0
+  _maxNumberOfSelection: 1
+  _selectables:
+  - {fileID: 787270436}
+  - {fileID: 1075502480}
+  - {fileID: 1533643535}
 --- !u!1 &1024828924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,8 +1675,8 @@ GameObject:
   - component: {fileID: 1075502478}
   - component: {fileID: 1075502482}
   - component: {fileID: 1075502481}
-  - component: {fileID: 1075502480}
   - component: {fileID: 1075502479}
+  - component: {fileID: 1075502480}
   m_Layer: 5
   m_Name: Map_Button
   m_TagString: Untagged
@@ -1705,10 +1699,10 @@ RectTransform:
   m_Father: {fileID: 1334631665}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 302.085, y: -23.472}
+  m_SizeDelta: {x: 201.39, y: 46.944}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075502479
 MonoBehaviour:
@@ -1719,12 +1713,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1075502477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8deca1000c9c9554db6e0c7dc1362e54, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e8819b34cf21df4184a58ab631784ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _menuToDisplay: {fileID: 1063907252}
-  _menu: {fileID: 1018657296}
-  _button: {fileID: 1075502480}
 --- !u!114 &1075502480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1734,7 +1726,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1075502477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: a35fa7c5680e3514b93031e00419938f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1745,10 +1737,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.3764706, g: 0.3764706, b: 0.3764706, a: 1}
-    m_PressedColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
-    m_SelectedColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+    m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1765,9 +1757,6 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1075502481}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1075502481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1781,7 +1770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2107,10 +2096,10 @@ RectTransform:
   m_Father: {fileID: 1334631665}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 503.475, y: -23.472}
+  m_SizeDelta: {x: 201.39, y: 46.944}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533643535
 MonoBehaviour:
@@ -2121,7 +2110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1533643533}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: a35fa7c5680e3514b93031e00419938f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -2132,10 +2121,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.3764706, g: 0.3764706, b: 0.3764706, a: 1}
-    m_PressedColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
-    m_SelectedColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+    m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2152,9 +2141,6 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1533643536}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1533643536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2168,7 +2154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2425,7 +2411,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 17.3
+  m_fontSize: 25.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2730,6 +2716,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1792786356}
     m_Modifications:
+    - target: {fileID: 1820005493910498501, guid: 7397f848ef2e63c4498f5a5c76b0a5fe,
+        type: 3}
+      propertyPath: _unlimitedChoices
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820005493910498501, guid: 7397f848ef2e63c4498f5a5c76b0a5fe,
+        type: 3}
+      propertyPath: _maxNumberOfChoices
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160636902587873255, guid: 7397f848ef2e63c4498f5a5c76b0a5fe,
+        type: 3}
+      propertyPath: _adaptCellSizeToRectTransfromSize
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2160636903425530543, guid: 7397f848ef2e63c4498f5a5c76b0a5fe,
         type: 3}
       propertyPath: m_Sprite
@@ -2965,7 +2966,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18.55
+  m_fontSize: 25.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

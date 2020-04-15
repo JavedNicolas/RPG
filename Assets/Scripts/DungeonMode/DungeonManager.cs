@@ -45,7 +45,6 @@ namespace RPG.DungeonMode
         public List<DungeonState> states { get; private set; }
         public DungeonState _currentState { get; private set; }
 
-
         private void Awake()
         {
             dungeonGenerator = GetComponent<IDungeonGeneration>();

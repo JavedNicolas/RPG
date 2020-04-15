@@ -9,10 +9,10 @@ namespace RPG.DungeonMode
 {
     public class DungeonModeUI : MonoBehaviour
     {
-        [SerializeField] Menu _menu;
+        [SerializeField] TabMenu _menu;
         public MapDisplayer mapDisplayer { get; private set; }
 
-        public Menu menu => _menu;
+        public TabMenu menu => _menu;
 
         private void Awake()
         {

@@ -38,17 +38,20 @@ namespace MultipleMenus
                 return;
             }
 
+            // remove hided elements from selected list
+            _currentSelectedElements.RemoveAll(x => !x.gameObject.activeSelf);
+
             // if there is no current selected element or one the element in the list is null then reset the current selected elements
             if (_currentSelectedElements != null && (_currentSelectedElements.Count == 0 || _currentSelectedElements.Exists(x => x == null)) && _selectables.Count > 0)
             {
                 _currentSelectedElements = new List<MSelectable>();
-                _currentSelectedElements.Add(_selectables.First());
+                _currentSelectedElements.Add(_selectables.FindAll(x => x.gameObject.activeSelf).First());
                 _currentSelectedElements.ForEach(x => x.select(true));
                 return;
             }
 
             // find selected elements
-            List<MSelectable> selectedElements = _selectables.FindAll(x => x.isSelected);
+            List<MSelectable> selectedElements = _selectables.FindAll(x => x.isSelected && x.gameObject.activeSelf);
 
             // remove not selected elements which where selected
             if (selectedElements.Count < _currentSelectedElements.Count && _currentSelectedElements.Count > 0)
