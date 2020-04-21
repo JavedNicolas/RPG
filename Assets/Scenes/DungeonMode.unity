@@ -1078,6 +1078,7 @@ MonoBehaviour:
   _enemyDatabase: {fileID: 11400000, guid: 346370886e85ee34abaa3b092dcd48eb, type: 2}
   _dungeonRoomDatabase: {fileID: 11400000, guid: 7aa56fc1505d5f141bb0fbca55432d17,
     type: 2}
+  mainCamera: {fileID: 634315520}
   _dungeonModeUI: {fileID: 934714471}
 --- !u!4 &831805295
 Transform:

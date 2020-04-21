@@ -24,23 +24,32 @@ namespace RPG.DungeonMode.UI
         {
             // activate first button
             _mMenu.setSelectionSettings();
-            displayChoice(false);
+            isTabChoice(false);
         }
 
         private void Update()
         {
-            TabMenuButton tabMenuButtonSelected = _mMenu.getCurrentSelectedElement().First().GetComponent<TabMenuButton>();
-            display(tabMenuButtonSelected.menuToDisplay, tabMenuButtonSelected);
+            if(_mMenu.getCurrentSelectedElement() != null && _mMenu.getCurrentSelectedElement().Count != 0)
+            {
+                TabMenuButton tabMenuButtonSelected = _mMenu.getCurrentSelectedElement()[0].GetComponent<TabMenuButton>();
+                displayTab(tabMenuButtonSelected.menuToDisplay, tabMenuButtonSelected);
+            }
         }
 
-        public void displayChoice(bool displayChoice)
+        public void display(bool display, bool isChoice = false)
+        {
+            gameObject.SetActive(display);
+            isTabChoice(isChoice);
+        }
+
+        private void isTabChoice(bool displayChoice)
         {
             _isChoiceDisplayed = displayChoice;
             choiceMenuButton.gameObject.SetActive(displayChoice);
-            display(choiceMenuButton.menuToDisplay, choiceMenuButton);
+            displayTab(choiceMenuButton.menuToDisplay, choiceMenuButton);
         }
 
-        public void display(GameObject menuToDisplay, TabMenuButton menuButton)
+        private void displayTab(GameObject menuToDisplay, TabMenuButton menuButton)
         {
             if (menuToDisplay.activeSelf)
                 return;

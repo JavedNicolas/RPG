@@ -21,6 +21,7 @@ namespace RPG.DungeonMode.States
             _manager.dungeonModeUI.mapDisplayer.generateMap(_manager.dungeonGenerator.rooms, _manager.currentRoom);
 
             _manager.currentRoom.mapItem.GetComponent<RoomMapItem>().isCurrentRoom(true);
+            _manager.moveCameraToCurrentRoom();
             end();
         }
 

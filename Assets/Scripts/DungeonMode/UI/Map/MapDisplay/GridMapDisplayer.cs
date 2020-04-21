@@ -76,30 +76,9 @@ namespace RPG.DungeonMode.UI
 
         Sprite getSprite(Room roomData)
         {
-            string spriteName = ""; 
-
-            // create a sprite name using a letter for each linked room direction
-            foreach(Room linkedRoom in roomData.linkedRoom)
-            {
-                Vector3 direction = linkedRoom.gameObject.transform.position - roomData.gameObject.transform.position;
-                direction = direction.normalized;
-                if(direction == Vector3.forward)
-                    spriteName += "T";
-                else if (direction == Vector3.right)
-                    spriteName += "R";
-                else if (direction == Vector3.back)
-                    spriteName += "B";
-                else if (direction == Vector3.left)
-                    spriteName += "L";
-            }
-
             // search for a sprite with the name containing all the sprite name letters
-            Sprite fittingSprite = null;
-            List<Sprite> searchingArray = new List<Sprite>(_layoutIcons);
-            for (int i = 0; i < spriteName.Length; i++)
-                searchingArray = searchingArray.FindAll(x => x.name.Contains(spriteName[i]));
-
-            fittingSprite = searchingArray.Find(x => x.name.Length == spriteName.Length);
+            List<Sprite> searchingArray = _layoutIcons.ToList().FindAll(x => x.name.containUnOrdered(roomData.linkedRoomString));
+            Sprite fittingSprite = searchingArray.Find(x => x.name.Length == roomData.linkedRoomString.Length);
 
             return fittingSprite;
             

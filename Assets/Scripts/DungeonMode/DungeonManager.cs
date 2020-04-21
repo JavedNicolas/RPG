@@ -29,6 +29,8 @@ namespace RPG.DungeonMode
         public DungeonRoomDatabase dungeonRoomDatabase { get => _dungeonRoomDatabase; set => _dungeonRoomDatabase = value; }
         #endregion
 
+        [SerializeField] public Camera mainCamera;
+
         [Header("UI")]
         [SerializeField] DungeonModeUI _dungeonModeUI;
         public DungeonModeUI dungeonModeUI  => _dungeonModeUI;
@@ -60,6 +62,16 @@ namespace RPG.DungeonMode
             DungeonState.init(this);
             initStates();
             changeState(typeof(DungeonGenerationState).ToString());
+        }
+
+        public void moveCameraToCurrentRoom()
+        {
+            mainCamera.transform.position = currentRoom.gameObject.GetComponent<RoomGameObject>().cameraPosition();
+        }
+
+        private void Update()
+        {
+            moveCameraToCurrentRoom();
         }
 
         public void setCurrentRoom(Room currentRoom)
@@ -110,7 +122,7 @@ namespace RPG.DungeonMode
 
         public void moveToNextRoom(Room nextRoom)
         {
-            if (!currentRoom.linkedRoom.Contains(nextRoom))
+            if (!currentRoom.linkedRooms.Contains(nextRoom))
             {
                 
                 Debug.LogWarning("INSERT MESSAGE TO THE PLAYER, OR ANY VISUAL INDICATION");
