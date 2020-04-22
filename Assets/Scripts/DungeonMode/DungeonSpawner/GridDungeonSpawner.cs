@@ -29,16 +29,15 @@ namespace RPG.DungeonMode.Dungeon
         {
             GameObject prefab = getFittingPrefab(roomToSpawn);
 
-            Terrain terrain = prefab?.GetComponent<Terrain>();
             RoomGameObject prefabRoomGameObject = prefab?.GetComponent<RoomGameObject>();
 
-            if (terrain == null || prefabRoomGameObject == null)
+            if (prefabRoomGameObject == null)
             {
-                Debug.LogWarningFormat("{0} does not have a RoomGameObject or Terrain script attached", roomToSpawn.name);
+                Debug.LogWarningFormat("{0} does not have a RoomGameObject script attached", roomToSpawn.name);
                 return null;
             }
 
-            Vector3 size = terrain.terrainData.size;
+            Vector3 size = prefabRoomGameObject.getSize();
 
             GameObject spawnedRoom = Instantiate(prefab, new Vector3(widthIndex * size.z, 0,  heightIndex * size.x), Quaternion.identity, _roomParent);
 
@@ -57,18 +56,17 @@ namespace RPG.DungeonMode.Dungeon
         /// <returns></returns>
         GameObject getFittingPrefab(Room roomToSpawn)
         {
-            List<GameObject> machtingPrefabs = new List<GameObject>(_roomPrefabs);
-            foreach(GameObject prefab in machtingPrefabs)
+            List<GameObject> machtingPrefabs = new List<GameObject>();
+            foreach(GameObject prefab in _roomPrefabs)
             {
                 string[] splitName = prefab.name.Split('_');
                 if(splitName.Length > 0
                     && splitName[0].containUnOrdered(roomToSpawn.linkedRoomString)
                     && splitName[0].Length == roomToSpawn.linkedRoomString.Length)
-                    return prefab;
+                    machtingPrefabs.Add(prefab);
             }
 
-            return null;
-
+            return machtingPrefabs.getRandomElement(); ;
         }
     }
 }

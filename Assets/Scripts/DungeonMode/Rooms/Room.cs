@@ -9,7 +9,6 @@ namespace RPG.DungeonMode.Dungeon
         public string name { get; private set; }
 
         public bool cannotBranch {get; private set;}
-        public GameObject prefab { get; private set; }
         public GameObject gameObject { get; private set; }
         public GameObject mapItem { get; private set; }
         public List<Room> linkedRooms { get; private set; }
@@ -22,7 +21,6 @@ namespace RPG.DungeonMode.Dungeon
         public Room(RoomScriptableObject roomSO)
         {
             name = roomSO.name;
-            prefab = roomSO.prefab;
             cannotBranch = roomSO.cannotBranch;
             linkedRooms = new List<Room>();
             _scriptableObject = roomSO;
