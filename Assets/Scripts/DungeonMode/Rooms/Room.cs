@@ -13,7 +13,7 @@ namespace RPG.DungeonMode.Dungeon
         public GameObject mapItem { get; private set; }
         public List<Room> linkedRooms { get; private set; }
         public string linkedRoomString { get; private set; }
-        RoomScriptableObject _scriptableObject;
+        public RoomScriptableObject scriptableObject { get; private set; }
 
         public delegate void RoomCompleted();
         public RoomCompleted roomCompleted;
@@ -21,9 +21,9 @@ namespace RPG.DungeonMode.Dungeon
         public Room(RoomScriptableObject roomSO)
         {
             name = roomSO.name;
-            cannotBranch = roomSO.cannotBranch;
+            cannotBranch = roomSO.isSpecialRoom ? true : roomSO.cannotBranch;
             linkedRooms = new List<Room>();
-            _scriptableObject = roomSO;
+            scriptableObject = roomSO;
             linkedRoomString = "";
 
         }
@@ -40,7 +40,7 @@ namespace RPG.DungeonMode.Dungeon
 
         public void executeRoom()
         {
-            _scriptableObject.effect();
+            scriptableObject.effect();
         }
 
         public void addLinkedRoom(Room newlinkedRoom, RoomLinkDirection newRoomDirection)

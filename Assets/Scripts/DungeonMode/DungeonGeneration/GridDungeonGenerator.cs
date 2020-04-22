@@ -28,7 +28,7 @@ namespace RPG.DungeonMode.Dungeon
 
             _rooms = new Room[5, dungeonSize];
 
-            int dungeonMainLaneWidthStart = Random.Range(0 , _rooms.GetLength(1) / 2 );
+            int dungeonMainLaneWidthStart = 0;
             int dungeonMainLaneHeightStart = Random.Range(0, _rooms.GetLength(0));
 
             // fetch start and boss room

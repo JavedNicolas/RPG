@@ -1109,7 +1109,7 @@ MonoBehaviour:
   _roomParent: {fileID: 1902084514}
   _roomPrefabs:
   - {fileID: 7790559728665399921, guid: f034628f1dacded4180da51238dad986, type: 3}
-  - {fileID: 4681983184211541073, guid: 9e5070c783b20d94aa305823f3fe484d, type: 3}
+  - {fileID: 7167296588578278511, guid: 9e5070c783b20d94aa305823f3fe484d, type: 3}
   - {fileID: 6751999102367711455, guid: 6ae50cc365270b34fa5f7fa244d2b140, type: 3}
   - {fileID: 6485867250205563205, guid: 0fdf7425f9f59b642b168800cf9d3cef, type: 3}
   - {fileID: 6176236792094701598, guid: ca027717b66b2734cbf3827b27dd67d3, type: 3}

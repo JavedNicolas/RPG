@@ -56,8 +56,10 @@ namespace RPG.DungeonMode.Dungeon
         /// <returns></returns>
         GameObject getFittingPrefab(Room roomToSpawn)
         {
+            List<GameObject> prefabs = new List<GameObject>(roomToSpawn.scriptableObject.isSpecialRoom ? roomToSpawn.scriptableObject.prefabs : _roomPrefabs);
+
             List<GameObject> machtingPrefabs = new List<GameObject>();
-            foreach(GameObject prefab in _roomPrefabs)
+            foreach(GameObject prefab in prefabs)
             {
                 string[] splitName = prefab.name.Split('_');
                 if(splitName.Length > 0
@@ -66,7 +68,7 @@ namespace RPG.DungeonMode.Dungeon
                     machtingPrefabs.Add(prefab);
             }
 
-            return machtingPrefabs.getRandomElement(); ;
+            return machtingPrefabs.getRandomElement();
         }
     }
 }

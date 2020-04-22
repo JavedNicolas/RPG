@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b9587460b7824caadef1ea9223d1d, type: 3}
   m_Name: StartRoom
   m_EditorClassIdentifier: 
+  name: 
+  description: 
+  icon: {fileID: 0}
+  smallImage: {fileID: 0}
+  mediumImage: {fileID: 0}
+  fullImage: {fileID: 0}
   _isStaticRoom: 1
+  _isSpecialRoom: 1
+  _cannotBranch: 0
   _name: Start Room
-  _prefab: {fileID: 5255551719960175961, guid: d3005485e412e1647a5d2a21cc20a51f, type: 3}
+  _roomIcon: {fileID: 0}
+  _prefabs:
+  - {fileID: 8785437793820019311, guid: 7b862dfbc7c1979438e8542b8c58831d, type: 3}

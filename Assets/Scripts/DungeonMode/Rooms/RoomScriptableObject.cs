@@ -1,5 +1,7 @@
 ﻿using RPG.Data;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using System.Collections.Generic;
 
 namespace RPG.DungeonMode.Dungeon
 {
@@ -11,6 +13,10 @@ namespace RPG.DungeonMode.Dungeon
         [SerializeField] bool _isStaticRoom = false;
         public bool isStaticRoom => _isStaticRoom;
 
+        [SerializeField] bool _isSpecialRoom = false;
+        public bool isSpecialRoom => _isSpecialRoom;
+
+        [HideIf("_isSpecialRoom", animate: true)]
         [SerializeField] bool _cannotBranch = false;
         public bool cannotBranch => _cannotBranch;
 
@@ -19,6 +25,10 @@ namespace RPG.DungeonMode.Dungeon
 
         [SerializeField] Sprite _roomIcon;
         public Sprite roomIcon => _roomIcon;
+
+        [ShowIf("_isSpecialRoom", animate: true)]
+        [SerializeField] List<GameObject> _prefabs = new List<GameObject>();
+        public List<GameObject> prefabs => _prefabs;
 
         public abstract void effect();
     }
