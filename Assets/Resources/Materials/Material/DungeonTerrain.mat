@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CustomTerrain
+  m_Name: DungeonTerrain
   m_Shader: {fileID: -6465566751694194690, guid: e0dfb5ad8ef92e442b2a11c6a227ac6e,
     type: 3}
   m_ShaderKeywords: 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21cb495ffbca0404d878640680165899, type: 3}
-  m_Name: activeSave
+  m_Name: Trees
   m_EditorClassIdentifier: 
   prefabList:
   - {fileID: 1130392368877672, guid: 1ea71f643417d124d91e53eae7c666a6, type: 3}
@@ -18,13 +18,13 @@ MonoBehaviour:
   - {fileID: 1777461590549580, guid: 47ac04e5b24338c44ba15b946641236c, type: 3}
   - {fileID: 1809296932901464, guid: bce0c9523691df448b83c8c972060b2c, type: 3}
   paintType: 0
-  brushSize: 32.4
+  brushSize: 20
   minBrushSize: 0.1
-  maxBrushSize: 100
-  paintDeltaDistance: 0.1
+  maxBrushSize: 20
+  paintDeltaDistance: 0.4
   maxPaintDeltaDistance: 3
   minPaintDeltaDistance: 0.1
-  prefabsPerStroke: 1
+  prefabsPerStroke: 20
   maxprefabsPerStroke: 70
   minprefabsPerStroke: 1
   spawnHeight: 10
@@ -44,7 +44,7 @@ MonoBehaviour:
   rotationSensitivity: 10
   parentingStyle: 2
   parent: {fileID: 0}
-  rotateToMatchSurface: 0
+  rotateToMatchSurface: 1
   rotateSurfaceDirection: 0
   randomizeRotation: 1
   minXRotation: 0
@@ -53,14 +53,14 @@ MonoBehaviour:
   maxYRotation: 360
   minZRotation: 0
   maxZRotation: 0
-  scaleType: 1
+  scaleType: 2
   scaleApplicationType: 0
-  minScale: 2
-  maxScale: 7
+  minScale: 1
+  maxScale: 1
   minXScale: 0.5
   maxXScale: 1.5
   minYScale: 0.5
-  maxYScale: 10
+  maxYScale: 1.5
   minZScale: 0.5
   maxZScale: 1.5
   parentList: []

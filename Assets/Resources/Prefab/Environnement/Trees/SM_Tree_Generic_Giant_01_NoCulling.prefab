@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1753339864997930
+--- !u!1 &3562112089364220706
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4764303357180422}
-  - component: {fileID: 33411010534517022}
-  - component: {fileID: 23904104176358836}
+  - component: {fileID: 3564599517894246600}
+  - component: {fileID: 3539327305102540212}
+  - component: {fileID: 3547707179162764194}
   m_Layer: 0
-  m_Name: SM_Tree_Birch_02
+  m_Name: SM_Tree_Generic_Giant_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4764303357180422
+--- !u!4 &3564599517894246600
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753339864997930}
+  m_GameObject: {fileID: 3562112089364220706}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4005204135589666}
+  m_Father: {fileID: 3564987241610954898}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &33411010534517022
+--- !u!33 &3539327305102540212
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753339864997930}
-  m_Mesh: {fileID: 4300000, guid: f4e7b128e7896c348af6af33ed6b7a3b, type: 3}
---- !u!23 &23904104176358836
+  m_GameObject: {fileID: 3562112089364220706}
+  m_Mesh: {fileID: 4300000, guid: 2a09a12473720d545bc0108ca893e759, type: 3}
+--- !u!23 &3547707179162764194
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753339864997930}
+  m_GameObject: {fileID: 3562112089364220706}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,8 +58,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 45f78d57c831abe43a9f7102116e69af, type: 2}
+  - {fileID: 2100000, guid: 9815abc3682332c43bb766decd901afb, type: 2}
   - {fileID: 2100000, guid: d3a600439af714f4280d93e74cc75853, type: 2}
+  - {fileID: 2100000, guid: c6d4e7e9496669046ad302fb225d0c14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,7 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1756402572416146
+--- !u!1 &3562129530297683116
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,46 +89,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4005204135589666}
-  - component: {fileID: 205679496283416268}
+  - component: {fileID: 3564987241610954898}
+  - component: {fileID: 3724771914092645530}
   m_Layer: 0
-  m_Name: SM_Tree_Birch_02_NoCulling
+  m_Name: SM_Tree_Generic_Giant_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4005204135589666
+--- !u!4 &3564987241610954898
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1756402572416146}
+  m_GameObject: {fileID: 3562129530297683116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 316.91, y: 15.54, z: -177.83}
+  m_LocalScale: {x: 3.6031, y: 3.6031, z: 3.6031}
   m_Children:
-  - {fileID: 4764303357180422}
+  - {fileID: 3564599517894246600}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &205679496283416268
+--- !u!205 &3724771914092645530
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1756402572416146}
+  m_GameObject: {fileID: 3562129530297683116}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.029426575, y: 2.6997333, z: 0.029953957}
-  m_Size: 5.3994665
+  m_LocalReferencePoint: {x: 0.20797825, y: 4.4531064, z: -0.21279335}
+  m_Size: 13.120045
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.102386974
+  - screenRelativeHeight: 0
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 23904104176358836}
+    - renderer: {fileID: 3547707179162764194}
   m_Enabled: 1

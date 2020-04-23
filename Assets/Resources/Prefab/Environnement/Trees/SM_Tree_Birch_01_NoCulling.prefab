@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4466753665643056}
   - component: {fileID: 205459126312970790}
   m_Layer: 0
-  m_Name: SM_Tree_Birch_01_NoCulling
+  m_Name: SM_Tree_Birch_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.10041775
+  - screenRelativeHeight: 0
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23871021364675924}

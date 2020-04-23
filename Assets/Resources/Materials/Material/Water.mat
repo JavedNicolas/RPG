@@ -67,7 +67,7 @@ Material:
     m_Floats:
     - Vector1_109FBEA9: -0.03
     - Vector1_12CBF52A: 5
-    - Vector1_13F5C070: 29.6
+    - Vector1_13F5C070: 28.02
     - Vector1_1AE1D4CB: -1.85
     - Vector1_1E58CA3C: 0.56
     - Vector1_24DAD7F: 2.02
@@ -76,7 +76,7 @@ Material:
     - Vector1_3A2E1AAB: 10
     - Vector1_3D495A1F: 2.9
     - Vector1_3F393231: 0.77
-    - Vector1_469ECA02: 0.58
+    - Vector1_469ECA02: 0.61
     - Vector1_489F9EEF: 1
     - Vector1_4B305923: 5.65
     - Vector1_4F92311A: 0
@@ -87,9 +87,9 @@ Material:
     - Vector1_58DE9D5: 3
     - Vector1_5BB0A051: 0.731
     - Vector1_5EB91206: 13.65
-    - Vector1_638678C6: 2.94
+    - Vector1_638678C6: 1.78
     - Vector1_6DA97D7: 34.55
-    - Vector1_6DC3C115: 0.15
+    - Vector1_6DC3C115: -1.01
     - Vector1_6FC45593: 0.533
     - Vector1_722CB011: 0.3
     - Vector1_79EA0ED5: 1.9
@@ -99,26 +99,26 @@ Material:
     - Vector1_8BF7F1BF: 1
     - Vector1_905986FC: 1
     - Vector1_986CF1D2: 1.81
-    - Vector1_9C5D39D9: 3.5
+    - Vector1_9C5D39D9: 10
     - Vector1_9E5F763C: 0.42
-    - Vector1_A1982C5C: 10.33
-    - Vector1_A2563BB3: 50
+    - Vector1_A1982C5C: 12.2
+    - Vector1_A2563BB3: 0
     - Vector1_A38692A6: 0.385
     - Vector1_AD7DFD35: -1.95
     - Vector1_B42C4654: 0.1
     - Vector1_B98A4C60: 1.22
     - Vector1_BAD9C334: 2
-    - Vector1_BC558501: 1
+    - Vector1_BC558501: 0.867
     - Vector1_BC8BA90A: 7.92
     - Vector1_BD72615D: 4.5
     - Vector1_BF07B4C4: -0.05
     - Vector1_C2E82657: 0.51
     - Vector1_C6051FE9: 1.18
-    - Vector1_C7D89CB3: 30
+    - Vector1_C7D89CB3: 1
     - Vector1_CC89A15C: 1
     - Vector1_D42CC29E: 8.43
     - Vector1_EE0E389E: 5.8
-    - Vector1_EEFD794A: -0.5
+    - Vector1_EEFD794A: -6.61
     - Vector1_F0FA9185: -2.07
     - Vector1_F2029A8E: 1
     - Vector1_F4A73BA: 1
@@ -147,7 +147,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_1789BAEF: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0}
+    - Color_1789BAEF: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0}
     - Color_311821DC: {r: 0.18467425, g: 0.44918644, b: 0.4716981, a: 0.9019608}
     - Color_36C054E4: {r: 0.1003916, g: 0.4087754, b: 0.4528302, a: 1}
     - Color_3CACD0BA: {r: 0.2196079, g: 0.3529412, b: 0.509804, a: 1}

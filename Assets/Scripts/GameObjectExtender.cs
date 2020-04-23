@@ -3,7 +3,6 @@ using UnityEngine;
 
 public enum GameObjectDirection { Forward, Backward, Left, Right }
 
-
 public class GameObjectExtender : MonoBehaviour
 {
     MeshFilter _meshFilter;
@@ -15,9 +14,9 @@ public class GameObjectExtender : MonoBehaviour
         switch (_directions)
         {
             case GameObjectDirection.Forward: spawnCurentObjectCopy(Vector3.forward, quantityToSpawn); break;
-            case GameObjectDirection.Backward: spawnCurentObjectCopy(Vector3.forward, quantityToSpawn); break;
-            case GameObjectDirection.Left: spawnCurentObjectCopy(Vector3.forward, quantityToSpawn); break;
-            case GameObjectDirection.Right: spawnCurentObjectCopy(Vector3.forward, quantityToSpawn); break;
+            case GameObjectDirection.Backward: spawnCurentObjectCopy(Vector3.back, quantityToSpawn); break;
+            case GameObjectDirection.Left: spawnCurentObjectCopy(Vector3.left, quantityToSpawn); break;
+            case GameObjectDirection.Right: spawnCurentObjectCopy(Vector3.right, quantityToSpawn); break;
         }
     }
 

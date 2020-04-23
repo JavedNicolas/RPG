@@ -8,6 +8,7 @@ namespace RPG.DungeonMode.Dungeon
     {
         [SerializeField] Transform _roomParent;
         [SerializeField] List<GameObject> _roomPrefabs = new List<GameObject>();
+        [SerializeField] List<GameObject> _emptyRoomPrefabs = new List<GameObject>();
 
         public void spawnRooms(Room[,] rooms)
         {
@@ -17,23 +18,24 @@ namespace RPG.DungeonMode.Dungeon
                 for (int j = 0; j < rooms.GetLength(1); j++)
                 {
                     Room roomData = rooms[i, j];
-                    if(roomData != null)
-                    {
-                        spawn(i, j, roomData);
-                    }
+                    spawn(i, j, roomData);
                 }
             }
         }
 
         GameObject spawn(int heightIndex, int widthIndex, Room roomToSpawn)
         {
-            GameObject prefab = getFittingPrefab(roomToSpawn);
+            GameObject prefab;
+            if (roomToSpawn != null)
+                prefab = getFittingPrefab(roomToSpawn);
+            else
+                prefab = _emptyRoomPrefabs.getRandomElement();
 
             RoomGameObject prefabRoomGameObject = prefab?.GetComponent<RoomGameObject>();
 
             if (prefabRoomGameObject == null)
             {
-                Debug.LogWarningFormat("{0} does not have a RoomGameObject script attached", roomToSpawn.name);
+                Debug.LogWarningFormat("{0} does not have a RoomGameObject script attached", roomToSpawn?.name);
                 return null;
             }
 
@@ -43,7 +45,7 @@ namespace RPG.DungeonMode.Dungeon
 
             if(spawnedRoom != null)
             {
-                roomToSpawn.setGameObject(spawnedRoom);
+                roomToSpawn?.setGameObject(spawnedRoom);
             }
 
             return spawnedRoom;

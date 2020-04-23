@@ -25,7 +25,6 @@ namespace RPG.DungeonMode.Dungeon
             linkedRooms = new List<Room>();
             scriptableObject = roomSO;
             linkedRoomString = "";
-
         }
 
         public void setMapItem(GameObject mapItem)
