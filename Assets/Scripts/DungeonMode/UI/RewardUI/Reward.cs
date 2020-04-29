@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 namespace RPG.DungeonMode.UI
 {
-    public abstract class Choice<T> : MonoBehaviour where T : DatabaseElement
+    public abstract class Reward<T> : MonoBehaviour where T : DatabaseElement
     {
         public T element { get; private set; }
         [SerializeField] Image _iconImage;

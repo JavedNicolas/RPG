@@ -8,7 +8,7 @@ using RPG.DungeonMode.UI;
 
 namespace RPG.DungeonMode
 {
-
+    using RPG.Battle;
     using RPG.DungeonMode.States;
     using RPG.settings;
     using System;
@@ -47,6 +47,10 @@ namespace RPG.DungeonMode
         public List<DungeonState> states { get; private set; }
         public DungeonState _currentState { get; private set; }
 
+        // other
+        [SerializeField] CharacterSpawner _characterSpawner;
+        public CharacterSpawner characterSpawner => _characterSpawner;
+
         private void Awake()
         {
             dungeonGenerator = GetComponent<IDungeonGeneration>();
@@ -64,25 +68,11 @@ namespace RPG.DungeonMode
             changeState(typeof(DungeonGenerationState).ToString());
         }
 
-        public void moveCameraToCurrentRoom()
-        {
-            mainCamera.transform.position = currentRoom.gameObject.GetComponent<RoomGameObject>().cameraPosition();
-        }
-
-        private void Update()
-        {
-            moveCameraToCurrentRoom();
-        }
-
         public void setCurrentRoom(Room currentRoom)
         {
             this.currentRoom = currentRoom;
         }
 
-        public void endCurentRoom()
-        {
-            _currentState.end();
-        }
 
         void initTeam()
         {
@@ -97,6 +87,24 @@ namespace RPG.DungeonMode
                 character.initEmpty();
                 team.addCharacterToTeam(character, isInFront, position[currentPositionIndex]);
             }
+        }
+
+        public void spawnPlayer()
+        {
+            RoomGameObject roomGO = currentRoom.gameObject.GetComponent<RoomGameObject>();
+
+            team.currentTeam.ForEach(x =>
+            {
+                Debug.Log("Looking for player to spawn");
+                ActorSpawningPoint actorSpawningPoint = roomGO.startPoints.First();
+                if (actorSpawningPoint != null)
+                {
+                    Debug.Log("Spawing : " + x.character.name);
+                    GameObject actorGO = _characterSpawner.spawnCharacter(x.character.model, actorSpawningPoint.gameObject.transform.position);
+                    actorSpawningPoint.actor = x.character;
+                    actorSpawningPoint.actorGameObject = actorGO;
+                }
+            });
         }
 
         #region states Management
@@ -115,6 +123,11 @@ namespace RPG.DungeonMode
             DungeonState newState = states.Find(x => x.GetType().ToString() == typeName);
             _currentState = newState;
             _currentState.start();
+        }
+
+        public void endCurentState()
+        {
+            _currentState.end();
         }
 
         #endregion

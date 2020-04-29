@@ -10,7 +10,7 @@ namespace RPG.DungeonMode.Dungeon
     {
         public override void effect()
         {
-            DungeonManager.instance.dungeonModeUI.generateCharacterChoices();
+            
         }
     }
 }

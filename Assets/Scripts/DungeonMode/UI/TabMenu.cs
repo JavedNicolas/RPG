@@ -12,11 +12,11 @@ namespace RPG.DungeonMode.UI
     public class TabMenu : MonoBehaviour
     {
         [SerializeField] List<TabMenuButton> _menuButtons;
-        [SerializeField] ChoiceMenus _choiceMenus;
-        [SerializeField] TabMenuButton choiceMenuButton;
+        [SerializeField] RewardMenus _rewardMenus;
+        [SerializeField] TabMenuButton _rewardMenuButton;
         [SerializeField] MMenu _mMenu;
 
-        public ChoiceMenus choiceMenus => _choiceMenus;
+        public RewardMenus rewardMenus => _rewardMenus;
 
         bool _isChoiceDisplayed = false;
 
@@ -24,7 +24,9 @@ namespace RPG.DungeonMode.UI
         {
             // activate first button
             _mMenu.setSelectionSettings();
-            isTabChoice(false);
+            List<MSelectable> selectables = new List<MSelectable>();
+            _menuButtons.ForEach(x => selectables.Add(x.gameObject.GetComponent<MSelectable>()));
+            _mMenu.setElements(selectables);
         }
 
         private void Update()
@@ -36,24 +38,21 @@ namespace RPG.DungeonMode.UI
             }
         }
 
-        public void display(bool display, bool isChoice = false)
+        public void display(bool display, bool hasReward = false)
         {
             gameObject.SetActive(display);
-            isTabChoice(isChoice);
+            displayTabReward(hasReward);
         }
 
-        private void isTabChoice(bool displayChoice)
+        private void displayTabReward(bool displayReward)
         {
-            _isChoiceDisplayed = displayChoice;
-            choiceMenuButton.gameObject.SetActive(displayChoice);
-            displayTab(choiceMenuButton.menuToDisplay, choiceMenuButton);
+            _isChoiceDisplayed = displayReward;
+            _rewardMenuButton.gameObject.SetActive(displayReward);
+            _rewardMenuButton.GetComponent<MSelectable>().select(true);
         }
 
         private void displayTab(GameObject menuToDisplay, TabMenuButton menuButton)
         {
-            if (menuToDisplay.activeSelf)
-                return;
-
             _menuButtons.ForEach(x => {
                 if (x.menuToDisplay == menuToDisplay)
                     x.menuToDisplay?.SetActive(true);

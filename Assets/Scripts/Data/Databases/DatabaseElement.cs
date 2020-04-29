@@ -36,6 +36,11 @@ namespace RPG.Data
             this.fullImage = databaseElement.fullImage;
         }
 
+        public bool isEmpty() 
+        {
+            return name == "" || name == "Empty" ? true : false;
+        }
+
         [Button("Update File Name"), PropertyOrder(-1)]
         private void rename()
         {

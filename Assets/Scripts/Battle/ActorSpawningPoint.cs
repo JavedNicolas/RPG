@@ -6,7 +6,7 @@ using RPG.Data.Team;
 
 namespace RPG.Battle
 {
-    public class BattleSpawningPoint : MonoBehaviour
+    public class ActorSpawningPoint : MonoBehaviour
     {
         [Tooltip("True if the spawn in in the front row")]
         [SerializeField] public bool isFrontSpawn;

@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using RPG.Battle;
 
 namespace RPG.DungeonMode.Dungeon
 {
     public class RoomGameObject : MonoBehaviour
     {
-        [SerializeField] List<GameObject> _startPoints;
+        [SerializeField] List<ActorSpawningPoint> _startPoints;
         [SerializeField] GameObject _ground;
         [SerializeField] Vector3 cameraOffset;
+        public List<ActorSpawningPoint> startPoints => _startPoints;
 
         public Vector3 cameraPosition()
         {

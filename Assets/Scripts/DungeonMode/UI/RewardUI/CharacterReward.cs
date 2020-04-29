@@ -4,7 +4,7 @@ using RPG.Data;
 
 namespace RPG.DungeonMode.UI
 {
-    public class CharacterChoice : Choice<Character>
+    public class CharacterReward : Reward<Character>
     {
 
     }

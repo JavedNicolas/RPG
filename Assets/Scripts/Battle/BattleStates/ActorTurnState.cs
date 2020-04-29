@@ -16,7 +16,7 @@ namespace RPG.Battle.StateMachine
 
         #region action animation
         /// <summary> Move Character to the correct position for his action animation </summary>
-        protected void animateMovement(Action action, BattleTarget target, BattleSpawningPoint senderSpawn)
+        protected void animateMovement(Action action, BattleTarget target, ActorSpawningPoint senderSpawn)
         {
             switch (action.GetAnimationType())
             {
@@ -34,10 +34,10 @@ namespace RPG.Battle.StateMachine
         /// <param name="target"></param>
         /// <param name="senderSpawn"></param>
         /// <returns></returns>
-        private IEnumerator animateMeleeAction(Action action, BattleTarget target, BattleSpawningPoint senderSpawn)
+        private IEnumerator animateMeleeAction(Action action, BattleTarget target, ActorSpawningPoint senderSpawn)
         {
             Vector3 targetPosition = target.model.transform.position;
-            BattleSpawningPoint battleSpawningPoint = senderSpawn;
+            ActorSpawningPoint battleSpawningPoint = senderSpawn;
             GameObject actorGO = battleSpawningPoint.actorGameObject;
             Quaternion originalRotation = actorGO.transform.rotation;
 

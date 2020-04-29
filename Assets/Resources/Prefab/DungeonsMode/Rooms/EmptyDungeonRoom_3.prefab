@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4443869603531935565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390113907536214347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6479f4f7f5f191a46ad80fc9f1ad9379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFrontSpawn: 1
+  position: 2
+  actor: {fileID: 0}
+  actorGameObject: {fileID: 0}
+--- !u!114 &6679240347256717846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879590607386468755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6479f4f7f5f191a46ad80fc9f1ad9379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFrontSpawn: 1
+  position: 1
+  actor: {fileID: 0}
+  actorGameObject: {fileID: 0}
 --- !u!1 &1956370464228293485
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,6 +108,22 @@ TerrainCollider:
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 4de14505d9ba3eb4e8aa252997f6dc7d, type: 2}
   m_EnableTreeColliders: 1
+--- !u!114 &1087085503198584824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2786667447587962789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6479f4f7f5f191a46ad80fc9f1ad9379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFrontSpawn: 1
+  position: 0
+  actor: {fileID: 0}
+  actorGameObject: {fileID: 0}
 --- !u!1 &3353445327316736819
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,9 +216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startPoints:
-  - {fileID: 879590607386468755}
-  - {fileID: 2786667447587962789}
-  - {fileID: 390113907536214347}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _ground: {fileID: 1956370464228293485}
   cameraOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &5028892132854199483

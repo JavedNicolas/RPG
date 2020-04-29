@@ -19,12 +19,11 @@ namespace RPG.DungeonMode
             mapDisplayer = GetComponent<MapDisplayer>();
         }
 
-        public void generateCharacterChoices()
+        public void displayCharacterReward(List<Character> characters)
         {
-            List<Character> characters = DungeonManager.instance.characterDatabase.getRandomElements(3, false);
-            _menu.choiceMenus.characterChoiceUI.display(true);
-            _menu.choiceMenus.characterChoiceUI.initChoices(characters, DungeonManager.instance.team.getCurrentTeamCharacters());
-            _menu.choiceMenus.characterChoiceUI.choosed += DungeonManager.instance.endCurentRoom;
+            _menu.display(true, true);
+            _menu.rewardMenus.characterRewardUI.initRewards(characters, DungeonManager.instance.team.getCurrentTeamCharacters());
+            _menu.rewardMenus.characterRewardUI.isDone = DungeonManager.instance.endCurentState;
         }
     }
 }

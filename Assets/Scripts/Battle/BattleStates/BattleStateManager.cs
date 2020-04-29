@@ -29,7 +29,7 @@ namespace RPG.Battle.StateMachine
         public delegate List<BattleTarget> RequestValidTarget(ActorType actorType, Action action);
         public RequestValidTarget requestValidTarget;
 
-        public delegate BattleSpawningPoint GetBattleSpawn(Being forActor);
+        public delegate ActorSpawningPoint GetBattleSpawn(Being forActor);
         public GetBattleSpawn getBattleSpawn;
         #endregion
 

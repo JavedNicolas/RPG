@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using RPG.DungeonMode.UI;
+using System.Collections.Generic;
+using RPG.Data;
 
 namespace RPG.DungeonMode.States
 {
@@ -21,13 +23,15 @@ namespace RPG.DungeonMode.States
             _manager.dungeonModeUI.mapDisplayer.generateMap(_manager.dungeonGenerator.rooms, _manager.currentRoom);
 
             _manager.currentRoom.mapItem.GetComponent<RoomMapItem>().isCurrentRoom(true);
-            _manager.moveCameraToCurrentRoom();
-            end();
+
+            List<Character> characters = DungeonManager.instance.characterDatabase.getRandomElements(3, false);
+            DungeonManager.instance.dungeonModeUI.displayCharacterReward(characters);
         }
 
         public override void end()
         {
-            _manager.changeState(typeof(RoomState).ToString());
+            _manager.spawnPlayer();
+            //_manager.changeState(typeof(RoomState).ToString());
         }
     }
 }

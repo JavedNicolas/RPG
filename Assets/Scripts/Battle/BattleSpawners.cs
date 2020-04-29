@@ -10,8 +10,8 @@ namespace RPG.Battle
 
     public class BattleSpawners : MonoBehaviour
     {
-        [SerializeField] List<BattleSpawningPoint> _characterSpawningPoints;
-        [SerializeField] List<BattleSpawningPoint> _enemySpawningPoints;
+        [SerializeField] List<ActorSpawningPoint> _characterSpawningPoints;
+        [SerializeField] List<ActorSpawningPoint> _enemySpawningPoints;
 
         // actor getters
         IEnemyBattleGetter _enemyGetter;
@@ -28,7 +28,7 @@ namespace RPG.Battle
             List<TeamSlot> teamSlots = _characterBattleGetter.getCharacters();
             foreach (TeamSlot teamSlot in teamSlots)
             {
-                BattleSpawningPoint battleSpawningPoint = _characterSpawningPoints.Find(x => x.position == teamSlot.battlePosition && x.isFrontSpawn == teamSlot.frontPosition);
+                ActorSpawningPoint battleSpawningPoint = _characterSpawningPoints.Find(x => x.position == teamSlot.battlePosition && x.isFrontSpawn == teamSlot.frontPosition);
                 battleSpawningPoint.actor = teamSlot.character;
                 battleSpawningPoint.actorGameObject = GameObject.Instantiate(teamSlot.character.model, battleSpawningPoint.transform);
             }
@@ -36,12 +36,12 @@ namespace RPG.Battle
             List<Enemy> enemies = _enemyGetter.getEnemies();
             foreach (Enemy enemy in enemies)
             {
-                List<BattleSpawningPoint> spawnPointAvailable = _enemySpawningPoints.FindAll(x => x.actor == null);
+                List<ActorSpawningPoint> spawnPointAvailable = _enemySpawningPoints.FindAll(x => x.actor == null);
 
                 if (spawnPointAvailable == null || spawnPointAvailable.Count == 0)
                     return;
 
-                BattleSpawningPoint battleSpawningPoint = spawnPointAvailable.getRandomElement();
+                ActorSpawningPoint battleSpawningPoint = spawnPointAvailable.getRandomElement();
                 battleSpawningPoint.actor = enemy;
                 battleSpawningPoint.actorGameObject = GameObject.Instantiate(enemy.model, battleSpawningPoint.transform);
             }
@@ -54,9 +54,9 @@ namespace RPG.Battle
         /// <returns></returns>
         public List<BattleTarget> getValidTargets(ActorType actorType, Action action)
         {
-            List<BattleSpawningPoint> spawns = getSpawns(actorType);
+            List<ActorSpawningPoint> spawns = getSpawns(actorType);
 
-            List<BattleSpawningPoint> spawnsWithBeing = spawns.FindAll(x => x.actorGameObject != null && x.actor != null && !x.actor.isDead());
+            List<ActorSpawningPoint> spawnsWithBeing = spawns.FindAll(x => x.actorGameObject != null && x.actor != null && !x.actor.isDead());
             List<BattleTarget> validTargets = new List<BattleTarget>();
             if (!action.canByPassFrontSlot())
                 spawnsWithBeing.ForEach(x =>
@@ -68,15 +68,15 @@ namespace RPG.Battle
             return validTargets;
         }
 
-        private List<BattleSpawningPoint> getSpawns(ActorType actorType)
+        private List<ActorSpawningPoint> getSpawns(ActorType actorType)
         {
-            List<BattleSpawningPoint> spawners = new List<BattleSpawningPoint>();
+            List<ActorSpawningPoint> spawners = new List<ActorSpawningPoint>();
 
             switch (actorType)
             {
                 case ActorType.Character: spawners.AddRange(_characterSpawningPoints); break;
                 case ActorType.Enemy: spawners.AddRange(_enemySpawningPoints); break;
-                case ActorType.All: spawners = new List<BattleSpawningPoint>().join(_characterSpawningPoints, _enemySpawningPoints); break;
+                case ActorType.All: spawners = new List<ActorSpawningPoint>().join(_characterSpawningPoints, _enemySpawningPoints); break;
             }
 
             return spawners;
@@ -89,16 +89,16 @@ namespace RPG.Battle
         /// <param name="spawns"></param>
         /// <param name="includeDead"> Include dead actors</param>
         /// <returns></returns>
-        private List<Being> getActors(List<BattleSpawningPoint> spawns, bool includeDead)
+        private List<Being> getActors(List<ActorSpawningPoint> spawns, bool includeDead)
         {
             return includeDead ?
                 spawns.FindAll(x => x.actor != null).Select(x => x.actor).ToList() :
                 spawns.FindAll(x => x.actor != null && !x.actor.isDead()).Select(x => x.actor).ToList();
         }
 
-        public BattleSpawningPoint getSpawningPoint(Being being)
+        public ActorSpawningPoint getSpawningPoint(Being being)
         {
-            List<BattleSpawningPoint> spawns = new List<BattleSpawningPoint>().join(_characterSpawningPoints, _enemySpawningPoints);
+            List<ActorSpawningPoint> spawns = new List<ActorSpawningPoint>().join(_characterSpawningPoints, _enemySpawningPoints);
             return spawns.Find(x => x.actor != null && x.actor.GetInstanceID() == being.GetInstanceID());
         }
     }

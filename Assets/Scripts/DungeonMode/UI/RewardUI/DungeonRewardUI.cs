@@ -8,20 +8,23 @@ using UnityEngine.UI;
 
 namespace RPG.DungeonMode.UI
 {
-    public abstract class DungeonChoiceUI<T> : MonoBehaviour where T : DatabaseElement
+    public abstract class DungeonRewardUI<T> : MonoBehaviour where T : DatabaseElement
     {
+        [Tooltip("Display the top elements which are what thre player already have. \n" +
+            "For exemple for a character reward if this toogle box if unchecked then the reward will not \n" +
+            "display the player current team.\n" +
+            "Be sure that the player elements have an empty slot before unchecking this !")]
+        [SerializeField] bool _displayPlayerElements = true;
         [SerializeField] int _choicePerLine = 5;
 
         [Header("M Menus")]
         [SerializeField] bool _unlimitedChoices;
         [SerializeField] int _maxNumberOfChoices;
         [SerializeField] MMenu _playerElementMenu;
-        [SerializeField] MMenu _choiceElementMenu;
+        [SerializeField] MMenu _rewardsElementMenu;
 
         [Header("Transforms")]
         [SerializeField] Transform _transformToHide;
-        [SerializeField] Transform _playerElementHolder;
-        [SerializeField] Transform _choiceHolder;
 
         [Header("Prefabs")]
         [SerializeField] GameObject _choicePrefab;
@@ -30,15 +33,15 @@ namespace RPG.DungeonMode.UI
         [SerializeField] Button _validateButton;
 
         public delegate void ChoiceDone();
-        public ChoiceDone choosed;
+        public ChoiceDone isDone;
 
-        private void Start()
+        private void Awake()
         {
             _validateButton.onClick.AddListener(choiceDone);
 
             // init the menus
-            _playerElementMenu.setSelectionSettings(unlimitedChoices: _unlimitedChoices, maxNumberOfSelection: _maxNumberOfChoices);
-            _choiceElementMenu.setSelectionSettings(unlimitedChoices: _unlimitedChoices, maxNumberOfSelection: _maxNumberOfChoices);
+            _playerElementMenu.setSelectionSettings(_unlimitedChoices, _maxNumberOfChoices, true);
+            _rewardsElementMenu.setSelectionSettings(_unlimitedChoices, _maxNumberOfChoices, true);
         }
 
         public virtual void display(bool display)
@@ -49,12 +52,39 @@ namespace RPG.DungeonMode.UI
         /// <summary>
         /// init the choice menu
         /// </summary>
-        /// <param name="choices"></param>
+        /// <param name="rewards"></param>
         /// <param name="currentPlayerElements"></param>
-        public void initChoices(List<T> choices, List<T> currentPlayerElements)
+        public void initRewards(List<T> rewards, List<T> currentPlayerElements)
         {
-            InstantiateChoices(currentPlayerElements ,_playerElementHolder, _playerElementMenu);
-            InstantiateChoices(choices, _choiceHolder, _choiceElementMenu);
+            //initRewardParents();
+            instantiateRewards(currentPlayerElements ,_playerElementMenu.transform);
+            instantiateRewards(rewards, _rewardsElementMenu.transform);
+
+            // set first selected player elements
+            /*int emptySelectedElements = 0;
+            _playerElementMenu.elements.ForEach(x =>
+            {
+                if (emptySelectedElements >= _maxNumberOfChoices)
+                {
+                    return;
+                }
+
+                Reward<T> reward =  x.GetComponent<Reward<T>>();
+                if (reward.element.isEmpty())
+                {
+                    x.select(true);
+                    emptySelectedElements++;
+                }
+                    
+            });*/
+        }
+
+
+        protected virtual void initRewardParents()
+        {
+            _playerElementMenu.transform.gameObject.SetActive(_displayPlayerElements);
+            _playerElementMenu.transform.clearChild();
+            _rewardsElementMenu.transform.clearChild();
         }
 
         /// <summary>
@@ -63,19 +93,17 @@ namespace RPG.DungeonMode.UI
         /// <param name="choices">the list of choices available</param>
         /// <param name="choicesList">The list of choice to populate</param>
         /// <param name="parent">The parent where the instantiate elements will be put under</param>
-        protected virtual void InstantiateChoices(List<T> choices, Transform parent, MMenu menu)
+        protected virtual void instantiateRewards(List<T> choices, Transform parent)
         {
             resizeGridLayout(choices.Count, parent.GetComponent<ResizeGridLayoutGroup>());
             List<MSelectable> selectables = new List<MSelectable>();
             for (int i = 0; i < choices.Count; i++)
             {
-                GameObject choiceGO = Instantiate(_choicePrefab, parent);
-                Choice<T> choice = choiceGO.GetComponent<Choice<T>>();
-                choice.init(choices[i]);
-                selectables.Add(choiceGO.GetComponent<MSelectable>());
+                GameObject rewardGo = Instantiate(_choicePrefab, parent);
+                Reward<T> reward = rewardGo.GetComponent<Reward<T>>();
+                reward.init(choices[i]);
+                selectables.Add(rewardGo.GetComponent<MSelectable>());
             }
-
-            menu.setElements(selectables);
         }
 
         protected virtual void resizeGridLayout(int numberOfElement, ResizeGridLayoutGroup gridLayout)
@@ -88,11 +116,11 @@ namespace RPG.DungeonMode.UI
         /// Get the elements choosed by the player, which is a current player element which will be remplaced by by his reward, and his choosed reward
         /// </summary>
         /// <returns></returns>
-        protected List<ChoiceElements<T>> getSelectedChoices()
+        protected List<Choices<T>> getSelectedRewards()
         {
-            List<Choice<T>> choosedPlayerElements = getChoicesFromMenu(_playerElementMenu);
-            List<Choice<T>> choosedChoices = getChoicesFromMenu(_choiceElementMenu);
-            List<ChoiceElements<T>> choosedElements = new List<ChoiceElements<T>>();
+            List<Reward<T>> choosedPlayerElements = getChoicesFromMenu(_playerElementMenu);
+            List<Reward<T>> choosedChoices = getChoicesFromMenu(_rewardsElementMenu);
+            List<Choices<T>> choosedElements = new List<Choices<T>>();
 
             if(choosedPlayerElements.Count != choosedChoices.Count)
             {
@@ -102,7 +130,7 @@ namespace RPG.DungeonMode.UI
 
             for (int i = 0; i < choosedPlayerElements.Count; i++)
             {
-                choosedElements.Add(new ChoiceElements<T>(choosedPlayerElements[i], choosedChoices[i]));
+                choosedElements.Add(new Choices<T>(choosedPlayerElements[i], choosedChoices[i]));
             }
 
             return choosedElements;
@@ -113,13 +141,14 @@ namespace RPG.DungeonMode.UI
         /// </summary>
         /// <param name="menu">the menu to fetch the selected elements from</param>
         /// <returns></returns>
-        private List<Choice<T>> getChoicesFromMenu(MMenu menu)
+        private List<Reward<T>> getChoicesFromMenu(MMenu menu)
         {
-            List<Choice<T>> choices = new List<Choice<T>>();
+            List<Reward<T>> choices = new List<Reward<T>>();
 
             menu.getCurrentSelectedElement().ForEach(x =>
             {
-                Choice<T> choice = x.GetComponent<Choice<T>>();
+                Reward<T> choice = x.GetComponent<Reward<T>>();
+                
                 if (choice != null)
                     choices.Add(choice);
             });

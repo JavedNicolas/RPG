@@ -15,7 +15,7 @@ namespace RPG.Battle
         /// <summary> Generate a List of target  </summary>
         /// <param name="spawningPoint"></param>
         /// <returns></returns>
-        public BattleTarget(BattleSpawningPoint spawningPoint)
+        public BattleTarget(ActorSpawningPoint spawningPoint)
         {
             button = spawningPoint.GetComponentInChildren<MenuButton>();
             model = spawningPoint.actorGameObject;
