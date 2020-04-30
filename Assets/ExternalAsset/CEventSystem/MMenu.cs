@@ -18,7 +18,7 @@ namespace MultipleMenus
 
         private void Start()
         {
-            
+          
         }
 
         public void setElements(List<MSelectable> selectables)
@@ -29,11 +29,16 @@ namespace MultipleMenus
 
         private void Update()
         {
-            getElements();
+            manualyCheckSelectedElement();
+        }
+
+        public void manualyCheckSelectedElement()
+        {
+            getChildrenElements();
             checkSelected();
         }
 
-        private void getElements() {
+        private void getChildrenElements() {
 
             if (_useChilds)
             {
@@ -118,5 +123,7 @@ namespace MultipleMenus
             _maxNumberOfSelection = maxNumberOfSelection;
             _useChilds = useChilds;
         }
+
+        public List<MSelectable> getElements() { return _elements; }
     }
 }

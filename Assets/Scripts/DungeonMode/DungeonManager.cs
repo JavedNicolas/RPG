@@ -35,6 +35,9 @@ namespace RPG.DungeonMode
         [SerializeField] DungeonModeUI _dungeonModeUI;
         public DungeonModeUI dungeonModeUI  => _dungeonModeUI;
 
+        [Header("Transfrom")]
+        [SerializeField] Transform _characterHolder;
+
         // private var
         public int dungeonSeed { get; private set; }
         public Room currentRoom {get; private set; }
@@ -48,6 +51,7 @@ namespace RPG.DungeonMode
         public DungeonState _currentState { get; private set; }
 
         // other
+        [Header("Spawners")]
         [SerializeField] CharacterSpawner _characterSpawner;
         public CharacterSpawner characterSpawner => _characterSpawner;
 
@@ -62,7 +66,7 @@ namespace RPG.DungeonMode
         // Use this for initialization
         void Start()
         {
-            initTeam();
+            team = new Team();
             DungeonState.init(this);
             initStates();
             changeState(typeof(DungeonGenerationState).ToString());
@@ -73,20 +77,11 @@ namespace RPG.DungeonMode
             this.currentRoom = currentRoom;
         }
 
-
-        void initTeam()
+        public void moveCurrentRoomToCurrentRoom()
         {
-            team = new Team();
-            List<BattlePosition> position = Enum.GetValues(typeof(BattlePosition)).Cast<BattlePosition>().ToList();
-
-            for (int i =0; i < GameSettings.DUNGEON_MODE_TEAM_MAX_SIZE; i++)
-            {
-                bool isInFront = i / position.Count > 1 ? false : true;
-                int currentPositionIndex = i % (GameSettings.DUNGEON_MODE_TEAM_MAX_SIZE);
-                Character character = new Character();
-                character.initEmpty();
-                team.addCharacterToTeam(character, isInFront, position[currentPositionIndex]);
-            }
+            Debug.Log(currentRoom.gameObject != null);
+            if(currentRoom != null && currentRoom.gameObject != null)
+                _characterHolder.position = currentRoom.gameObject.transform.position;
         }
 
         public void spawnPlayer()
@@ -95,11 +90,11 @@ namespace RPG.DungeonMode
 
             team.currentTeam.ForEach(x =>
             {
-                Debug.Log("Looking for player to spawn");
                 ActorSpawningPoint actorSpawningPoint = roomGO.startPoints.First();
-                if (actorSpawningPoint != null)
+                Debug.LogFormat("{0} character, {1}", x.character.name, actorSpawningPoint);
+                if (actorSpawningPoint != null && !x.character.isEmpty())
                 {
-                    Debug.Log("Spawing : " + x.character.name);
+                    Debug.Log("Spawing : " + x.character.model);
                     GameObject actorGO = _characterSpawner.spawnCharacter(x.character.model, actorSpawningPoint.gameObject.transform.position);
                     actorSpawningPoint.actor = x.character;
                     actorSpawningPoint.actorGameObject = actorGO;

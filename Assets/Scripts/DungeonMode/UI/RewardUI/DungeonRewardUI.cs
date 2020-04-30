@@ -56,13 +56,13 @@ namespace RPG.DungeonMode.UI
         /// <param name="currentPlayerElements"></param>
         public void initRewards(List<T> rewards, List<T> currentPlayerElements)
         {
-            //initRewardParents();
+            initRewardParents();
             instantiateRewards(currentPlayerElements ,_playerElementMenu.transform);
             instantiateRewards(rewards, _rewardsElementMenu.transform);
 
             // set first selected player elements
-            /*int emptySelectedElements = 0;
-            _playerElementMenu.elements.ForEach(x =>
+            int emptySelectedElements = 0;
+            _playerElementMenu.getElements().ForEach(x =>
             {
                 if (emptySelectedElements >= _maxNumberOfChoices)
                 {
@@ -76,7 +76,7 @@ namespace RPG.DungeonMode.UI
                     emptySelectedElements++;
                 }
                     
-            });*/
+            });
         }
 
 
@@ -118,6 +118,9 @@ namespace RPG.DungeonMode.UI
         /// <returns></returns>
         protected List<Choices<T>> getSelectedRewards()
         {
+            if (!_displayPlayerElements)
+                _playerElementMenu.manualyCheckSelectedElement();
+
             List<Reward<T>> choosedPlayerElements = getChoicesFromMenu(_playerElementMenu);
             List<Reward<T>> choosedChoices = getChoicesFromMenu(_rewardsElementMenu);
             List<Choices<T>> choosedElements = new List<Choices<T>>();

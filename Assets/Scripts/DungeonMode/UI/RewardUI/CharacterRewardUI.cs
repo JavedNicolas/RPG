@@ -19,8 +19,9 @@ namespace RPG.DungeonMode.UI
             {
                 Team team = DungeonManager.instance.team;
                 TeamSlot teamSlot = team.currentTeam[i];
-                Debug.Log("Add " + choices[i].reward.element);
-                DungeonManager.instance.team.addCharacterToTeam(choices[i].reward.element, teamSlot.frontPosition, teamSlot.battlePosition);
+                Character character = Character.CreateInstance<Character>();
+                character.init(choices[i].reward.element);
+                DungeonManager.instance.team.addCharacterToTeam(character, teamSlot.frontPosition, teamSlot.battlePosition);
             };
 
             isDone();

@@ -8,5 +8,12 @@ namespace RPG.Data.Team
         public Character character;
         public bool frontPosition;
         public BattlePosition battlePosition;
+
+        public TeamSlot(Character character, bool frontPosition, BattlePosition battlePosition)
+        {
+            this.character = character;
+            this.frontPosition = frontPosition;
+            this.battlePosition = battlePosition;
+        }
     }
 }

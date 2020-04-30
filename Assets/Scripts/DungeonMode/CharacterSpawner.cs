@@ -9,7 +9,9 @@ namespace RPG.DungeonMode
 
         public GameObject spawnCharacter(GameObject model, Vector3 position)
         {
-            return Instantiate(model, position, Quaternion.identity, _characterHolder);
+            GameObject gameObject = Instantiate(model, position, Quaternion.identity, _characterHolder);
+            gameObject.transform.LookAt( gameObject.transform.position + _characterHolder.forward);
+            return gameObject;
         }
     }
 }
