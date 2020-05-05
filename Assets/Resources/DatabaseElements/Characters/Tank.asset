@@ -13,16 +13,25 @@ MonoBehaviour:
   m_Name: Tank
   m_EditorClassIdentifier: 
   name: Tank
+  description: 
+  icon: {fileID: 0}
+  smallImage: {fileID: 0}
+  mediumImage: {fileID: 0}
+  fullImage: {fileID: 0}
   _maxLife: 200
   _attack: 50
   _magicAttack: 5
   _defense: 20
   _magicDefense: 20
   _speed: 1
-  _model: {fileID: 365394466697699572, guid: 7573052ceb5cd304bb4c34b7194bb9da, type: 3}
+  _standarModeModel: {fileID: 7160965384273805270, guid: d4fe55dab3c052241a64719d2ac32f72,
+    type: 3}
+  _dungeonModeModel: {fileID: 5781999088962397993, guid: 3cb29ae04cc3fa44c9da5f8364953662,
+    type: 3}
+  _battleModel: {fileID: 365394466697699572, guid: 7573052ceb5cd304bb4c34b7194bb9da,
+    type: 3}
   _actions:
   - {fileID: 11400000, guid: 1034022999cb8e340ac116220ff14c18, type: 2}
   - {fileID: 11400000, guid: 721a28663e7f3e44080b73a76225bd0d, type: 2}
   - {fileID: 11400000, guid: 58c6c5ff474a3b545b92e53db5e4a858, type: 2}
-  _icon: {fileID: 21300000, guid: 5946c0ab9427a52448c176f43f456eb4, type: 3}
   _actionPoint: 1

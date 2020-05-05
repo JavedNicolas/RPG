@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace RPG.DungeonMode.Dungeon
 {
@@ -39,7 +39,14 @@ namespace RPG.DungeonMode.Dungeon
 
         public void executeRoom()
         {
-            scriptableObject.effect();
+            IEnumerator coroutine = scriptableObject.effect();
+            scriptableObject.effectDone = fireDelegate;
+            DungeonManager.instance.StartCoroutine(coroutine);
+        }
+
+        void fireDelegate()
+        {
+            roomCompleted();
         }
 
         public void addLinkedRoom(Room newlinkedRoom, RoomLinkDirection newRoomDirection)

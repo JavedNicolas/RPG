@@ -30,7 +30,7 @@ namespace RPG.Battle
             {
                 ActorSpawningPoint battleSpawningPoint = _characterSpawningPoints.Find(x => x.position == teamSlot.battlePosition && x.isFrontSpawn == teamSlot.frontPosition);
                 battleSpawningPoint.actor = teamSlot.character;
-                battleSpawningPoint.actorGameObject = GameObject.Instantiate(teamSlot.character.model, battleSpawningPoint.transform);
+                battleSpawningPoint.actorGameObject = GameObject.Instantiate(teamSlot.character.standarModeModel, battleSpawningPoint.transform);
             }
 
             List<Enemy> enemies = _enemyGetter.getEnemies();
@@ -43,7 +43,7 @@ namespace RPG.Battle
 
                 ActorSpawningPoint battleSpawningPoint = spawnPointAvailable.getRandomElement();
                 battleSpawningPoint.actor = enemy;
-                battleSpawningPoint.actorGameObject = GameObject.Instantiate(enemy.model, battleSpawningPoint.transform);
+                battleSpawningPoint.actorGameObject = GameObject.Instantiate(enemy.standarModeModel, battleSpawningPoint.transform);
             }
         }
 

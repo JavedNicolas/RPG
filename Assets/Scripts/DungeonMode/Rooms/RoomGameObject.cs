@@ -7,10 +7,11 @@ namespace RPG.DungeonMode.Dungeon
 {
     public class RoomGameObject : MonoBehaviour
     {
-        [SerializeField] List<ActorSpawningPoint> _startPoints;
+        [SerializeField] StartPointZone _startPointZone;
         [SerializeField] GameObject _ground;
         [SerializeField] Vector3 cameraOffset;
-        public List<ActorSpawningPoint> startPoints => _startPoints;
+        public Vector3 startZoneCenter => _startPointZone.getCenterPosition();
+        public List<ActorSpawningPoint> startPoints => _startPointZone.actorSpawningPoints;
 
         public Vector3 cameraPosition()
         {
@@ -20,6 +21,11 @@ namespace RPG.DungeonMode.Dungeon
             float z = transform.position.z + size.z + cameraOffset.z;
 
             return new Vector3(x, y, z);
+        }
+
+        public void rotateStartZone(Vector3 comingFrom)
+        {
+            _startPointZone?.rotateZone(comingFrom);
         }
 
         public Vector3 getSize()

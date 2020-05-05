@@ -15,7 +15,9 @@ namespace RPG.Data
         [SerializeField] int _defense;
         [SerializeField] int _magicDefense;
         [SerializeField] int _speed;
-        [SerializeField] GameObject _model;
+        [SerializeField] GameObject _standarModeModel;
+        [SerializeField] GameObject _dungeonModeModel;
+        [SerializeField] GameObject _battleModel;
         [SerializeField] List<Action> _actions = new List<Action>();
 
         public int maxLife => _maxLife; 
@@ -25,7 +27,9 @@ namespace RPG.Data
         public int defense => _defense; 
         public int magicDefense  => _magicDefense; 
         public int speed => _speed; 
-        public GameObject model  => _model;
+        public GameObject standarModeModel  => _standarModeModel;
+        public GameObject dungeonModeModel => _dungeonModeModel;
+        public GameObject battleModel => _battleModel;
         public List<Action> actions => _actions; 
 
         public override void initEmpty()
@@ -38,7 +42,9 @@ namespace RPG.Data
             _defense = 0;
             _magicDefense = 0;
             _speed = 0;
-            _model = null;
+            _standarModeModel = null;
+            _dungeonModeModel = null;
+            _battleModel = null;
             _actions = null;
         }
 
@@ -52,7 +58,9 @@ namespace RPG.Data
             _defense = being.defense;
             _magicDefense = being.magicDefense;
             _speed = being.speed;
-            _model = being.model;
+            _standarModeModel = being.standarModeModel;
+            _dungeonModeModel = being.dungeonModeModel;
+            _battleModel = being.battleModel;
             _actions = being.actions;
         }
 

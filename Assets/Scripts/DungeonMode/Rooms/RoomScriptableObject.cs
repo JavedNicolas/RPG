@@ -2,6 +2,8 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using System.Collections;
+using System;
 
 namespace RPG.DungeonMode.Dungeon
 {
@@ -30,6 +32,9 @@ namespace RPG.DungeonMode.Dungeon
         [SerializeField] List<GameObject> _prefabs = new List<GameObject>();
         public List<GameObject> prefabs => _prefabs;
 
-        public abstract void effect();
+        public delegate void RoomEffectDone();
+        public RoomEffectDone effectDone;
+
+        public abstract IEnumerator effect();
     }
 }

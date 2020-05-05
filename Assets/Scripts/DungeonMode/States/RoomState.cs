@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using RPG.DungeonMode.Dungeon;
 
 namespace RPG.DungeonMode.States
 {
@@ -13,12 +14,13 @@ namespace RPG.DungeonMode.States
 
         public override void execute()
         {
-            _manager.currentRoom.executeRoom();
+            Room currentRoom = _manager.currentRoom;
+            currentRoom.executeRoom();
         }
 
         public override void end()
         {
-            _manager.changeState(typeof(ChooseMapState).ToString());
+            _manager.changeState(typeof(ChooseNextRoomState).ToString());
         }
     }
 }

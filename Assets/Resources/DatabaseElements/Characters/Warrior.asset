@@ -13,13 +13,22 @@ MonoBehaviour:
   m_Name: Warrior
   m_EditorClassIdentifier: 
   name: Warrior
+  description: 
+  icon: {fileID: 0}
+  smallImage: {fileID: 0}
+  mediumImage: {fileID: 0}
+  fullImage: {fileID: 0}
   _maxLife: 200
   _attack: 40
   _magicAttack: 1
   _defense: 20
   _magicDefense: 20
   _speed: 2
-  _model: {fileID: 0}
+  _standarModeModel: {fileID: 7160965384273805270, guid: d4fe55dab3c052241a64719d2ac32f72,
+    type: 3}
+  _dungeonModeModel: {fileID: 5781999088962397993, guid: 3cb29ae04cc3fa44c9da5f8364953662,
+    type: 3}
+  _battleModel: {fileID: 365394466697699572, guid: 7573052ceb5cd304bb4c34b7194bb9da,
+    type: 3}
   _actions: []
-  _icon: {fileID: 21300000, guid: 5946c0ab9427a52448c176f43f456eb4, type: 3}
   _actionPoint: 1
