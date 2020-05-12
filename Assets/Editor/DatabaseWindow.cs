@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace RPG.Editor {
 
-    using RPG.Data;
+    using RPG.DataModule;
 
     public class DatabaseWindow: OdinMenuEditorWindow
     {
