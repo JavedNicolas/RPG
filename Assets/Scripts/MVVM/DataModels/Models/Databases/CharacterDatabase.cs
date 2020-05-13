@@ -7,6 +7,9 @@ using Sirenix.OdinInspector;
 
 namespace RPG.DataModule
 {
+
+    using RPG.GlobalModule;
+
     [CreateAssetMenu(menuName = AssetsPath.CHARACTER_DB_SO_MENU_NAME)]
     public class CharacterDatabase : Database<Character>
     {

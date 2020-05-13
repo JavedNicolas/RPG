@@ -8,10 +8,11 @@ namespace RPG.DungeonModule
     using RPG.DataModule;
     using RPG.DataModule.ViewModel;
     using RPG.DungeonModule.View;
-    using RPG.OpenModule.View;
+    using RPG.GlobalModule.View;
     using System;
+    using System.Linq;
 
-    public class DungeonController : MonoBehaviour
+    public partial class DungeonController : MonoBehaviour
     {
         [Header("UI")]
         [SerializeField] TabMenu _menu;
@@ -44,6 +45,9 @@ namespace RPG.DungeonModule
         public Team team { get; private set; }
         public List<GameObject> spawnedCharacter = new List<GameObject>();
 
+        // reward
+        RewardType _currentRewardType;
+
         #region delegate
         public delegate bool RoomChoosed(int heightIndex, int widthIndex);
         public RoomChoosed roomChoosed;
@@ -56,23 +60,13 @@ namespace RPG.DungeonModule
             team = new Team();
         }
 
-        public void initDungeon(GridDungeon dungeon)
+        public void initDungeon(GridDungeon dungeon, Room startRoom)
         {
             this._dungeon = dungeon;
-            setStartRoom();
+            currentRoom = startRoom;
         }
 
         #region Room Management
-        /// <summary>
-        /// set the start room as current room
-        /// </summary>
-        public void setStartRoom()
-        {
-            currentRoom = _dungeon.getStartRoom();
-            (int height, int width) indexes = _dungeon.findRoomIndex(currentRoom);
-
-            _mapDisplayer.selectedRoom(indexes.height, indexes.width);
-        }
 
         /// <summary>
         /// Change the current room
@@ -107,6 +101,10 @@ namespace RPG.DungeonModule
 
             _mapDisplayer.generateMap(mapLayoutSprites);
             _mapDisplayer.roomChoosed = fireRoomChoosedDelegate;
+
+            // set the current room (start room) as the frist room
+            (int height, int width) indexes = _dungeon.findRoomIndex(currentRoom);
+            _mapDisplayer.selectedRoom(indexes.height, indexes.width);
         }
 
         /// <summary>
@@ -135,16 +133,43 @@ namespace RPG.DungeonModule
             List<(string name, string description, Sprite icon)> charactersInfos = new List<(string name, string description, Sprite icon)>();
             characters.ForEach(x => charactersInfos.Add(characterViewModel.getCharacterInfo(x)));
 
-            _menu.rewardMenus.characterRewardUI.initRewards(charactersInfos, teamViewModel.getTeamInfos(team));
-            _menu.rewardMenus.characterRewardUI.isDone = fireEndState;
+            _currentRewardType = RewardType.Character;
+            _menu.rewardMenus.initRewards(charactersInfos, teamViewModel.getTeamInfos(team));
+            _menu.rewardMenus.isDone = RewardChoiceDone;
         }
 
         /// <summary>
         /// Fire the delegate which end current state
         /// </summary>
-        public void  fireEndState()
+        void  RewardChoiceDone()
         {
+            switch (_currentRewardType)
+            {
+                case RewardType.Character: addRewardCharacterToTeam(); break;
+                case RewardType.Item: break;
+                case RewardType.Skill: break;
+            }
             stateEnded();
+        }
+
+        /// <summary>
+        /// Add a character to the team from the choice made in the reward menu
+        /// </summary>
+        void addRewardCharacterToTeam()
+        {
+            List<Choices> choices = _menu.rewardMenus.getSelectedRewards();
+
+            List<BattlePosition> battlePositions = Enum.GetValues(typeof(BattlePosition)).Cast<BattlePosition>().ToList();
+
+            for (int i = 0; i < choices.Count; i++)
+            {
+                bool isInFront = choices[i].playerElementIndex / battlePositions.Count < 1;
+                Character characterChoosed = _characterDatabase.getElements(x => x.name == choices[i].reward).First();
+                int battlePositionIndex = choices[i].playerElementIndex % battlePositions.Count;
+                BattlePosition battlePosition = battlePositions[battlePositionIndex];
+
+                team.addCharacterToTeam(characterChoosed, isInFront, battlePosition);
+            }
         }
 
         /// <summary>

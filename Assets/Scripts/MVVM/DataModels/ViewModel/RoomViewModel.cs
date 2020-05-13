@@ -73,7 +73,8 @@ namespace RPG.DataModule.ViewModel
 
             for (int i = 0; i < rooms.GetLength(0); i++)
                 for (int j = 0; j < rooms.GetLength(1); j++)
-                    sprites[i, j] = getSprite(rooms[i, j], layoutIcons);
+                    if(rooms[i,j] != null)
+                        sprites[i, j] = getSprite(rooms[i, j], layoutIcons);
 
             return sprites;
         }

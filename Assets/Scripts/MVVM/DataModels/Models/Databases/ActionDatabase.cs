@@ -3,6 +3,8 @@ using System.Collections;
 
 namespace RPG.DataModule
 {
+    using RPG.GlobalModule;
+
     [CreateAssetMenu(menuName = AssetsPath.ACTION_DB_SO_MENU_NAME)]
     public class ActionDatabase : Database<Action>
     {

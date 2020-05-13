@@ -5,6 +5,8 @@ using System.Collections;
 
 namespace RPG.DataModule
 {
+    using RPG.GlobalModule;
+
     [CreateAssetMenu(fileName = "Room", menuName = AssetsPath.DUNGEON_ROOM_SO_MENU_NAME + "/BossRoom")]
     public class BossRoom : RoomScriptableObject
     {

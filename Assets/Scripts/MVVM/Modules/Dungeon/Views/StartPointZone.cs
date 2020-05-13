@@ -7,8 +7,7 @@ namespace RPG.DungeonModule.View
 {
     public class StartPointZone : MonoBehaviour
     {
-        [SerializeField] float _zoneWidth;
-        [SerializeField] float _zoneHeight;
+        [SerializeField] CustomGameObject customGameObject;
         [Tooltip("A factor which will offset the spawning points from the center. This factor divide the zone width")]
         [SerializeField, Range(1, 10)] float _zoneCenterXOffsetFactor;
         [SerializeField] Transform _transformToRotate;
@@ -24,6 +23,10 @@ namespace RPG.DungeonModule.View
         [Button("Move The zone center point")]
         public void resizeZone()
         {
+            Vector3 size = customGameObject.getSize();
+            float _zoneWidth = size.x;
+            float _zoneHeight = size.z;
+
             _transformToRotate.localPosition = new Vector3(_zoneWidth / 2, _transformToRotate.localPosition.y ,_zoneHeight / 2);
             float centerXOffset = -_zoneWidth / _zoneCenterXOffsetFactor;
             _characterZone.localPosition = new Vector3(centerXOffset, 0, 0);

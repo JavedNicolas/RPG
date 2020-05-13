@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using RPG.DataModule;
-using RPG.DataModule.Player;
-using RPG.DataModule.Team;
 
 public class GameManager
 {

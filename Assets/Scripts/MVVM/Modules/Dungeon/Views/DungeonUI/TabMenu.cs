@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using MultipleMenus;
+
 
 namespace RPG.DungeonModule.View
 {
+    using MultipleMenus;
+    using RPG.GlobalModule.View;
+
     public class TabMenu : MonoBehaviour
     {
         [SerializeField] List<TabMenuButton> _menuButtons;
-        [SerializeField] RewardMenus _rewardMenus;
+        [SerializeField] RewardUI _rewardMenus;
         [SerializeField] TabMenuButton _rewardMenuButton;
         [SerializeField] MMenu _mMenu;
 
-        public RewardMenus rewardMenus => _rewardMenus;
+        public RewardUI rewardMenus => _rewardMenus;
 
         bool _isChoiceDisplayed = false;
 

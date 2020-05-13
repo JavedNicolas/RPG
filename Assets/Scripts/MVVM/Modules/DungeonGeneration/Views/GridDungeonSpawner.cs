@@ -42,7 +42,7 @@ namespace RPG.DungeonGenerationModule.View
         {
             GameObject prefab = roomPrefabToSpawn;
 
-            RoomGameObject prefabRoomGameObject = prefab?.GetComponent<RoomGameObject>();
+            CustomGameObject prefabRoomGameObject = prefab?.GetComponent<CustomGameObject>();
 
             if (prefabRoomGameObject == null)
             {
@@ -56,5 +56,6 @@ namespace RPG.DungeonGenerationModule.View
 
             return spawnedRoom;
         }
+
     }
 }

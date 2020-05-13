@@ -12,23 +12,17 @@ namespace RPG.ModuleManager.Dungeon
 
     public class DungeonStateManager : MonoBehaviour
     {
-        public static DungeonStateManager instance;
 
         //Modules
-        DungeonGenerationController _dungeonGenerationController;
+        [SerializeField] DungeonGenerationController _dungeonGenerationController;
         public DungeonGenerationController dungeonGenerationController => _dungeonGenerationController;
 
-        DungeonController _dungeonController;
+        [SerializeField] DungeonController _dungeonController;
         public DungeonController dungeonController => _dungeonController;
 
         // states
         public List<DungeonState> states { get; private set; }
         public DungeonState _currentState { get; private set; }
-
-        private void Awake()
-        {
-            instance = this;
-        }
 
         // Use this for initialization
         void Start()

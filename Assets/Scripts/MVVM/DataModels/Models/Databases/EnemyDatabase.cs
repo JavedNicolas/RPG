@@ -7,6 +7,8 @@ using Sirenix.OdinInspector;
 
 namespace RPG.DataModule
 {
+    using RPG.GlobalModule;
+
     [CreateAssetMenu(menuName = AssetsPath.ENEMY_DB_SO_MENU_NAME)]
     public class EnemyDatabase : Database<Enemy>
     {

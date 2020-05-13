@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 namespace RPG.DungeonModule.View
 {
-    public class RoomGameObject : MonoBehaviour
+    public class RoomGameObject : CustomGameObject
     {
         [SerializeField] StartPointZone _startPointZone;
-        [SerializeField] GameObject _ground;
         [SerializeField] Vector3 cameraOffset;
         public Vector3 startZoneCenter => _startPointZone.getCenterPosition();
         public List<GameObject> startPoints => _startPointZone.actorSpawningPoints;
@@ -27,25 +26,6 @@ namespace RPG.DungeonModule.View
             _startPointZone?.rotateZone(comingFrom);
         }
 
-        public Vector3 getSize()
-        {
-            if (_ground == null)
-                return Vector3.zero;
-
-            if (isUsingTerrain())
-            {
-                Terrain terrain = _ground.GetComponent<Terrain>();
-                return terrain.terrainData.size;
-            }
-
-            MeshRenderer renderer = _ground.GetComponent<MeshRenderer>();
-            return renderer == null ? Vector3.zero : renderer.bounds.size;
-        }
-
-        bool isUsingTerrain()
-        {
-            return _ground.GetComponent<Terrain>() == null ? false: true;
-        }
     }
 
 }

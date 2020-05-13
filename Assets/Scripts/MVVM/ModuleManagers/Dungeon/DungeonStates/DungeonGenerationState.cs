@@ -14,7 +14,9 @@ namespace RPG.ModuleManager.Dungeon.States
 
         public override void execute()
         {
-            _manager.dungeonGenerationController.generateDungeon();
+            // dungeon generation
+            Room startRoom = _manager.dungeonGenerationController.generateDungeon();
+            _manager.dungeonController.initDungeon(_manager.dungeonGenerationController.dungeon, startRoom);
 
             _manager.dungeonController.moveCameraToCurrentRoomInstant();
 

@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RPG.DungeonMode.Dungeon;
 using System.Collections.Generic;
 
 namespace RPG.DataModule
 {
+
+    using RPG.GlobalModule;
+
     [CreateAssetMenu(menuName = AssetsPath.DUNGEON_ROOM_DB_MENU_NAME)]
     public class DungeonRoomDatabase : Database<RoomScriptableObject>
     {

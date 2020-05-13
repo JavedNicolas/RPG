@@ -8,9 +8,8 @@ namespace RPG.DataModule
 {
     public class GridDungeon
     {
-        [SerializeField] [Range(0,100)]int _chanceToBranch;
-        [Tooltip("Is a factor which reduced the chance to branch based on number of branched room")]
-        [SerializeField] [Range(0, 30)] int _chanceToBranchReductionFactor;
+        int _chanceToBranch;
+        int _chanceToBranchReductionFactor;
 
         Room[,] _rooms;
         public Room[,] rooms => _rooms;
@@ -24,9 +23,11 @@ namespace RPG.DataModule
         /// <param name="seed">am>
         /// <param name="maxSiz</param>
         /// <returns></returns>
-        public Room generate(DungeonRoomDatabase roomDatabase, int minSize, int maxSize, int seed)
+        public Room generate(DungeonRoomDatabase roomDatabase, int minSize, int maxSize, int chanceToBranch, int chanceToBranchReductionFactor, int seed)
         {
             int dungeonSize = Random.Range(minSize, maxSize);
+            _chanceToBranch = chanceToBranch;
+            _chanceToBranchReductionFactor = chanceToBranchReductionFactor;
 
             _rooms = new Room[5, dungeonSize];
 
@@ -174,7 +175,7 @@ namespace RPG.DataModule
 
         public Room getStartRoom()
         {
-            Room startRoom = rooms.Cast<Room>().ToList().Find(x => x.scriptableObject.GetType() == typeof(StartRoom));
+            Room startRoom = _rooms.Cast<Room>().ToList().Find(x => x.name == "Start Room");
             return startRoom;
         }
 

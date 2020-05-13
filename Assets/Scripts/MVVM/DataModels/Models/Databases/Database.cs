@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.IO;
 using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEditor;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
-
 
 namespace RPG.DataModule
 {
+    using RPG.GlobalModule;
+
     public abstract class Database<T> : ScriptableObject where T : ScriptableObject
     {
         [SerializeField] protected abstract string elementFolderPath { get; }

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 namespace RPG.DataModule
 {
+    using RPG.GlobalModule;
+
     [CreateAssetMenu(menuName = AssetsPath.ACTION_SO_MENU_NAME)]
     public class Action : DatabaseElement, IAction
     {

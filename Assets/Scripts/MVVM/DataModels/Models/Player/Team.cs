@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using RPG.settings;
 using System.Linq;
 
 namespace RPG.DataModule

@@ -22,9 +22,6 @@ namespace RPG.DataModule
         [SerializeField] bool _cannotBranch = false;
         public bool cannotBranch => _cannotBranch;
 
-        [SerializeField] string _name;
-        public new string name => _name;
-
         [SerializeField] Sprite _roomIcon;
         public Sprite roomIcon => _roomIcon;
 

@@ -5,6 +5,8 @@ using System;
 
 namespace RPG.DataModule
 {
+    using RPG.GlobalModule;
+
     [System.Serializable]
     [CreateAssetMenu(menuName = AssetsPath.CHARACTER_SO_MENU_NAME)]
     public class Character : Being

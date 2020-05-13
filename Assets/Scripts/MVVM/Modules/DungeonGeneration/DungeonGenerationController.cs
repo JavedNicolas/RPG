@@ -15,6 +15,9 @@ namespace RPG.DungeonGenerationModule
         [Header("Dungeon Generation")]
         [SerializeField] DungeonRoomDatabase _dungeonRoomDatabase;
         [SerializeField] int _minSize, _maxSize, _seed;
+        [SerializeField] [Range(0, 100)] int _chanceToBranch;
+        [Tooltip("Is a factor which reduced the chance to branch based on number of branched room")]
+        [SerializeField] [Range(0, 30)] int _chanceToBranchReductionFactor;
 
         [Header("Dungeon prefabs")]
         [SerializeField] List<GameObject> _roomPrefabs = new List<GameObject>();
@@ -26,13 +29,26 @@ namespace RPG.DungeonGenerationModule
             dungeonSpawner = GetComponent<GridDungeonSpawner>();
         }
 
-        public void generateDungeon()
+
+        /// <summary>
+        /// Generate a new dungeon data
+        /// </summary>
+        /// <returns>The start room</returns>
+        public Room generateDungeon()
         {
-            dungeon.generate(_dungeonRoomDatabase, _minSize, _maxSize, _seed);
+            Room startRoom = dungeon.generate(_dungeonRoomDatabase, _minSize, _maxSize,_chanceToBranch ,_chanceToBranchReductionFactor , _seed);
 
             RoomViewModel roomViewModel = new RoomViewModel();
             GameObject[,] roomPrefabs = roomViewModel.getGridDungeonRoomsPrefabs(dungeon.rooms, _roomPrefabs, _emptyRoomPrefabs);
-            dungeonSpawner.spawnRooms(roomPrefabs);
+            GameObject[,] rooomSpawned = dungeonSpawner.spawnRooms(roomPrefabs);
+
+            // set the room gameobject attribut with the spawned room object 
+            for (int i = 0; i < dungeon.rooms.GetLength(0); i++)
+                for (int j = 0; j < dungeon.rooms.GetLength(1); j++)
+                    if(dungeon.rooms[i,j] != null)
+                        dungeon.rooms[i, j].setGameObject(rooomSpawned[i, j]);
+
+            return startRoom;
         }
 
     }

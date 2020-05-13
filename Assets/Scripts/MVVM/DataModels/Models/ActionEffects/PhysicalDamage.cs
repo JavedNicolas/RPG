@@ -4,6 +4,8 @@ using Sirenix.OdinInspector;
 
 namespace RPG.DataModule
 {
+    using RPG.GlobalModule;
+
     [CreateAssetMenu(menuName = AssetsPath.ACTION_EFFECT_SO_MENU_NAME + "PhysicalDamage")]
     public class PhysicalDamage : ActionEffect
     {
