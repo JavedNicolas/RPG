@@ -14,6 +14,8 @@ namespace RPG.GlobalModule.View
         public bool isSelected { get; private set; }
         public bool isHovered { get; private set; }
 
+        public string getName() => _nameTMPro.text;
+
         public virtual void init(string name, string description, Sprite icon)
         {
             _nameTMPro.text = name;

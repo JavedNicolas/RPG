@@ -45,7 +45,9 @@ namespace RPG.DungeonModule.View
                         Sprite roomSprite = roomSprites[i, j];
 
                         roomMapItem.setLayoutImage(roomSprite);
-                        roomMapItem.setButtonAction(delegate { fireDelegate(i, j); });
+
+                        (int i, int j) indexes = (i, j); // avoid index corrumpt 
+                        roomMapItem.setButtonAction(delegate { fireDelegate(indexes.i, indexes.j); });
                     }
                     else
                     {

@@ -17,7 +17,7 @@ namespace RPG.DataModule
         {
             List<(string name, string description, Sprite icon)> infos = new List<(string name, string description, Sprite icon)>();
             CharacterViewModel characterViewModel = new CharacterViewModel();
-            team.currentTeam.ForEach(x => infos.Add(characterViewModel.getCharacterInfo(x.character)));
+            team.currentTeam.ForEach(x => infos.Add(characterViewModel.getCharacterInfo(x.being)));
 
             return infos;
         }
@@ -27,11 +27,11 @@ namespace RPG.DataModule
         /// </summary>
         /// <param name="teamSlot"></param>
         /// <returns></returns>
-        public int getIndexForTeamPosition(TeamSlot teamSlot)
+        public int getIndexForTeamPosition<T>(TeamSlot<T> teamSlot)
         {
-            List<string> position = Enum.GetValues(typeof(BattlePosition)).Cast<string>().ToList();
-            int indexOfPosition = position.FindIndex(x => x == teamSlot.battlePosition.ToString());
-            int isInFrontFactor = teamSlot.frontPosition ? 1 : 0;
+            List<BattlePosition> position = Enum.GetValues(typeof(BattlePosition)).Cast<BattlePosition>().ToList();
+            int indexOfPosition = position.FindIndex(x => x.ToString() == teamSlot.battlePosition.ToString());
+            int isInFrontFactor = teamSlot.frontPosition ? 0 : 1;
             return indexOfPosition + (isInFrontFactor * position.Count);
         }
 

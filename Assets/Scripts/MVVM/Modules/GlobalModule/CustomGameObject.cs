@@ -5,6 +5,7 @@ public class CustomGameObject : MonoBehaviour
 {
     [Tooltip("The gameobject service as a base for this object. This will be used to get the object size if needed")]
     [SerializeField] GameObject _base;
+    public GameObject baseObject => _base;
 
     public Vector3 getSize()
     {

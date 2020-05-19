@@ -38,8 +38,8 @@ namespace RPG.DungeonModule.View
 
         public void display(bool display, bool hasReward = false)
         {
-            gameObject.SetActive(display);
             displayTabReward(hasReward);
+            gameObject.SetActive(display);
         }
 
         private void displayTabReward(bool displayReward)

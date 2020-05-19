@@ -16,6 +16,7 @@ namespace RPG.ModuleManager.Dungeon.States
         {
             // dungeon generation
             Room startRoom = _manager.dungeonGenerationController.generateDungeon();
+            _manager.dungeonController.stateEnded = _manager.endCurentState;
             _manager.dungeonController.initDungeon(_manager.dungeonGenerationController.dungeon, startRoom);
 
             _manager.dungeonController.moveCameraToCurrentRoomInstant();
@@ -30,7 +31,7 @@ namespace RPG.ModuleManager.Dungeon.States
         public override void end()
         {
             _manager.dungeonController.menu.display(false, false);
-            _manager.dungeonController.spawnPlayer();
+            _manager.dungeonController.spawnCharacter();
             _manager.changeState(typeof(RoomState).ToString());
         }
     }

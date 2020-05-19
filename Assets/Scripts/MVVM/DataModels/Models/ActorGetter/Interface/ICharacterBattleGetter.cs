@@ -6,6 +6,6 @@ namespace RPG.DataModule
 {
     public interface ICharacterBattleGetter
     {
-        List<TeamSlot> getCharacters();
+        List<TeamSlot<Character>> getCharacters();
     }
 }

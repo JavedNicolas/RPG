@@ -10,10 +10,10 @@ namespace RPG.DataModule
     {
         public const int MAX_TEAM_SIZE = 3;
 
-        List<TeamSlot> _team = new List<TeamSlot>();
+        List<TeamSlot<Character>> _team = new List<TeamSlot<Character>>();
         List<Character> _roster = new List<Character>();
 
-        public List<TeamSlot> currentTeam => _team;
+        public List<TeamSlot<Character>> currentTeam => _team;
 
         public Team()
         {
@@ -21,18 +21,18 @@ namespace RPG.DataModule
 
             for (int i = 0; i < MAX_TEAM_SIZE; i++)
             {
-                bool isInFront = i / position.Count > 1 ? false : true;
+                bool isInFront = i / position.Count > 1 ? true : false;
                 int currentPositionIndex = i % (MAX_TEAM_SIZE);
                 Character character = new Character();
                 character.initEmpty();
-                _team.Add(new TeamSlot(character, isInFront, position[currentPositionIndex]));
+                _team.Add(new TeamSlot<Character>(character, isInFront, position[currentPositionIndex]));
             }
         }
 
         public List<Character> getCurrentTeamCharacters()
         {
             List<Character> currentTeamCharacter = new List<Character>();
-            _team.ForEach(x => currentTeamCharacter.Add(x.character));
+            _team.ForEach(x => currentTeamCharacter.Add(x.being));
 
             return currentTeamCharacter;
         }
@@ -46,15 +46,15 @@ namespace RPG.DataModule
         public void addCharacterToTeam(Character character, bool isInFront, BattlePosition battlePosition)
         {
 
-            if(!_team.Exists(x => x.character.isEmpty()))
+            if(!_team.Exists(x => x.being.isEmpty()))
             { 
                 Debug.Log("No space in team, character is added to roster");
                 addCharacterToRoster(character);
                 return;
             }
 
-            int index = _team.FindIndex(x => x.character.isEmpty());
-            _team[index] = new TeamSlot(character, isInFront, battlePosition);
+            int index = _team.FindIndex(x => x.being.isEmpty());
+            _team[index] = new TeamSlot<Character>(character, isInFront, battlePosition);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace RPG.DataModule
 
         public void fullHealTeam()
         {
-            _team.ForEach(x => x.character.damage(-x.character.maxLife));
+            _team.ForEach(x => x.being.damage(-x.being.maxLife));
         }
     }
 }

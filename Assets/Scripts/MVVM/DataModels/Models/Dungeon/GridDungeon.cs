@@ -202,6 +202,7 @@ namespace RPG.DataModule
         /// <returns></returns>
         public Room findRoom(int heightIndex, int widthIndex)
         {
+            Debug.Log(heightIndex + " : " + widthIndex);
             return _rooms[heightIndex, widthIndex];
         }
     }

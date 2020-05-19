@@ -132,13 +132,13 @@ namespace RPG.GlobalModule.View
             if(choosedPlayerElements.Count != choosedRewards.Count 
                 && choosedPlayerElementsIndex.Count != choosedRewardsIndex.Count)
             {
-                Debug.Log("Add Pop up warning");
+                Debug.LogWarning("Add Pop up warning");
                 return null;
             }
 
             for (int i = 0; i < choosedPlayerElements.Count; i++)
             {
-                choosedElements.Add(new Choices(choosedPlayerElements[i].name, choosedPlayerElementsIndex[i], choosedRewards[i].name, choosedRewardsIndex[i]));
+                choosedElements.Add(new Choices(choosedPlayerElements[i].getName(), choosedPlayerElementsIndex[i], choosedRewards[i].getName(), choosedRewardsIndex[i]));
             }
 
             return choosedElements;

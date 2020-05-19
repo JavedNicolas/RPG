@@ -43,7 +43,7 @@ namespace RPG.DungeonModule
 
         // player
         public Team team { get; private set; }
-        public List<GameObject> spawnedCharacter = new List<GameObject>();
+        public List<BattleSlot<Character>> spawnedCharacter = new List<BattleSlot<Character>>();
 
         // reward
         RewardType _currentRewardType;
@@ -64,6 +64,7 @@ namespace RPG.DungeonModule
         {
             this._dungeon = dungeon;
             currentRoom = startRoom;
+            _nextRoomButton.onClick.AddListener(delegate { displayMenu(true, canChooseARoom: true); });
         }
 
         #region Room Management
@@ -82,7 +83,7 @@ namespace RPG.DungeonModule
                 return false;
 
             _previousRoom = this.currentRoom;
-            this.currentRoom = currentRoom;
+            this.currentRoom = nextRoom;
 
             (int height, int width) indexes = _dungeon.findRoomIndex(_previousRoom);
             _mapDisplayer.roomCleared(indexes.height, indexes.width);
@@ -143,6 +144,7 @@ namespace RPG.DungeonModule
         /// </summary>
         void  RewardChoiceDone()
         {
+            _menu.rewardMenus.isDone = null;
             switch (_currentRewardType)
             {
                 case RewardType.Character: addRewardCharacterToTeam(); break;
@@ -164,7 +166,9 @@ namespace RPG.DungeonModule
             for (int i = 0; i < choices.Count; i++)
             {
                 bool isInFront = choices[i].playerElementIndex / battlePositions.Count < 1;
+
                 Character characterChoosed = _characterDatabase.getElements(x => x.name == choices[i].reward).First();
+                
                 int battlePositionIndex = choices[i].playerElementIndex % battlePositions.Count;
                 BattlePosition battlePosition = battlePositions[battlePositionIndex];
 
@@ -188,6 +192,7 @@ namespace RPG.DungeonModule
         {
             _mapDisplayer.canChangeRoom(canChooseARoom);
             menu.display(display, hasReward);
+            displayNextRoomButton(false);
         }
         #endregion
 
@@ -220,10 +225,8 @@ namespace RPG.DungeonModule
         {
             spawnedCharacter.ForEach(x =>
             {
-                TeamSlot teamSlot = team.currentTeam.Find(t => t.character == x);
-
                 TeamViewModel teamViewModel = new TeamViewModel();
-                int positionIndex = teamViewModel.getIndexForTeamPosition(teamSlot);
+                int positionIndex = teamViewModel.getIndexForTeamPosition(x);
 
                 if (positionIndex > actorSpawningPoints.Count)
                     return;
@@ -243,7 +246,6 @@ namespace RPG.DungeonModule
             if (currentRoom.gameObject.TryGetComponent<RoomGameObject>(out roomGO))
             {
                 Vector3 direction = (_previousRoom.gameObject.transform.position - currentRoom.gameObject.transform.position).normalized;
-                Debug.Log(direction);
                 roomGO.rotateStartZone(direction);
             }
         }
@@ -261,9 +263,29 @@ namespace RPG.DungeonModule
 
         #endregion
 
-        public void spawnPlayer()
+        /// <summary>
+        /// Spawn all character in the team that have not already been spawned
+        /// </summary>
+        public void spawnCharacter()
         {
-            
+            team.currentTeam.ForEach(x =>
+            {
+                // if the character has not been spawned
+                if(!spawnedCharacter.Exists(s => s.being != x.being))
+                {
+                    // spawn character
+                    List<GameObject> roomStartPoints = currentRoom.gameObject.GetComponent<RoomGameObject>().startPoints;
+                    TeamViewModel teamViewModel = new TeamViewModel();
+                    int startPointIndex = teamViewModel.getIndexForTeamPosition(x);
+                    GameObject gameObject = Instantiate(x.being.dungeonModeModel, roomStartPoints[startPointIndex].transform.position, Quaternion.identity, _characterHolder);
+
+                    // make the character rotation correct
+                    gameObject.transform.LookAt(gameObject.transform.position + roomStartPoints[startPointIndex].transform.forward);
+
+                    BattleSlot<Character> battleSlot = new BattleSlot<Character>(x, gameObject);
+                    spawnedCharacter.Add(battleSlot);
+                }
+            });
         }
 
     }

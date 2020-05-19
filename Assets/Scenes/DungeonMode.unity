@@ -2221,18 +2221,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 99302731}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: displayMenuToChangeRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &99302731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20331,7 +20320,7 @@ MonoBehaviour:
   _menu: {fileID: 1018657296}
   _nextRoomButton: {fileID: 99302730}
   mainCamera: {fileID: 634315520}
-  _cameraOffset: {x: 0, y: 0, z: 0}
+  _cameraOffset: {x: 25, y: 25, z: 0}
   _characterHolder: {fileID: 1529785964}
   _mapDisplayer: {fileID: 934714473}
   _layoutIcons:
@@ -20353,7 +20342,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 202fc1cefbb47474498f3197db862b4c, type: 3}
   _characterDatabase: {fileID: 11400000, guid: d148d3938fe988546bcabf6d9f6eeda7, type: 2}
   _enemyDatabase: {fileID: 11400000, guid: 346370886e85ee34abaa3b092dcd48eb, type: 2}
-  spawnedCharacter: []
 --- !u!4 &831805295
 Transform:
   m_ObjectHideFlags: 0

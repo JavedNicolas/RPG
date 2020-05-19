@@ -4,15 +4,17 @@ using Sirenix.OdinInspector;
 
 namespace RPG.DataModule
 {
-    public struct TeamSlot
+    public class TeamSlot<T>
     {
-        public Character character;
+        public T being;
         public bool frontPosition;
         public BattlePosition battlePosition;
 
-        public TeamSlot(Character character, bool frontPosition, BattlePosition battlePosition)
+        public TeamSlot() { }
+
+        public TeamSlot(T being, bool frontPosition, BattlePosition battlePosition)
         {
-            this.character = character;
+            this.being = being;
             this.frontPosition = frontPosition;
             this.battlePosition = battlePosition;
         }

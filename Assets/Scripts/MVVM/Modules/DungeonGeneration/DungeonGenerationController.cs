@@ -29,7 +29,6 @@ namespace RPG.DungeonGenerationModule
             dungeonSpawner = GetComponent<GridDungeonSpawner>();
         }
 
-
         /// <summary>
         /// Generate a new dungeon data
         /// </summary>
